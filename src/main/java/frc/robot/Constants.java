@@ -27,6 +27,12 @@ public class Constants {
        public static final int kRightFrontPort = 2;
        public static final int kRightRearPort = 3; 
      }
+
+     public static final class Climb {
+        public static final int kClimbMotor = 8;
+        public static final int kTraverseMotor = 7;
+        public static final int kAntiDropClimbServo = 0;
+      }
     
 }
 
