@@ -7,11 +7,15 @@ import frc.robot.subsystems.DriveSystem;
  *
  */
 public class ManualDrive extends CommandBase {
+
     private final DriveSystem m_driveSystem;
+ 
 
     public ManualDrive(DriveSystem subsystem) {
+
         m_driveSystem = subsystem;
         addRequirements(m_driveSystem);
+
     }
 
     // Called when the command is initially scheduled.
@@ -22,6 +26,8 @@ public class ManualDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+
+
     }
 
     // Called once the command ends or is interrupted.
