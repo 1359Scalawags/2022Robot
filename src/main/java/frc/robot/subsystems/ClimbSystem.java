@@ -29,12 +29,18 @@ public class ClimbSystem extends SubsystemBase {
         climbMotor.restoreFactoryDefaults();
         climbMotor.setInverted(false);
         climbMotor.setIdleMode(IdleMode.kCoast);
+climberSolenoid = new Solenoid(Constants.Climb.kClimberSolenoid, PneumaticsModuleType.CTREPCM, 0);
+ addChild("ClimberSolenoid", climberSolenoid);
+ 
 
         antidropClimbServo = new Servo(Constants.Climb.kAntiDropClimbServo);
         addChild("AntidropClimbServo", antidropClimbServo);
 
         climberSolenoid = new Solenoid(0, PneumaticsModuleType.CTREPCM, 0);
         addChild("ClimberSolenoid", climberSolenoid);
+antidropTraverseServo = new Servo(Constants.Climb.kAntiDropTraverseServo);
+ addChild("AntidropTraverseServo", antidropTraverseServo);
+ 
 
         traverseMotor = new CANSparkMax(Constants.Climb.kTraverseMotor, MotorType.kBrushless);
 
