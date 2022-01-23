@@ -34,5 +34,14 @@ public class Constants {
         public static final int kAntiDropClimbServo = 0;
       }
     
+    
+     public static final class BallHandling  {
+        public static final int kloadMotor1 = 4;
+        public static final int kloadMotor2 = 9;
+        public static final int kstagingMotor = 6;
+        public static final int kshootMotor = 5; 
+      }
+     
+       
 }
 
