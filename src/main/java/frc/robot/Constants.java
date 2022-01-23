@@ -29,9 +29,15 @@ public class Constants {
      }
 
      public static final class Climb {
+        //Climb Motors and Servos (Solenoids too)
         public static final int kClimbMotor = 8;
         public static final int kTraverseMotor = 7;
         public static final int kAntiDropClimbServo = 0;
+        public static final int kAntiDropTraverseServo = 1;
+        public static final int kClimberSolenoid = 0;
+        //Climb Motor Speeds
+        public static  final float kClimbMotorSpeed = 0.5f;
+        public static  final float kTraverseMotorrSpeed = 0.5f;
       }
     
     

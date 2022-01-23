@@ -63,7 +63,7 @@ antidropClimbServo = new Servo(Constants.Climb.kAntiDropClimbServo);
  addChild("AntidropClimbServo", antidropClimbServo);
  
 
-climberSolenoid = new Solenoid(0, PneumaticsModuleType.CTREPCM, 0);
+climberSolenoid = new Solenoid(Constants.Climb.kClimberSolenoid, PneumaticsModuleType.CTREPCM, 0);
  addChild("ClimberSolenoid", climberSolenoid);
  
 
@@ -74,7 +74,7 @@ traverseMotor.setInverted(false);
 traverseMotor.setIdleMode(IdleMode.kCoast);
   
 
-antidropTraverseServo = new Servo(1);
+antidropTraverseServo = new Servo(Constants.Climb.kAntiDropTraverseServo);
  addChild("AntidropTraverseServo", antidropTraverseServo);
  
 
