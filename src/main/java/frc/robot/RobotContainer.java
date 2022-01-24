@@ -122,8 +122,8 @@ public class RobotContainer {
 
         final JoystickButton raiseTraverseClimberBtn = new JoystickButton(assistController,
                 XboxController.Button.kA.value);
-        raiseTraverseClimberBtn.whenPressed(new RaiseTraverse(), true);
-        SmartDashboard.putData("RaiseTraverseClimberBtn", new RaiseTraverse());
+        raiseTraverseClimberBtn.whenPressed(new RaiseTraverse(m_climbSystem), true);
+        SmartDashboard.putData("RaiseTraverseClimberBtn", new RaiseTraverse(m_climbSystem));
 
         final JoystickButton lowerTraverseClimberBtn = new JoystickButton(assistController,
                 XboxController.Button.kA.value);
