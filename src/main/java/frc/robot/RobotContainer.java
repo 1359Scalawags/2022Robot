@@ -59,7 +59,7 @@ public class RobotContainer {
         SmartDashboard.putData("LowerClimber", new LowerClimber(m_climbSystem));
         SmartDashboard.putData("ManualDrive", new ManualDrive(m_driveSystem));
         SmartDashboard.putData("RaiseTraverse", new RaiseTraverse(m_climbSystem));
-        SmartDashboard.putData("LowerTraverse", new LowerTraverse());
+        SmartDashboard.putData("LowerTraverse", new LowerTraverse(m_climbSystem));
 
         // Configure the button bindings
         configureButtonBindings();
@@ -127,8 +127,8 @@ public class RobotContainer {
 
         final JoystickButton lowerTraverseClimberBtn = new JoystickButton(assistController,
                 XboxController.Button.kA.value);
-        lowerTraverseClimberBtn.whenPressed(new LowerTraverse(), true);
-        SmartDashboard.putData("LowerTraverseClimberBtn", new LowerTraverse());
+        lowerTraverseClimberBtn.whenPressed(new LowerTraverse(m_climbSystem), true);
+        SmartDashboard.putData("LowerTraverseClimberBtn", new LowerTraverse(m_climbSystem));
 
     }
 
