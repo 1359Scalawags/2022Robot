@@ -72,4 +72,8 @@ public class DriveSystem extends SubsystemBase {
 
     }
 
+    public void move(double leftSpeed, double rightSpeed) {
+        differentialDrive.tankDrive(leftSpeed, rightSpeed, true);
+    }
+
 }
