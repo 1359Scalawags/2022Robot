@@ -58,7 +58,7 @@ public class RobotContainer {
         SmartDashboard.putData("RaiseClimber", new RaiseClimber(m_climbSystem));
         SmartDashboard.putData("LowerClimber", new LowerClimber(m_climbSystem));
         SmartDashboard.putData("ManualDrive", new ManualDrive(m_driveSystem));
-        SmartDashboard.putData("RaiseTraverse", new RaiseTraverse());
+        SmartDashboard.putData("RaiseTraverse", new RaiseTraverse(m_climbSystem));
         SmartDashboard.putData("LowerTraverse", new LowerTraverse());
 
         // Configure the button bindings
