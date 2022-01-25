@@ -130,6 +130,10 @@ public class RobotContainer {
         lowerTraverseClimberBtn.whenPressed(new LowerTraverse(m_climbSystem), true);
         SmartDashboard.putData("LowerTraverseClimberBtn", new LowerTraverse(m_climbSystem));
 
+        final JoystickButton loadBallBtn = new JoystickButton(assistController, XboxController.Button.kB.value);
+        loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
+        SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
+
     }
 
     public XboxController getdriverController() {

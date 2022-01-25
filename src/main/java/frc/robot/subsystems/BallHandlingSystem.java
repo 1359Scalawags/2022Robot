@@ -71,4 +71,22 @@ public class BallHandlingSystem extends SubsystemBase {
 
     }
 
+    public void setLoadMotor(double speed) {
+        loadMotors.set(speed);
+    }
+
+    public boolean getBallLoadedSensor() {
+        if(loadSensor.get() == Constants.BallHandling.BALLPRESENT) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean getBallStagedSensor() {
+
+    }
+
+
+
 }
