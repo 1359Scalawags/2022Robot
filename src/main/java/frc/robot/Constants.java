@@ -59,6 +59,8 @@ public class Constants {
         public static final float kStagingMotorSpeed = 0.5f;
         public static final float kShootMotorSpeed = 0.5f;
 
+        public static final boolean BALLPRESENT = false;
+
     }
 
 }
