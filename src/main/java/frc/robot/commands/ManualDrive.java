@@ -1,6 +1,9 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSystem;
 
 /**
@@ -26,7 +29,8 @@ public class ManualDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-
+        double leftSpeed = RobotContainer.getInstance().getdriverController().getLeftY();
+        double rightSpeed = RobotContainer.getInstance().getdriverController().getRightY();
 
     }
 

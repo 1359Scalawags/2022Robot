@@ -84,6 +84,9 @@ differentialDrive.setMaxOutput(1.0);
 
     }
 
-    
+    public void move(double leftSpeed, double rightSpeed) {
+        differentialDrive.tankDrive(leftSpeed, rightSpeed, true);
+    }
+
 }
 
