@@ -1,7 +1,7 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.Constants;
 import frc.robot.subsystems.BallHandlingSystem;
 
 
@@ -12,6 +12,8 @@ public class ShootBall extends CommandBase {
 
         private final BallHandlingSystem m_ballHandlingSystem;
  
+        private boolean isBallAlreadyLoaded;
+        private boolean isBallAlreadyStaged;
 
     public ShootBall(BallHandlingSystem subsystem) {
 
@@ -23,11 +25,16 @@ public class ShootBall extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        isBallAlreadyLoaded = m_ballHandlingSystem.getBallLoadedSensor();
+        isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
+
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        m_ballHandlingSystem.setShootMotor(Constants.BallHandling.kShootMotorSpeed);
+
     }
 
     // Called once the command ends or is interrupted.

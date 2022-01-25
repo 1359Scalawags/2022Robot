@@ -75,6 +75,10 @@ public class BallHandlingSystem extends SubsystemBase {
         loadMotors.set(speed);
     }
 
+    public void setShootMotor(double speed) {
+        shootMotor.set(speed);
+    }
+
     public boolean getBallLoadedSensor() {
         if(loadSensor.get() == Constants.BallHandling.BALLPRESENT) {
             return true;
@@ -84,7 +88,11 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallStagedSensor() {
-
+        if(stagingSensor.get() == Constants.BallHandling.BALLPRESENT) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
