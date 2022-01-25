@@ -31,7 +31,7 @@ public class ManualDrive extends CommandBase {
     public void execute() {
         double leftSpeed = RobotContainer.getInstance().getdriverController().getLeftY();
         double rightSpeed = RobotContainer.getInstance().getdriverController().getRightY();
-
+        m_driveSystem.move(leftSpeed, rightSpeed);
     }
 
     // Called once the command ends or is interrupted.
