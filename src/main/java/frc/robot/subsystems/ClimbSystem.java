@@ -21,6 +21,10 @@ public class ClimbSystem extends SubsystemBase {
     private Solenoid climberSolenoid;
     private CANSparkMax traverseMotor;
     private Servo antidropTraverseServo;
+    
+    //used to turn off motors to prevent unnecessary strain
+    public int localClimbMotorSpeed;
+    public int localTraverseMotorSpeed;
 
     public ClimbSystem() {
 
@@ -57,21 +61,27 @@ public class ClimbSystem extends SubsystemBase {
     }
 
 
-
+    
     public void lockTraferseClimber(boolean locked) {
+        
         if (locked){
             antidropTraverseServo.set(Constants.Climb.transferLockedServoPosition);
+            localClimbMotorSpeed = 0;
         } else {
             antidropTraverseServo.set(Constants.Climb.transferUnlockedServoPosition);
+            localClimbMotorSpeed = 1;
         }
 
     }
     
     public void setClimbLock(boolean isLocked) {
+        
         if (isLocked == true) {
             antidropClimbServo.set(Constants.Climb.kClimbServoLockPosition);
+            localTraverseMotorSpeed = 0;
         } else {
             antidropClimbServo.set(Constants.Climb.kClimbServoUnlockPosition);
+            localTraverseMotorSpeed = 1;
         }
     }
 

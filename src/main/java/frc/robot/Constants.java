@@ -32,7 +32,6 @@ public class Constants {
         public static final int kRightRearPort = 3;
         public static final float kMaxDriveSpeed = 0.85f;
         public static final float kSLowDriveSpeed = 0.15f;
-
     }
 
     public static final class Climb {
@@ -66,5 +65,7 @@ public class Constants {
         public static final boolean BALLPRESENT = false;
 
     }
+
+    
 
 }
