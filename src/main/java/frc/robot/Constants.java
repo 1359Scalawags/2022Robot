@@ -44,7 +44,7 @@ public class Constants {
         public static final int kClimberSolenoid = 2;
         // Climb Motor Speeds
         public static final float kClimbMotorSpeed = 0.5f;
-        public static final float kTraverseMotorrSpeed = 0.5f;
+        public static final float kTraverseMotorSpeed = 0.5f;
         //gonna need actual values here
         public static final float transferLockedServoPosition = 1f;
         public static final float transferUnlockedServoPosition = 1f;
