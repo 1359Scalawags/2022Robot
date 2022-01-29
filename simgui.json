@@ -1,0 +1,51 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "SPARK MAX [0]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [1]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/BallHandlingSystem/LoadSensor": "Digital Input",
+      "/LiveWindow/BallHandlingSystem/StagingSensor": "Digital Input",
+      "/LiveWindow/DriveSystem/DifferentialDrive": "DifferentialDrive",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/VisionSystem": "Subsystem",
+      "/SmartDashboard/Auto Mode": "String Chooser",
+      "/SmartDashboard/AutoDrive": "Command",
+      "/SmartDashboard/AutoShoot": "Command",
+      "/SmartDashboard/AutoShootAndDrive": "Command",
+      "/SmartDashboard/LoadBall": "Command",
+      "/SmartDashboard/LockClimber": "Command",
+      "/SmartDashboard/LowerClimber": "Command",
+      "/SmartDashboard/LowerTraverse": "Command",
+      "/SmartDashboard/LowerTraverseClimberBtn": "Command",
+      "/SmartDashboard/ManualDrive": "Command",
+      "/SmartDashboard/ProcessCameraImage": "Command",
+      "/SmartDashboard/RaiseClimber": "Command",
+      "/SmartDashboard/RaiseTraverse": "Command",
+      "/SmartDashboard/RaiseTraverseClimberBtn": "Command",
+      "/SmartDashboard/ReverseDrive": "Command",
+      "/SmartDashboard/ShootBall": "Command",
+      "/SmartDashboard/UnlockClimber": "Command",
+      "/SmartDashboard/leftStick": "Command",
+      "/SmartDashboard/loadBallBtn": "Command",
+      "/SmartDashboard/lockClimberBtn": "Command",
+      "/SmartDashboard/lowerClimberBtn": "Command",
+      "/SmartDashboard/raiseClimberBtn": "Command",
+      "/SmartDashboard/reverseDriveBtn": "Command",
+      "/SmartDashboard/rightStick": "Command",
+      "/SmartDashboard/unlockClimberBtn": "Command"
+    }
+  }
+}
