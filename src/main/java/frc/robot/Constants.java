@@ -30,7 +30,6 @@ public class Constants {
         public static final int kLeftRearPort = 1;
         public static final int kRightFrontPort = 2;
         public static final int kRightRearPort = 3;
-
         public static final float kMaxDriveSpeed = 0.85f;
         public static final float kSLowDriveSpeed = 0.15f;
 
@@ -46,6 +45,9 @@ public class Constants {
         // Climb Motor Speeds
         public static final float kClimbMotorSpeed = 0.5f;
         public static final float kTraverseMotorrSpeed = 0.5f;
+        //gonna need actual values here
+        public static final float transferLockedServoPosition = 1f;
+        public static final float transferUnlockedServoPosition = 1f;
     }
 
     public static final class BallHandling {

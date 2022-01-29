@@ -61,4 +61,17 @@ public class ClimbSystem extends SubsystemBase {
 
     }
 
+
+
+    public void lockTraferseClimber(boolean locked) {
+        if (locked){
+            antidropTraverseServo.set(Constants.Climb.transferLockedServoPosition);
+        } else {
+            antidropTraverseServo.set(Constants.Climb.transferUnlockedServoPosition);
+        }
+
+    }
+    
+
+
 }
