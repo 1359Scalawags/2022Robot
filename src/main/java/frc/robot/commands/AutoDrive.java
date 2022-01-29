@@ -19,6 +19,11 @@ public class AutoDrive extends CommandBase {
 
     }
 
+    public enum AutoMoveOptions {
+        driveForward,
+        driveBackward
+    }
+
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
