@@ -72,6 +72,13 @@ public class ClimbSystem extends SubsystemBase {
 
     }
     
+    public void setClimbLock(boolean isLocked) {
+        if (isLocked == true) {
+            antidropClimbServo.set(Constants.Climb.kClimbServoLockPosition);
+        } else {
+            antidropClimbServo.set(Constants.Climb.kClimbServoUnlockPosition);
+        }
+    }
 
 
 }

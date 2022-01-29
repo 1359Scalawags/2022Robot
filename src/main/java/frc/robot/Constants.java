@@ -48,6 +48,8 @@ public class Constants {
         //gonna need actual values here
         public static final float transferLockedServoPosition = 1f;
         public static final float transferUnlockedServoPosition = 1f;
+        public static final float kClimbServoLockPosition = 1.0f;
+        public static final float kClimbServoUnlockPosition = 2.0f;
     }
 
     public static final class BallHandling {
