@@ -46,6 +46,8 @@ public class Constants {
         // Climb Motor Speeds
         public static final float kClimbMotorSpeed = 0.5f;
         public static final float kTraverseMotorrSpeed = 0.5f;
+        public static final float kClimbServoLockPosition = 1.0f;
+        public static final float kClimbServoUnlockPosition = 2.0f;
     }
 
     public static final class BallHandling {
