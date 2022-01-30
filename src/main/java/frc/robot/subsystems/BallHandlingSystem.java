@@ -75,6 +75,10 @@ public class BallHandlingSystem extends SubsystemBase {
         loadMotors.set(speed);
     }
 
+    public void setStagingMotor(double speed) {
+        stagingMotor.set(speed);
+    }
+
     public void setShootMotor(double speed) {
         shootMotor.set(speed);
     }
@@ -95,6 +99,8 @@ public class BallHandlingSystem extends SubsystemBase {
         }
     }
 
-
+    public double getBallShootVelocity() {
+        return shootMotor.getEncoder().getVelocity();
+    }
 
 }
