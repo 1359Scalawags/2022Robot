@@ -51,6 +51,12 @@ public class Constants {
         public static final float transferUnlockedServoPosition = 1f;
         public static final float kClimbServoLockPosition = 1.0f;
         public static final float kClimbServoUnlockPosition = 2.0f;
+
+
+        public static final boolean kClimbLimitSwitch = true;
+        public static final int kClimbLimitSwitchPort = 1;
+        public static final boolean kTraverseLimitSwitch = true;
+        public static final int kTraverseLimitSwitchPort = 2;
     }
 
     public static final class BallHandling {
@@ -60,7 +66,8 @@ public class Constants {
         public static final int kStagingMotor = 6;
         public static final int kShootMotor = 5;
         //Ball Motor Speeds
-        public static final float kLoadMotorsSpeed = 0.5f;
+        public static final float kLoadMotor1Speed = 0.5f;
+        public static final float kLoadMotor2Speed = 0.5f;
         public static final float kStagingMotorSpeed = 0.5f;
         public static final float kShootMotorSpeed = 0.5f;
 
