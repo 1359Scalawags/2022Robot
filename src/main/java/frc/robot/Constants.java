@@ -26,22 +26,24 @@ package frc.robot;
 public class Constants {
 
     public static final class Drive {
+        //Drive motor ports
         public static final int kLeftFrontPort = 0;
         public static final int kLeftRearPort = 1;
         public static final int kRightFrontPort = 2;
         public static final int kRightRearPort = 3;
+        //Drive motor speeds
         public static final float kMaxDriveSpeed = 0.85f;
         public static final float kSLowDriveSpeed = 0.15f;
     }
 
     public static final class Climb {
-        // Climb Motors and Servos (Solenoids too)
+        //Climb Motors and Servos (Solenoids too)
         public static final int kClimbMotor = 8;
         public static final int kTraverseMotor = 7;
         public static final int kAntiDropClimbServo = 0;
         public static final int kAntiDropTraverseServo = 1;
         public static final int kClimberSolenoid = 2;
-        // Climb Motor Speeds
+        //Climb Motor Speeds
         public static final float kClimbMotorSpeed = 0.5f;
         public static final float kTraverseMotorSpeed = 0.5f;
         //gonna need actual values here
@@ -52,11 +54,12 @@ public class Constants {
     }
 
     public static final class BallHandling {
+        //Ball Handling Motors
         public static final int kLoadMotor1 = 4;
         public static final int kLoadMotor2 = 9;
         public static final int kStagingMotor = 6;
         public static final int kShootMotor = 5;
-
+        //Ball Motor Speeds
         public static final float kLoadMotor1Speed = 0.5f;
         public static final float kLoadMotor2Speed = 0.5f;
         public static final float kStagingMotorSpeed = 0.5f;
