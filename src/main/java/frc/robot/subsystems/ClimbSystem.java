@@ -1,7 +1,7 @@
 //testing if it works to push
 package frc.robot.subsystems;
 
-import frc.robot.commands.*;
+import frc.robot.commands.*; 
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -10,11 +10,17 @@ import com.revrobotics.REVLibError;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Solenoid;
 
 public class ClimbSystem extends SubsystemBase {
+    private DigitalInput LowerClimbLimitSwitch;
+
+    private DigitalInput LowerTraverseLimitSwitch;
+
 
     private CANSparkMax climbMotor;
     private Servo antidropClimbServo;
@@ -23,6 +29,7 @@ public class ClimbSystem extends SubsystemBase {
     private Servo antidropTraverseServo;
     
     //used to turn off motors to prevent unnecessary strain
+    //TODO: figure out if we need new varibles or change old ones
     public int localClimbMotorSpeed;
     public int localTraverseMotorSpeed;
 
@@ -48,11 +55,28 @@ public class ClimbSystem extends SubsystemBase {
         traverseMotor.setInverted(false);
         traverseMotor.setIdleMode(IdleMode.kCoast);
 
+        LowerClimbLimitSwitch = new DigitalInput(Constants.Climb.kClimbLimitSwitchPort);
+        addChild("LowerClimbLimitSwitch", LowerClimbLimitSwitch );
+        LowerTraverseLimitSwitch = new DigitalInput(Constants.Climb.kTraverseLimitSwitchPort);
+        addChild("LowerTraverseLimitSwitch", LowerTraverseLimitSwitch );
     }
 
     @Override
     public void periodic() {
-
+        if(LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitch){
+            //TODO: figure out wich direction down is and adjust accordingly
+            if(climbMotor.get() < 0){
+                climbMotor.set(0);
+            }
+        
+        }
+        if(LowerTraverseLimitSwitch.get() == Constants.Climb.kTraverseLimitSwitch){
+            //TODO: figure out wich direction down is and adjust accordingly
+            if(traverseMotor.get() < 0){
+                traverseMotor.set(0);
+            }
+        }
+    
     }
 
     @Override
@@ -62,9 +86,9 @@ public class ClimbSystem extends SubsystemBase {
 
 
     
-    public void lockTraferseClimber(boolean locked) {
+    public void lockTraverseClimber(boolean locked) {
         
-        if (locked){
+        if (locked){  
             antidropTraverseServo.set(Constants.Climb.transferLockedServoPosition);
             localClimbMotorSpeed = 0;
         } else {
