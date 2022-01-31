@@ -1,12 +1,12 @@
 //testing if it works to push
 package frc.robot.subsystems;
 
-import frc.robot.commands.*; 
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+// import frc.robot.commands.*; 
+// import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-import com.revrobotics.REVLibError;
+//import com.revrobotics.REVLibError;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -63,6 +63,7 @@ public class ClimbSystem extends SubsystemBase {
 
     @Override
     public void periodic() {
+        //Ced Makes sure the motors don't fry or breack anything when they hit the bottom
         if(LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitch){
             //TODO: figure out wich direction down is and adjust accordingly
             if(climbMotor.get() < 0){
@@ -86,14 +87,16 @@ public class ClimbSystem extends SubsystemBase {
 
 
     
-    public void lockTraverseClimber(boolean locked) {
-        
-        if (locked){  
+    public void lockTraverseClimber(boolean climberLocked) {
+        //Ced both locks position and prevent motors from turning
+        if (climberLocked){  
             antidropTraverseServo.set(Constants.Climb.transferLockedServoPosition);
             localClimbMotorSpeed = 0;
+            //climbMotor.set(0);
         } else {
             antidropTraverseServo.set(Constants.Climb.transferUnlockedServoPosition);
             localClimbMotorSpeed = 1;
+            //TODO: should I set motor speed, not localclimbmotorspeed, here or do it else where?
         }
 
     }
@@ -103,11 +106,16 @@ public class ClimbSystem extends SubsystemBase {
         if (isLocked == true) {
             antidropClimbServo.set(Constants.Climb.kClimbServoLockPosition);
             localTraverseMotorSpeed = 0;
+            //traverseMotor.set(0);
         } else {
             antidropClimbServo.set(Constants.Climb.kClimbServoUnlockPosition);
             localTraverseMotorSpeed = 1;
         }
     }
+
+    
+
+
 
 
 }

@@ -54,9 +54,9 @@ public class Constants {
 
 
         public static final boolean kClimbLimitSwitch = true;
-        public static final int kClimbLimitSwitchPort = 1;
+        public static final int kClimbLimitSwitchPort = 3;
         public static final boolean kTraverseLimitSwitch = true;
-        public static final int kTraverseLimitSwitchPort = 2;
+        public static final int kTraverseLimitSwitchPort = 4;
     }
 
     public static final class BallHandling {
