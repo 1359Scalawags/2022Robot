@@ -34,6 +34,18 @@ public class Constants {
         //Drive motor speeds
         public static final float kMaxDriveSpeed = 0.85f;
         public static final float kSLowDriveSpeed = 0.15f;
+        //Motor varibles
+        public static final double PID_P = 0.00001;
+        public static final double PID_I = 0.000005;
+        public static final double PID_D = 0.0001;
+        public static final double PID_Iz = 0;
+        public static final double PID_Ff = 0;
+        //Gyro varibles
+        public static final double gyrokP =0.1;
+        public static final double gyrokI =0.1;
+        public static final double gyrokD =0.1;
+        public static final double gyrokIz =0.1;
+        public static final double gyrokFf =0.1;
     }
 
     public static final class Climb {
