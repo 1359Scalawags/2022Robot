@@ -69,8 +69,17 @@ public class Constants {
         public static final float kLoadMotorsSpeed = 0.5f;
         public static final float kStagingMotorSpeed = 0.5f;
         public static final float kShootMotorSpeed = 0.5f;
+        public static final float kShootMotorMaxRPM = 5000.0f;
 
         public static final boolean BALLPRESENT = false;
+
+        public static final double kP = 6e-5; 
+        public static final double kI = 0;
+        public static final double kD = 0; 
+        public static final double kIz = 0; 
+        public static final double kFF = 0.000015; 
+        public static final int kMaxOutput = 1; 
+        public static final int kMinOutput = -1;
 
     }
 
