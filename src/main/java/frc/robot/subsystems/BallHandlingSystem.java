@@ -84,7 +84,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallLoadedSensor() {
-        if(loadSensor.get() == Constants.BallHandling.BALLPRESENT) {
+        if (loadSensor.get() == Constants.BallHandling.BALLPRESENT) {
             return true;
         } else {
             return false;
@@ -92,7 +92,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallStagedSensor() {
-        if(stagingSensor.get() == Constants.BallHandling.BALLPRESENT) {
+        if (stagingSensor.get() == Constants.BallHandling.BALLPRESENT) {
             return true;
         } else {
             return false;
