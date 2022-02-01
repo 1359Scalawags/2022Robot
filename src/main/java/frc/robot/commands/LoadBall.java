@@ -33,11 +33,11 @@ public class LoadBall extends CommandBase {
     @Override
     public void execute() {
         m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kLoadMotorsSpeed);
-        
-        if(!isBallAlreadyStaged) {
+
+        if (!isBallAlreadyStaged) {
             m_ballHandlingSystem.setStagingMotor(Constants.BallHandling.kStagingMotorSpeed);
         }
-        
+
     }
 
     // Called once the command ends or is interrupted.
@@ -50,16 +50,16 @@ public class LoadBall extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(isBallAlreadyLoaded && isBallAlreadyStaged) {
+        if (isBallAlreadyLoaded && isBallAlreadyStaged) {
             return true;
-        } else if(isBallAlreadyStaged) {
-            if(m_ballHandlingSystem.getBallLoadedSensor() == true) {
+        } else if (isBallAlreadyStaged) {
+            if (m_ballHandlingSystem.getBallLoadedSensor() == true) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            if(m_ballHandlingSystem.getBallStagedSensor()) {
+            if (m_ballHandlingSystem.getBallStagedSensor()) {
                 return true;
             } else {
                 return false;
