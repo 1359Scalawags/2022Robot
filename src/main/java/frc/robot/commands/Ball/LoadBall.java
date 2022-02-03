@@ -1,5 +1,5 @@
 
-package frc.robot.commands;
+package frc.robot.commands.Ball;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -8,16 +8,18 @@ import frc.robot.subsystems.BallHandlingSystem;
 /**
  *
  */
-public class ShootBall extends CommandBase {
+public class LoadBall extends CommandBase {
 
     private final BallHandlingSystem m_ballHandlingSystem;
 
     private boolean isBallAlreadyLoaded;
     private boolean isBallAlreadyStaged;
 
-    public ShootBall(BallHandlingSystem subsystem) {
+    public LoadBall(BallHandlingSystem subsystem) {
+
         m_ballHandlingSystem = subsystem;
         addRequirements(m_ballHandlingSystem);
+
     }
 
     // Called when the command is initially scheduled.
@@ -30,11 +32,12 @@ public class ShootBall extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_ballHandlingSystem.setShootMotorRPM(Constants.BallHandling.kShootMotorSpeed);
-        m_ballHandlingSystem.setStagingMotor(Constants.BallHandling.kStagingMotorSpeed);
-        if (isBallAlreadyLoaded) {
-            m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kLoadMotorsSpeed);
+        m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kLoadMotorsSpeed);
+
+        if (!isBallAlreadyStaged) {
+            m_ballHandlingSystem.setStagingMotor(Constants.BallHandling.kStagingMotorSpeed);
         }
+
     }
 
     // Called once the command ends or is interrupted.
@@ -42,18 +45,30 @@ public class ShootBall extends CommandBase {
     public void end(boolean interrupted) {
         m_ballHandlingSystem.setLoadMotor(0);
         m_ballHandlingSystem.setStagingMotor(0);
-        m_ballHandlingSystem.setShootMotorRPM(0);
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        if (isBallAlreadyLoaded && isBallAlreadyStaged) {
+            return true;
+        } else if (isBallAlreadyStaged) {
+            if (m_ballHandlingSystem.getBallLoadedSensor() == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if (m_ballHandlingSystem.getBallStagedSensor()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     @Override
     public boolean runsWhenDisabled() {
         return false;
-
     }
 }
