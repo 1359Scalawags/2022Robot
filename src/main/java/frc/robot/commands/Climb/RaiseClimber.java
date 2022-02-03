@@ -1,22 +1,17 @@
-
-package frc.robot.commands;
+package frc.robot.commands.Climb;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
 import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
  */
-public class UnlockClimber extends CommandBase {
-
+public class RaiseClimber extends CommandBase {
     private final ClimbSystem m_climbSystem;
 
-    public UnlockClimber(ClimbSystem subsystem) {
-
+    public RaiseClimber(ClimbSystem subsystem) {
         m_climbSystem = subsystem;
         addRequirements(m_climbSystem);
-
     }
 
     // Called when the command is initially scheduled.
@@ -43,6 +38,5 @@ public class UnlockClimber extends CommandBase {
     @Override
     public boolean runsWhenDisabled() {
         return false;
-
     }
 }

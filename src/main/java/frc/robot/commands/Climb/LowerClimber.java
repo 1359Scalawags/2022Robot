@@ -1,18 +1,20 @@
 
-package frc.robot.commands;
+package frc.robot.commands.Climb;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
 import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
  */
-public class RaiseTraverse extends CommandBase {
-    private ClimbSystem m_climbSystem;
+public class LowerClimber extends CommandBase {
 
-    public RaiseTraverse(ClimbSystem subsystem) {
+    private final ClimbSystem m_climbSystem;
+
+    public LowerClimber(ClimbSystem subsystem) {
         m_climbSystem = subsystem;
-        addRequirements(m_climbSystem);    
-
+        addRequirements(m_climbSystem);
     }
 
     // Called when the command is initially scheduled.
@@ -39,6 +41,5 @@ public class RaiseTraverse extends CommandBase {
     @Override
     public boolean runsWhenDisabled() {
         return false;
-
     }
 }

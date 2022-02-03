@@ -1,21 +1,17 @@
 
-package frc.robot.commands;
-
+package frc.robot.commands.Climb;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
 import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
  */
-public class LockClimber extends CommandBase {
+public class RaiseTraverse extends CommandBase {
+    private ClimbSystem m_climbSystem;
 
-    private final ClimbSystem m_climbSystem;
-
-    public LockClimber(ClimbSystem subsystem) {
-
+    public RaiseTraverse(ClimbSystem subsystem) {
         m_climbSystem = subsystem;
-        addRequirements(m_climbSystem);
+        addRequirements(m_climbSystem);    
 
     }
 
@@ -43,5 +39,6 @@ public class LockClimber extends CommandBase {
     @Override
     public boolean runsWhenDisabled() {
         return false;
+
     }
 }
