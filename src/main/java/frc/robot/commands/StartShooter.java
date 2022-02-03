@@ -22,14 +22,14 @@ public class StartShooter extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_ballHandlingSystem.setShootMotor(Constants.BallHandling.kShootMotorSpeed);
+        m_ballHandlingSystem.setShootMotorRPM(Constants.BallHandling.kShootMotorSpeed);
 
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_ballHandlingSystem.setShootMotor(0);
+        m_ballHandlingSystem.setShootMotorRPM(0);
 
     }
 

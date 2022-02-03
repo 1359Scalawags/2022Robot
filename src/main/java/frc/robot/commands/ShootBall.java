@@ -30,7 +30,7 @@ public class ShootBall extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_ballHandlingSystem.setShootMotor(Constants.BallHandling.kShootMotorSpeed);
+        m_ballHandlingSystem.setShootMotorRPM(Constants.BallHandling.kShootMotorSpeed);
         m_ballHandlingSystem.setStagingMotor(Constants.BallHandling.kStagingMotorSpeed);
         if (isBallAlreadyLoaded) {
             m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kLoadMotorsSpeed);
@@ -42,7 +42,7 @@ public class ShootBall extends CommandBase {
     public void end(boolean interrupted) {
         m_ballHandlingSystem.setLoadMotor(0);
         m_ballHandlingSystem.setStagingMotor(0);
-        m_ballHandlingSystem.setShootMotor(0);
+        m_ballHandlingSystem.setShootMotorRPM(0);
     }
 
     // Returns true when the command should end.
