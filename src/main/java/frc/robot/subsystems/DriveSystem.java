@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Utilities;
 
-
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.REVLibError;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
@@ -20,6 +20,10 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 public class DriveSystem extends SubsystemBase {
+
+
+
+    
     // CED Gyro stuff
     private PID_Values gyroPids;
     private ADXRS450_Gyro driveGyro;
@@ -28,12 +32,16 @@ public class DriveSystem extends SubsystemBase {
     private CANSparkMax leftFrontMotor;
     private CANSparkMax leftRearMotor;
     private MotorControllerGroup leftSpeedController;
+    private RelativeEncoder leftEncoder;
+
     private CANSparkMax rightFrontMotor;
     private CANSparkMax rightRearMotor;
     private MotorControllerGroup rightSpeedController;
+    private RelativeEncoder rightEncoder;
+
     boolean reverse = false;
     private DifferentialDrive differentialDrive;
-
+    
     public DriveSystem() {
         gyroPids = new PID_Values(Constants.Drive.gyrokP, Constants.Drive.gyrokI, Constants.Drive.gyrokD, Constants.Drive.gyrokIz, Constants.Drive.gyrokFf);
         driveGyro = new ADXRS450_Gyro();
@@ -53,7 +61,8 @@ public class DriveSystem extends SubsystemBase {
         leftRearMotor.restoreFactoryDefaults();
         leftRearMotor.setInverted(false);
         leftRearMotor.setIdleMode(IdleMode.kCoast);
-
+        leftEncoder = leftRearMotor.getEncoder();
+        rightEncoder = rightRearMotor.getEncoder();
         leftSpeedController = new MotorControllerGroup(leftFrontMotor, leftRearMotor);
         addChild("LeftSpeedController", leftSpeedController);
 
@@ -136,6 +145,17 @@ public class DriveSystem extends SubsystemBase {
         } else {
             reverse = true;
         }
+    }
+    public double getDistanceLeft() {
+        return leftEncoder.getPosition(); //is one of these reversed values
+    }
+    public double getDistanceRight() {
+        return rightEncoder.getPosition();
+
+    }
+
+    public double getAverageDistance() {
+        return (getDistanceRight() + getDistanceLeft()) / 2;
     }
 
     public void driveBackward(double speed, double targetHeading) {

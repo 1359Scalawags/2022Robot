@@ -49,6 +49,8 @@ public class Constants {
         public static final double gyrokD =0.1;
         public static final double gyrokIz =0.1;
         public static final double gyrokFf =0.1;
+        
+        public static final double AutoStraightSpeed = 1;
     }
 
     public static final class Climb {
