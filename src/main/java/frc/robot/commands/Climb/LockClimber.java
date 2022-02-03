@@ -1,17 +1,22 @@
-package frc.robot.commands;
+
+package frc.robot.commands.Climb;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
 import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
  */
-public class RaiseClimber extends CommandBase {
+public class LockClimber extends CommandBase {
+
     private final ClimbSystem m_climbSystem;
 
-    public RaiseClimber(ClimbSystem subsystem) {
+    public LockClimber(ClimbSystem subsystem) {
+
         m_climbSystem = subsystem;
         addRequirements(m_climbSystem);
+
     }
 
     // Called when the command is initially scheduled.

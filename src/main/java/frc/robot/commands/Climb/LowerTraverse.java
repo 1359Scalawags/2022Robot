@@ -1,20 +1,17 @@
-
-package frc.robot.commands;
+package frc.robot.commands.Climb;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
 import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
  */
-public class LowerClimber extends CommandBase {
+public class LowerTraverse extends CommandBase {
+    private ClimbSystem m_climbSystem;
 
-    private final ClimbSystem m_climbSystem;
-
-    public LowerClimber(ClimbSystem subsystem) {
+    public LowerTraverse(ClimbSystem subsystem) {
         m_climbSystem = subsystem;
-        addRequirements(m_climbSystem);
+        addRequirements(m_climbSystem);  
     }
 
     // Called when the command is initially scheduled.
