@@ -121,13 +121,13 @@ public class DriveSystem extends SubsystemBase {
         final double scale = .01;
         double leftSpeed;
         double rightSpeed;
-        // double headingError = getAngle() - targetHeading;
+        double headingError = getAngle() - targetHeading;
 
-        // leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale,
-        // -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
-        // rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale,
-        // -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
-        // tankDrive(leftSpeed, rightSpeed);
+        leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale,
+        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale,
+        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        tankDrive(leftSpeed, rightSpeed);
     }
 
     public void reverseDirection() {
