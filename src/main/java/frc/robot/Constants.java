@@ -25,6 +25,9 @@ package frc.robot;
  */
 public class Constants {
 
+    public static final boolean PRESSED = false;
+    public static final boolean NOTPRESSED = true;
+
     public static final class Drive {
         //Drive motor ports
         public static final int kLeftFrontPort = 0;

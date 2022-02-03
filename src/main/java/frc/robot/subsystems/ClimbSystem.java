@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 public class ClimbSystem extends SubsystemBase {
     private DigitalInput LowerClimbLimitSwitch;
-
     private DigitalInput LowerTraverseLimitSwitch;
 
 
@@ -64,7 +63,7 @@ public class ClimbSystem extends SubsystemBase {
     @Override
     public void periodic() {
         //Ced Makes sure the motors don't fry or breack anything when they hit the bottom
-        if(LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitch){
+        if(LowerClimbLimitSwitch.get() == Constants.PRESSED){
             //TODO: figure out wich direction down is and adjust accordingly
             if(climbMotor.get() < 0){
                 climbMotor.set(0);
