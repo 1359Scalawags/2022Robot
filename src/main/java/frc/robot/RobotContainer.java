@@ -2,9 +2,9 @@
 package frc.robot;
 
 import frc.robot.commands.*;
-import frc.robot.commands.Ball.AutoShoot;
-import frc.robot.commands.Ball.LoadBall;
-import frc.robot.commands.Ball.ShootBall;
+import frc.robot.commands.Ball.*;
+import frc.robot.commands.Climb.*;
+// import frc.robot.commands.Drive.*;    //TODO: Uncomment when the drive system commands are orgainized!
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
