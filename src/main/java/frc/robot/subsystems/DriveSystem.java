@@ -17,7 +17,9 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.simulation.DriverStationSim;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
+
+
 
 public class DriveSystem extends SubsystemBase {
 
@@ -26,9 +28,11 @@ public class DriveSystem extends SubsystemBase {
     
     // CED Gyro stuff
     private PID_Values gyroPids;
-    private ADXRS450_Gyro driveGyro;
+    private ADIS16470_IMU driveGyro;
     private PIDController gyroControl;
     
+    public static final ADIS16470_IMU imu = new ADIS16470_IMU();
+
     private CANSparkMax leftFrontMotor;
     private CANSparkMax leftRearMotor;
     private MotorControllerGroup leftSpeedController;
@@ -44,7 +48,7 @@ public class DriveSystem extends SubsystemBase {
     
     public DriveSystem() {
         gyroPids = new PID_Values(Constants.Drive.gyrokP, Constants.Drive.gyrokI, Constants.Drive.gyrokD, Constants.Drive.gyrokIz, Constants.Drive.gyrokFf);
-        driveGyro = new ADXRS450_Gyro();
+        driveGyro = new ADIS16470_IMU();
         addChild("Gyro", driveGyro);
         gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);
 
@@ -121,10 +125,7 @@ public class DriveSystem extends SubsystemBase {
         differentialDrive.tankDrive(leftSpeed, rightSpeed, true);
     }
 
-    // TODO: what are we using for gyro? we do need one for automode right?
-    // public double getAngle() {
-    // return driveGyro.getAngle();
-    // }
+ 
 
     public void driveForward(double speed, double targetHeading) {
         final double scale = .01;
@@ -162,13 +163,13 @@ public class DriveSystem extends SubsystemBase {
         final double scale = .01;
         double leftSpeed;
         double rightSpeed;
-        // double headingError = getAngle() - targetHeading;
+        double headingError = getAngle() - targetHeading;
 
-        // leftSpeed =Utilities.Clamp(-(speed) - headingError * scale,
-        // -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
-        // rightSpeed = Utilities.Clamp(-(speed) + headingError * scale,
-        // -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
-        // tankDrive(leftSpeed, rightSpeed);
+        leftSpeed =Utilities.Clamp(-(speed) - headingError * scale,
+        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        rightSpeed = Utilities.Clamp(-(speed) + headingError * scale,
+        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        tankDrive(leftSpeed, rightSpeed);
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
