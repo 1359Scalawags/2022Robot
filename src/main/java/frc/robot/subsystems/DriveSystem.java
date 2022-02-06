@@ -30,8 +30,6 @@ public class DriveSystem extends SubsystemBase {
     private PID_Values gyroPids;
     private ADIS16470_IMU driveGyro;
     private PIDController gyroControl;
-    
-    public static final ADIS16470_IMU imu = new ADIS16470_IMU();
 
     private CANSparkMax leftFrontMotor;
     private CANSparkMax leftRearMotor;
@@ -148,7 +146,7 @@ public class DriveSystem extends SubsystemBase {
         }
     }
     public double getDistanceLeft() {
-        return leftEncoder.getPosition(); //is one of these reversed values
+        return leftEncoder.getPosition(); //TODO wich one of these  is a reversed value?
     }
     public double getDistanceRight() {
         return rightEncoder.getPosition();
@@ -156,7 +154,7 @@ public class DriveSystem extends SubsystemBase {
     }
 
     public double getAverageDistance() {
-        return (getDistanceRight() + getDistanceLeft()) / 2;
+        return (Math.abs(getDistanceRight()) + Math.abs(getDistanceLeft())) / 2;
     }
 
     public void driveBackward(double speed, double targetHeading) {
