@@ -36,8 +36,9 @@ public class Constants {
         public static final int kRightFrontPort = 2;
         public static final int kRightRearPort = 3;
         //Drive motor speeds
+        public static final float kBoostSpeed = 0.85f;
         public static final float kMaxDriveSpeed = 0.85f;
-        public static final float kSLowDriveSpeed = 0.15f;
+        public static final float kBaseDriveSpeed = 0.15f;
         //Motor varibles
         public static final double PID_P = 0.00001;
         public static final double PID_I = 0.000005;
@@ -90,7 +91,7 @@ public class Constants {
         public static final float kMinShootMotorSpeed = 0.95f;
         public static final float kShootMotorMaxRPM = 5000.0f;
         //Ball Timers
-        public static final float shootTimerLength = 1f; //TODO: Change this later if needed
+        public static final float shootTimerLength = 3f; //TODO: Change this later if needed
 
         public static final boolean BALLPRESENT = false;
 

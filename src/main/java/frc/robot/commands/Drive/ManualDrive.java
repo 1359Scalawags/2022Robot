@@ -2,6 +2,7 @@ package frc.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSystem;
@@ -28,6 +29,8 @@ public class ManualDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        double boost = Constants.Drive.kBoostSpeed * ((RobotContainer.getInstance().getdriverController().getLeftTriggerAxis() + RobotContainer.getInstance().getdriverController().getRightTriggerAxis()) /2);
+        
         double leftSpeed = RobotContainer.getInstance().getdriverController().getLeftY();
         double rightSpeed = RobotContainer.getInstance().getdriverController().getRightY();
         m_driveSystem.move(leftSpeed, rightSpeed);
