@@ -57,18 +57,18 @@ public class RobotContainer {
         SmartDashboard.putData("AutoDrive", new AutoDrive(m_driveSystem));
         SmartDashboard.putData("AutoShootAndDrive", new AutoShootAndDrive());
         SmartDashboard.putData("LockClimber", new LockClimber(m_climbSystem));
-        SmartDashboard.putData("UnlockClimber", new UnlockClimber(m_climbSystem));
-        SmartDashboard.putData("RaiseClimber", new RaiseClimber(m_climbSystem));
-        SmartDashboard.putData("LowerClimber", new LowerClimber(m_climbSystem));
+        SmartDashboard.putData("UnlockClimber", new UnlockTraverse(m_climbSystem));
+        SmartDashboard.putData("RaiseClimber", new ManuelClimber(m_climbSystem));
+        // SmartDashboard.putData("LowerClimber", new LowerClimber(m_climbSystem));
         SmartDashboard.putData("ManualDrive", new ManualDrive(m_driveSystem));
-        SmartDashboard.putData("RaiseTraverse", new RaiseTraverse(m_climbSystem));
-        SmartDashboard.putData("LowerTraverse", new LowerTraverse(m_climbSystem));
+        // SmartDashboard.putData("RaiseTraverse", new RaiseTraverse(m_climbSystem));
+        // SmartDashboard.putData("LowerTraverse", new LowerTraverse(m_climbSystem));
 
         // Configure the button bindings
         configureButtonBindings();
 
         // Configure default commands
-
+        m_driveSystem.setDefaultCommand(new ManualDrive(m_driveSystem));
         // Configure autonomous sendable chooser
 
         m_chooser.addOption("AutoShoot", new AutoShoot(m_ballHandlingSystem));
@@ -112,26 +112,26 @@ public class RobotContainer {
         SmartDashboard.putData("lockClimberBtn", new LockClimber(m_climbSystem));
 
         final JoystickButton unlockClimberBtn = new JoystickButton(driverController, XboxController.Button.kA.value);
-        unlockClimberBtn.whenPressed(new UnlockClimber(m_climbSystem), true);
-        SmartDashboard.putData("unlockClimberBtn", new UnlockClimber(m_climbSystem));
+        unlockClimberBtn.whenPressed(new UnlockTraverse(m_climbSystem), true);
+        SmartDashboard.putData("unlockClimberBtn", new UnlockTraverse(m_climbSystem));
 
         final JoystickButton raiseClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
-        raiseClimberBtn.whenPressed(new RaiseClimber(m_climbSystem), true);
-        SmartDashboard.putData("raiseClimberBtn", new RaiseClimber(m_climbSystem));
+        raiseClimberBtn.whenPressed(new ManuelClimber(m_climbSystem), true);
+        SmartDashboard.putData("raiseClimberBtn", new ManuelClimber(m_climbSystem));
 
-        final JoystickButton lowerClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
-        lowerClimberBtn.whenPressed(new LowerClimber(m_climbSystem), true);
-        SmartDashboard.putData("lowerClimberBtn", new LowerClimber(m_climbSystem));
+        // final JoystickButton lowerClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
+        // lowerClimberBtn.whenPressed(new LowerClimber(m_climbSystem), true);
+        // SmartDashboard.putData("lowerClimberBtn", new LowerClimber(m_climbSystem));
 
-        final JoystickButton raiseTraverseClimberBtn = new JoystickButton(assistController,
-                XboxController.Button.kA.value);
-        raiseTraverseClimberBtn.whenPressed(new RaiseTraverse(m_climbSystem), true);
-        SmartDashboard.putData("RaiseTraverseClimberBtn", new RaiseTraverse(m_climbSystem));
+        // final JoystickButton raiseTraverseClimberBtn = new JoystickButton(assistController,
+        //         XboxController.Button.kA.value);
+        // raiseTraverseClimberBtn.whenPressed(new RaiseTraverse(m_climbSystem), true);
+        // SmartDashboard.putData("RaiseTraverseClimberBtn", new RaiseTraverse(m_climbSystem));
 
-        final JoystickButton lowerTraverseClimberBtn = new JoystickButton(assistController,
-                XboxController.Button.kA.value);
-        lowerTraverseClimberBtn.whenPressed(new LowerTraverse(m_climbSystem), true);
-        SmartDashboard.putData("LowerTraverseClimberBtn", new LowerTraverse(m_climbSystem));
+        // final JoystickButton lowerTraverseClimberBtn = new JoystickButton(assistController,
+        //         XboxController.Button.kA.value);
+        // lowerTraverseClimberBtn.whenPressed(new LowerTraverse(m_climbSystem), true);
+        // SmartDashboard.putData("LowerTraverseClimberBtn", new LowerTraverse(m_climbSystem));
 
         final JoystickButton loadBallBtn = new JoystickButton(assistController, XboxController.Button.kB.value);
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
