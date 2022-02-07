@@ -8,10 +8,8 @@ import frc.robot.subsystems.ClimbSystem;
  *
  */
 public class ManuelClimber extends CommandBase {
-    
+
     private final ClimbSystem m_climbSystem;
-
-
 
     public ManuelClimber(ClimbSystem subsystem) {
         m_climbSystem = subsystem;
@@ -21,7 +19,7 @@ public class ManuelClimber extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-    
+
     }
 
     // Called every time the scheduler runs while the command is scheduled.
