@@ -63,8 +63,6 @@ public class DriveSystem extends SubsystemBase {
         leftRearMotor.restoreFactoryDefaults();
         leftRearMotor.setInverted(false);
         leftRearMotor.setIdleMode(IdleMode.kCoast);
-        leftEncoder = leftRearMotor.getEncoder();
-        rightEncoder = rightRearMotor.getEncoder();
         leftSpeedController = new MotorControllerGroup(leftFrontMotor, leftRearMotor);
         addChild("LeftSpeedController", leftSpeedController);
 
@@ -88,6 +86,8 @@ public class DriveSystem extends SubsystemBase {
         differentialDrive.setSafetyEnabled(true);
         differentialDrive.setExpiration(0.1);
         differentialDrive.setMaxOutput(1.0);
+        leftEncoder = leftRearMotor.getEncoder();
+        rightEncoder = rightRearMotor.getEncoder();
 
     }
     //CED even more gyro stuff

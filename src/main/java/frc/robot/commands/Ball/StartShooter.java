@@ -35,9 +35,9 @@ public class StartShooter extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        // if(m_ballHandlingSystem.getShooterMotorRPM()) {  //TODO: Finish this part of the code when possible
-        //     return false;
-        // }
+        if(m_ballHandlingSystem.getShooterMotorRPM() >= Constants.BallHandling.kMinShootMotorSpeed * Constants.BallHandling.kShootMotorSpeed) {
+            return true;
+        }
         return false;
     }
 

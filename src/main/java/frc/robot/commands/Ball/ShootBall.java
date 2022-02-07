@@ -1,6 +1,7 @@
 
 package frc.robot.commands.Ball;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.BallHandlingSystem;
@@ -12,12 +13,15 @@ public class ShootBall extends CommandBase {
 
     private final BallHandlingSystem m_ballHandlingSystem;
 
+    private Timer shootTimer;
+
     private boolean isBallAlreadyLoaded;
     private boolean isBallAlreadyStaged;
 
     public ShootBall(BallHandlingSystem subsystem) {
         m_ballHandlingSystem = subsystem;
         addRequirements(m_ballHandlingSystem);
+        shootTimer = new Timer();
     }
 
     // Called when the command is initially scheduled.
@@ -25,6 +29,8 @@ public class ShootBall extends CommandBase {
     public void initialize() {
         isBallAlreadyLoaded = m_ballHandlingSystem.getBallLoadedSensor();
         isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
+        shootTimer.reset();
+        shootTimer.start();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -32,9 +38,9 @@ public class ShootBall extends CommandBase {
     public void execute() {
         m_ballHandlingSystem.setShootMotorRPM(Constants.BallHandling.kShootMotorSpeed);
         m_ballHandlingSystem.setStagingMotor(Constants.BallHandling.kStagingMotorSpeed);
-        if (isBallAlreadyLoaded) {
-            m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kLoadMotorsSpeed);
-        }
+        // if (isBallAlreadyLoaded) {
+        //     m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kLoadMotorsSpeed);
+        // }
     }
 
     // Called once the command ends or is interrupted.
@@ -48,6 +54,9 @@ public class ShootBall extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
+        if(shootTimer.get() >= Constants.BallHandling.shootTimerLength) {
+            return true;
+        }
         return false;
     }
 

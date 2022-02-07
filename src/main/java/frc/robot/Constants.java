@@ -10,6 +10,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Timer; //TODO: Do we need to import a timer or not?
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean
@@ -87,7 +88,10 @@ public class Constants {
         public static final float kLoadMotorsSpeed = 0.5f;
         public static final float kStagingMotorSpeed = 0.5f;
         public static final float kShootMotorSpeed = 0.5f;
+        public static final float kMinShootMotorSpeed = 0.95f;
         public static final float kShootMotorMaxRPM = 5000.0f;
+        //Ball Timers
+        public static final float shootTimerLength = 1f; //TODO: Change this later if needed
 
         public static final boolean BALLPRESENT = false;
 
