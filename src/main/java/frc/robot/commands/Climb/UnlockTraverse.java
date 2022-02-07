@@ -1,22 +1,28 @@
+
 package frc.robot.commands.Climb;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
 import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
  */
-public class RaiseClimber extends CommandBase {
-    private final ClimbSystem m_climbSystem;
+public class UnlockTraverse extends CommandBase {
 
-    public RaiseClimber(ClimbSystem subsystem) {
-        m_climbSystem = subsystem;
-        addRequirements(m_climbSystem);
+    private final ClimbSystem m_traverseSystem;
+
+    public UnlockTraverse(ClimbSystem subsystem) {
+
+        m_traverseSystem = subsystem;
+        addRequirements(m_traverseSystem);
+
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        m_traverseSystem.lockTraverse(false);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -32,11 +38,12 @@ public class RaiseClimber extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean runsWhenDisabled() {
         return false;
+
     }
 }

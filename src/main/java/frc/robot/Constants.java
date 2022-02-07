@@ -27,6 +27,7 @@ public class Constants {
 
     public static final boolean PRESSED = false;
     public static final boolean NOTPRESSED = true;
+    public static final double TOLERANCE = .1;
 
     public static final class Drive {
         //Drive motor ports

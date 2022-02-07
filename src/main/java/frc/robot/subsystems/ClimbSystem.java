@@ -5,6 +5,7 @@ package frc.robot.subsystems;
 // import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Utilities;
 
 //import com.revrobotics.REVLibError;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -28,7 +29,6 @@ public class ClimbSystem extends SubsystemBase {
     private Servo antidropTraverseServo;
     
     //used to turn off motors to prevent unnecessary strain
-    //TODO: figure out if we need new varibles or change old ones
     public int localClimbMotorSpeed;
     public int localTraverseMotorSpeed;
 
@@ -71,12 +71,26 @@ public class ClimbSystem extends SubsystemBase {
         
         }
         if(LowerTraverseLimitSwitch.get() == Constants.Climb.kTraverseLimitSwitch){
-            //TODO: figure out wich direction down is and adjust accordingly
+
             if(traverseMotor.get() < 0){
                 traverseMotor.set(0);
             }
         }
+
+        if(Utilities.IsCloseTo(antidropClimbServo.get(), Constants.Climb.transferLockedServoPosition)) {
+            localClimbMotorSpeed = 0;
+        }else{
+            localClimbMotorSpeed = 1;
+        }
     
+
+        if(Utilities.IsCloseTo(antidropTraverseServo.get(), Constants.Climb.transferLockedServoPosition)) {
+            localTraverseMotorSpeed = 0;
+        }else{
+            localTraverseMotorSpeed = 1;
+        }
+    
+
     }
 
     @Override
@@ -86,30 +100,37 @@ public class ClimbSystem extends SubsystemBase {
 
 
     
-    public void lockTraverseClimber(boolean climberLocked) {
+    public void lockTraverse(boolean climberLocked) {
         //Ced both locks position and prevent motors from turning
         if (climberLocked){  
             antidropTraverseServo.set(Constants.Climb.transferLockedServoPosition);
-            localClimbMotorSpeed = 0;
+          
             //climbMotor.set(0);
         } else {
             antidropTraverseServo.set(Constants.Climb.transferUnlockedServoPosition);
-            localClimbMotorSpeed = 1;
-            //TODO: should I set motor speed, not localclimbmotorspeed, here or do it else where?
+           
+   
         }
 
     }
     
-    public void setClimbLock(boolean isLocked) {
+    public void lockClimber(boolean isLocked) {
         
         if (isLocked == true) {
             antidropClimbServo.set(Constants.Climb.kClimbServoLockPosition);
-            localTraverseMotorSpeed = 0;
+         
             //traverseMotor.set(0);
         } else {
             antidropClimbServo.set(Constants.Climb.kClimbServoUnlockPosition);
-            localTraverseMotorSpeed = 1;
+        
         }
+    }
+
+
+
+    public void move(double climbSpeed, double traverseSpeed) {
+        climbMotor.set(climbSpeed * localClimbMotorSpeed);
+        traverseMotor.set(traverseSpeed * localTraverseMotorSpeed);
     }
 
     
