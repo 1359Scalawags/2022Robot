@@ -10,12 +10,16 @@ import frc.robot.Utilities;
 //import com.revrobotics.REVLibError;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.hal.EncoderJNI;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
 
 public class ClimbSystem extends SubsystemBase {
     private DigitalInput LowerClimbLimitSwitch;
@@ -27,11 +31,17 @@ public class ClimbSystem extends SubsystemBase {
     private CANSparkMax traverseMotor;
     private Servo antidropTraverseServo;
 
+
+    private RelativeEncoder climbEncoder;
+
+    private RelativeEncoder traverseEncoder;
+
     // used to turn off motors to prevent unnecessary strain
     public int localClimbMotorSpeed;
     public int localTraverseMotorSpeed;
 
     public ClimbSystem() {
+
 
         climbMotor = new CANSparkMax(Constants.Climb.kClimbMotor, MotorType.kBrushless);
 
@@ -57,6 +67,11 @@ public class ClimbSystem extends SubsystemBase {
         addChild("LowerClimbLimitSwitch", LowerClimbLimitSwitch);
         LowerTraverseLimitSwitch = new DigitalInput(Constants.Climb.kTraverseLimitSwitchPort);
         addChild("LowerTraverseLimitSwitch", LowerTraverseLimitSwitch);
+
+        climbEncoder = climbMotor.getEncoder();
+        climbEncoder.setPositionConversionFactor(Constants.Climb.kClimbConversionFactor);
+        traverseEncoder = traverseMotor.getEncoder();
+        traverseEncoder.setPositionConversionFactor(Constants.Climb.kTraverseConversionFactor);
     }
 
     @Override
@@ -89,16 +104,41 @@ public class ClimbSystem extends SubsystemBase {
             localTraverseMotorSpeed = 1;
         }
 
+        if (climbEncoder.getPosition() > Constants.Climb.kClimbHeightlimit) {
+
+            if (climbMotor.get() > 0) {
+                climbMotor.set(0);
+            }
+        }
+        if (traverseEncoder.getPosition() > Constants.Climb.kTraverseHeightlimit) {
+
+            if (traverseMotor.get() > 0) {
+                traverseMotor.set(0);
+            }
+        }
+        
     }
+
+    public double getTraversePosition() {
+        return traverseEncoder.getPosition();
+    }
+      
+    public double getClimbPosition() {
+        return climbEncoder.getPosition();
+    } 
+    
+    
+    
+    
 
     @Override
     public void simulationPeriodic() {
 
     }
 
-    public void lockTraverse(boolean climberLocked) {
+    public void lockTraverse(boolean isLocked) {
         // Ced both locks position and prevent motors from turning
-        if (climberLocked) {
+        if (isLocked) {
             antidropTraverseServo.set(Constants.Climb.transferLockedServoPosition);
 
             // climbMotor.set(0);
