@@ -29,10 +29,12 @@ public class ManualDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double boost = Constants.Drive.kBoostSpeed * ((RobotContainer.getInstance().getdriverController().getLeftTriggerAxis() + RobotContainer.getInstance().getdriverController().getRightTriggerAxis()) /2);
+        double leftJoystick = RobotContainer.getInstance().getdriverController().getLeftY();
+        double rightJoystick = RobotContainer.getInstance().getdriverController().getRightY();
+        double triggerJoystick = (RobotContainer.getInstance().getdriverController().getLeftTriggerAxis() + RobotContainer.getInstance().getdriverController().getRightTriggerAxis()) / 2;
         
-        double leftSpeed = RobotContainer.getInstance().getdriverController().getLeftY();
-        double rightSpeed = RobotContainer.getInstance().getdriverController().getRightY();
+        double leftSpeed = leftJoystick * (Constants.Drive.kBaseDriveSpeed + Constants.Drive.kBoostSpeed * triggerJoystick);
+        double rightSpeed = rightJoystick * (Constants.Drive.kBaseDriveSpeed + Constants.Drive.kBoostSpeed * triggerJoystick);
         m_driveSystem.move(leftSpeed, rightSpeed);
     }
 
