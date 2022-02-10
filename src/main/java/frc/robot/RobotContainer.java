@@ -103,7 +103,7 @@ public class RobotContainer {
         rightStick.whenPressed(new ManualDrive(m_driveSystem), true);
         SmartDashboard.putData("rightStick", new ManualDrive(m_driveSystem));
 
-        final JoystickButton reverseDriveBtn = new JoystickButton(driverController, XboxController.Button.kA.value);
+        final JoystickButton reverseDriveBtn = new JoystickButton(driverController, XboxController.Button.kBack.value);
         reverseDriveBtn.whenPressed(new ReverseDrive(m_driveSystem), true);
         SmartDashboard.putData("reverseDriveBtn", new ReverseDrive(m_driveSystem));
 
