@@ -95,13 +95,13 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         // Create some buttons
-        final JoystickButton leftStick = new JoystickButton(driverController, XboxController.Button.kLeftStick.value);
-        leftStick.whenPressed(new ManualDrive(m_driveSystem), true);
-        SmartDashboard.putData("leftStick", new ManualDrive(m_driveSystem));
+        // final JoystickButton leftStick = new JoystickButton(driverController, XboxController.Button.kLeftStick.value);
+        // leftStick.whenPressed(new ManualDrive(m_driveSystem), true);
+        // SmartDashboard.putData("leftStick", new ManualDrive(m_driveSystem));
 
-        final JoystickButton rightStick = new JoystickButton(driverController, XboxController.Button.kRightStick.value);
-        rightStick.whenPressed(new ManualDrive(m_driveSystem), true);
-        SmartDashboard.putData("rightStick", new ManualDrive(m_driveSystem));
+        // final JoystickButton rightStick = new JoystickButton(driverController, XboxController.Button.kRightStick.value);
+        // rightStick.whenPressed(new ManualDrive(m_driveSystem), true);
+        // SmartDashboard.putData("rightStick", new ManualDrive(m_driveSystem));
 
         final JoystickButton reverseDriveBtn = new JoystickButton(driverController, XboxController.Button.kBack.value);
         reverseDriveBtn.whenPressed(new ReverseDrive(m_driveSystem), true);
