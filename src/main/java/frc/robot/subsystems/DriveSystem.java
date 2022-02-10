@@ -81,7 +81,7 @@ public class DriveSystem extends SubsystemBase {
         rightSpeedController = new MotorControllerGroup(rightFrontMotor, rightRearMotor);
         addChild("RightSpeedController", rightSpeedController);
 
-        differentialDrive = new DifferentialDrive(leftSpeedController, leftFrontMotor);
+        differentialDrive = new DifferentialDrive(leftSpeedController, rightSpeedController);
         addChild("DifferentialDrive", differentialDrive);
         differentialDrive.setSafetyEnabled(true);
         differentialDrive.setExpiration(0.1);
