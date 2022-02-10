@@ -107,7 +107,7 @@ public class RobotContainer {
         reverseDriveBtn.whenPressed(new ReverseDrive(m_driveSystem), true);
         SmartDashboard.putData("reverseDriveBtn", new ReverseDrive(m_driveSystem));
 
-        final JoystickButton lockClimberBtn = new JoystickButton(driverController, XboxController.Button.kA.value);
+        final JoystickButton lockClimberBtn = new JoystickButton(driverController, XboxController.Button.kX.value);
         lockClimberBtn.whenPressed(new LockClimber(m_climbSystem), true);
         SmartDashboard.putData("lockClimberBtn", new LockClimber(m_climbSystem));
 
@@ -115,9 +115,9 @@ public class RobotContainer {
         unlockClimberBtn.whenPressed(new UnlockTraverse(m_climbSystem), true);
         SmartDashboard.putData("unlockClimberBtn", new UnlockTraverse(m_climbSystem));
 
-        final JoystickButton raiseClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
-        raiseClimberBtn.whenPressed(new ManuelClimber(m_climbSystem), true);
-        SmartDashboard.putData("raiseClimberBtn", new ManuelClimber(m_climbSystem));
+        // final JoystickButton raiseClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
+        // raiseClimberBtn.whenPressed(new ManuelClimber(m_climbSystem), true);
+        // SmartDashboard.putData("raiseClimberBtn", new ManuelClimber(m_climbSystem));
 
         // final JoystickButton lowerClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
         // lowerClimberBtn.whenPressed(new LowerClimber(m_climbSystem), true);
