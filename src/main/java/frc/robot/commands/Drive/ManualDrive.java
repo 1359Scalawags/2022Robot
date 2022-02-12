@@ -35,7 +35,7 @@ public class ManualDrive extends CommandBase {
         
         double leftSpeed = leftJoystick * (Constants.Drive.kBaseDriveSpeed + Constants.Drive.kBoostSpeed * triggerJoystick);
         double rightSpeed = rightJoystick * (Constants.Drive.kBaseDriveSpeed + Constants.Drive.kBoostSpeed * triggerJoystick);
-        m_driveSystem.move(leftSpeed, rightSpeed);
+        m_driveSystem.tankDrive(leftSpeed, rightSpeed);
     }
 
     // Called once the command ends or is interrupted.

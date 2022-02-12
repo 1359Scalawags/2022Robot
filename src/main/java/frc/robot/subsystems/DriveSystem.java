@@ -119,24 +119,13 @@ public class DriveSystem extends SubsystemBase {
 
     }
 
-    public void move(double leftSpeed, double rightSpeed) {
-        differentialDrive.tankDrive(leftSpeed, rightSpeed, true);
-    }
+    // public void move(double leftSpeed, double rightSpeed) {
+    //     differentialDrive.tankDrive(leftSpeed, rightSpeed, true);
+    // }
 
  
 
-    public void driveForward(double speed, double targetHeading) {
-        final double scale = .01;
-        double leftSpeed;
-        double rightSpeed;
-        double headingError = getAngle() - targetHeading;
-
-        leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale,
-        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
-        rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale,
-        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
-        tankDrive(leftSpeed, rightSpeed);
-    }
+   
 
     public void reverseDirection() {
         if (reverse) {
@@ -166,6 +155,18 @@ public class DriveSystem extends SubsystemBase {
         leftSpeed =Utilities.Clamp(-(speed) - headingError * scale,
         -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
         rightSpeed = Utilities.Clamp(-(speed) + headingError * scale,
+        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        tankDrive(leftSpeed, rightSpeed);
+    }
+    public void driveForward(double speed, double targetHeading) {
+        final double scale = .01;
+        double leftSpeed;
+        double rightSpeed;
+        double headingError = getAngle() - targetHeading;
+
+        leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale,
+        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale,
         -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
         tankDrive(leftSpeed, rightSpeed);
     }
