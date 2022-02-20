@@ -60,7 +60,7 @@ public class RobotContainer {
         SmartDashboard.putData("AutoDrive", new AutoDrive(m_driveSystem));
         SmartDashboard.putData("AutoShootAndDrive", new AutoShootAndDrive());
         SmartDashboard.putData("LockClimber", new LockClimber(m_climbSystem));
-        SmartDashboard.putData("UnlockClimber", new UnlockTraverse(m_climbSystem));
+        // SmartDashboard.putData("UnlockClimber", new UnlockTraverse(m_climbSystem));
         SmartDashboard.putData("RaiseClimber", new ManuelClimber(m_climbSystem));
         // SmartDashboard.putData("LowerClimber", new LowerClimber(m_climbSystem));
         SmartDashboard.putData("ManualDrive", new ManualDrive(m_driveSystem));
