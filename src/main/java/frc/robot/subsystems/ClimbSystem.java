@@ -166,9 +166,9 @@ public class ClimbSystem extends SubsystemBase {
         }
     }
 
-    // public void move(double climbSpeed, double traverseSpeed) {
-    //     climbMotor.set(climbSpeed * localClimbMotorSpeed);
-    //     traverseMotor.set(traverseSpeed * localTraverseMotorSpeed);
-    // }
+    public void move(double climbSpeed, double traverseSpeed) {
+        climbMotor.set(climbSpeed * localClimbMotorMultiplier);
+        // traverseMotor.set(traverseSpeed * localTraverseMotorSpeed);
+    }
 
 }
