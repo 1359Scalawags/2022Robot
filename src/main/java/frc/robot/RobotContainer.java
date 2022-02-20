@@ -115,8 +115,8 @@ public class RobotContainer {
         SmartDashboard.putData("lockClimberBtn", new LockClimber(m_climbSystem));
 
         final JoystickButton unlockClimberBtn = new JoystickButton(driverController, XboxController.Button.kA.value);
-        unlockClimberBtn.whenPressed(new UnlockTraverse(m_climbSystem), true);
-        SmartDashboard.putData("unlockClimberBtn", new UnlockTraverse(m_climbSystem));
+        unlockClimberBtn.whenPressed(new UnlockClimber(m_climbSystem), true);
+        SmartDashboard.putData("unlockClimberBtn", new UnlockClimber(m_climbSystem));
 
         // final JoystickButton raiseClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
         // raiseClimberBtn.whenPressed(new ManuelClimber(m_climbSystem), true);
