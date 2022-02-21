@@ -9,14 +9,32 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
+
+
+// import edu.wpi.first.networktables.NetworkTableEntry;
+// import edu.wpi.first.networktables.NetworkTableInstance;
+
 public class VisionSystem extends SubsystemBase {
 
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
+    public enum CameraModes {
+        vision,
+        driver
+    }
+
+
+
+
+    static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTableEntry tx = getValue("tx");
+    NetworkTableEntry ty = getValue("ty");
+    NetworkTableEntry ta = getValue("ta");
 
     public VisionSystem() {
+       setCamMode(CameraModes.vision);
+    }
+
+    public static void setCamMode(CameraModes mode) {
+        getValue("camMode").setNumber(mode.ordinal());
     }
 
     @Override
@@ -31,6 +49,16 @@ public class VisionSystem extends SubsystemBase {
         SmartDashboard.putNumber("LimelightY", y);
         SmartDashboard.putNumber("LimelightArea", area);
     }
+
+
+
+    private static NetworkTableEntry getValue(String key) {
+		if (table == null) {
+			table = NetworkTableInstance.getDefault().getTable("limelight");
+		}
+        return table.getEntry(key);
+    }
+
     @Override
     public void simulationPeriodic() {
         
