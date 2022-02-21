@@ -1,24 +1,17 @@
 {
-  "HALProvider": {
-    "Other Devices": {
-      "SPARK MAX [0]": {
-        "header": {
-          "open": true
-        }
-      },
-      "SPARK MAX [1]": {
-        "header": {
-          "open": true
-        }
-      }
-    }
-  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/BallHandlingSystem/LoadMotors": "Motor Controller",
       "/LiveWindow/BallHandlingSystem/LoadSensor": "Digital Input",
       "/LiveWindow/BallHandlingSystem/StagingSensor": "Digital Input",
+      "/LiveWindow/ClimbSystem/LowerClimbLimitSwitch": "Digital Input",
+      "/LiveWindow/ClimbSystem/LowerTraverseLimitSwitch": "Digital Input",
+      "/LiveWindow/DriveSystem": "Subsystem",
       "/LiveWindow/DriveSystem/DifferentialDrive": "DifferentialDrive",
+      "/LiveWindow/DriveSystem/Gyro": "Gyro",
+      "/LiveWindow/DriveSystem/RightSpeedController": "Motor Controller",
+      "/LiveWindow/Ungrouped/PIDController[1]": "PIDController",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/LiveWindow/VisionSystem": "Subsystem",
       "/SmartDashboard/Auto Mode": "String Chooser",

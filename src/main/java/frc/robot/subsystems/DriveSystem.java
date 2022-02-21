@@ -135,7 +135,7 @@ public class DriveSystem extends SubsystemBase {
         }
     }
     public double getDistanceLeft() {
-        return leftEncoder.getPosition(); //TODO wich one of these  is a reversed value?
+        return leftEncoder.getPosition(); 
     }
     public double getDistanceRight() {
         return rightEncoder.getPosition();
