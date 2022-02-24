@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-
+//positive x value, right negative, left
 
 
 // import edu.wpi.first.networktables.NetworkTableEntry;
@@ -21,7 +21,7 @@ public class VisionSystem extends SubsystemBase {
         driver
     }
 
-
+    double x, y, area;
 
 
     static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -62,5 +62,16 @@ public class VisionSystem extends SubsystemBase {
     @Override
     public void simulationPeriodic() {
         
+    }
+
+
+    public Double getTargetX(){
+        return x; 
+    }
+    public Double getTargetY(){
+        return y; 
+    }
+    public Double getTargetArea(){
+        return area; 
     }
 }
