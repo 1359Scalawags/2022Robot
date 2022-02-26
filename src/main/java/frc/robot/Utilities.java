@@ -11,5 +11,9 @@ public class Utilities {
 		double diff = Math.abs(a-b);
 		return diff < Constants.TOLERANCE;
 	}
+	public static boolean IsCloseTo(double a, double b, double tolerance) {
+		double diff = Math.abs(a-b);
+		return diff < tolerance;
+	}
     
 }

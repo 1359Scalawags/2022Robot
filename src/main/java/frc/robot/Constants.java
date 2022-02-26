@@ -32,6 +32,10 @@ public class Constants {
     public static final boolean NOTPRESSED = true;
     public static final double TOLERANCE = .1;
 
+   
+    public static final double AutoMotorSpeed = 1;
+    public static final double AutoMotorDistance = 1;
+    public static final double AngleTurnBy = 180;
     public static final class Drive {
         //Drive motor ports
         public static final int kLeftFrontPort = 0;
@@ -56,6 +60,7 @@ public class Constants {
         public static final double gyrokFf =0.1;
         
         public static final double AutoStraightSpeed = 1;
+        public static final double maxTurnSpeed = .5;
     }
 
     public static final class Climb {
