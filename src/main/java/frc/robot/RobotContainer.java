@@ -7,7 +7,7 @@ import frc.robot.commands.Climb.*;
 import frc.robot.commands.Drive.*;
 import frc.robot.commands.autonomous.AutoDrive;
 import frc.robot.commands.autonomous.AutoShoot;
-import frc.robot.commands.autonomous.AutoShootAndDrive;
+import frc.robot.commands.autonomous.Auto;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -58,7 +58,7 @@ public class RobotContainer {
         SmartDashboard.putData("ProcessCameraImage", new ProcessCameraImage(m_visionSystem));
         SmartDashboard.putData("AutoShoot", new AutoShoot(m_ballHandlingSystem));
         SmartDashboard.putData("AutoDrive", new AutoDrive(m_driveSystem));
-        SmartDashboard.putData("AutoShootAndDrive", new AutoShootAndDrive());
+        SmartDashboard.putData("AutoShootAndDrive", new Auto());
         SmartDashboard.putData("LockClimber", new LockClimber(m_climbSystem));
         // SmartDashboard.putData("UnlockClimber", new UnlockTraverse(m_climbSystem));
         SmartDashboard.putData("RaiseClimber", new ManuelClimber(m_climbSystem));
@@ -76,7 +76,7 @@ public class RobotContainer {
 
         m_chooser.addOption("AutoShoot", new AutoShoot(m_ballHandlingSystem));
         m_chooser.addOption("AutoDrive", new AutoDrive(m_driveSystem));
-        m_chooser.addOption("AutoShootAndDrive", new AutoShootAndDrive());
+        m_chooser.addOption("AutoShootAndDrive", new Auto());
         // m_chooser.setDefaultOption("$command.getName()", new ${name.replace(' ',
         // '')}( m_${name.substring(0,1).toLowerCase()}${name.substring(1).replace(' ',
         // '')} ));
