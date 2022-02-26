@@ -43,12 +43,15 @@ public class RobotContainer {
     private final XboxController driverController = new XboxController(0);
 
     // A chooser for autonomous commands
-    SendableChooser<Command> m_chooser = new SendableChooser<>();
+    SendableChooser<Command> m_autoChooser = new SendableChooser<Command>();
+    SendableChooser<Integer> m_autoAngleChooser = new SendableChooser<Integer>();
+
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     private RobotContainer() {
+        
         // Smartdashboard Subsystems
 
         // SmartDashboard Buttons
@@ -74,14 +77,20 @@ public class RobotContainer {
         m_driveSystem.setDefaultCommand(new ManualDrive(m_driveSystem));
         // Configure autonomous sendable chooser
 
-        m_chooser.addOption("AutoShoot", new AutoShoot(m_ballHandlingSystem));
-        m_chooser.addOption("AutoDrive", new AutoDrive(m_driveSystem));
-        m_chooser.addOption("AutoShootAndDrive", new Auto(m_driveSystem, m_ballHandlingSystem, m_visionSystem));
+        m_autoChooser.addOption("AutoShoot", new AutoShoot(m_ballHandlingSystem));
+        m_autoChooser.addOption("AutoDrive", new AutoDrive(m_driveSystem));
+        m_autoChooser.addOption("AutoShootAndDrive", new Auto(m_driveSystem, m_ballHandlingSystem, m_visionSystem));
+
+        m_autoAngleChooser.addOption("0", 0);
+        m_autoAngleChooser.addOption("90", 90);
+        m_autoAngleChooser.addOption("180", 180);
+        m_autoAngleChooser.setDefaultOption("0", 0);
         // m_chooser.setDefaultOption("$command.getName()", new ${name.replace(' ',
         // '')}( m_${name.substring(0,1).toLowerCase()}${name.substring(1).replace(' ',
         // '')} ));
 
-        SmartDashboard.putData("Auto Mode", m_chooser);
+        SmartDashboard.putData("Auto Mode", m_autoChooser);
+        SmartDashboard.putData("Auto Angle", m_autoAngleChooser);
     }
 
     public static RobotContainer getInstance() {
@@ -159,7 +168,11 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // The selected command will be run in autonomous
-        return m_chooser.getSelected();
+        return m_autoChooser.getSelected();
+    }
+
+    public Integer getAutonomousAngle() {
+        return m_autoAngleChooser.getSelected();
     }
 
 }

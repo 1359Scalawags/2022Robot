@@ -5,6 +5,7 @@ import org.ejml.equation.Variable;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.Constants.BallHandling;
 import frc.robot.commands.Ball.ShootBall;
 import frc.robot.commands.Drive.TurnByAngle;
@@ -24,6 +25,8 @@ public class Auto extends SequentialCommandGroup {
     private BallHandlingSystem ballHandling;
     private VisionSystem vision;
 
+        int angleToTurn = RobotContainer.getInstance().getAutonomousAngle();
+
     public enum Automodes{
         StandStill,
         MoveForward,
@@ -34,11 +37,19 @@ public class Auto extends SequentialCommandGroup {
     private Automodes choosenMode;
 
     public Auto(DriveSystem drive, BallHandlingSystem ballHandling, VisionSystem vision) {
-    addCommands(
-        new moveFoward(drive, Constants.AutoMotorDistance, Constants.AutoMotorSpeed),
-        new TurnByAngle(drive, Constants.AngleTurnBy),
-        new AutoShoot(ballHandling)
-        );
+        moveFoward move = new moveFoward(drive, Constants.AutoMotorDistance, Constants.AutoMotorSpeed);
+        TurnByAngle turn = new TurnByAngle(drive, angleToTurn);
+        AutoShoot shoot = new AutoShoot(ballHandling);
+
+        // addCommands(move, turn, shoot);
+        if(choosenMode == Automodes.MoveForward){
+            addCommands(move);
+        } else if(choosenMode == Automodes.AimAndShoot){
+            addCommands(turn, shoot);
+        } else{
+    
+        }
+
 
     }
 

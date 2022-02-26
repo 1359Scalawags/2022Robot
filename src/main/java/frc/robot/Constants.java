@@ -35,7 +35,7 @@ public class Constants {
    
     public static final double AutoMotorSpeed = 1;
     public static final double AutoMotorDistance = 1;
-    public static final double AngleTurnBy = 180;
+    public static final double AngleTurnBy = 0;
     public static final class Drive {
         //Drive motor ports
         public static final int kLeftFrontPort = 0;
