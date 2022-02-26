@@ -111,6 +111,9 @@ public class Constants {
         public static final int kMaxOutput = 1; 
         public static final int kMinOutput = -1;
 
+        public static final int kloadinput = 0;        //TODO: Find out and put the actual port numbers for the digital inputs on the robot, here!!!
+        public static final int kstaginginput = 1;
+
     }
 
     

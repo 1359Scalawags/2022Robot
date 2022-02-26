@@ -71,10 +71,10 @@ public class BallHandlingSystem extends SubsystemBase {
         shootController.setFF(Constants.BallHandling.kFF);
         shootController.setOutputRange(Constants.BallHandling.kMinOutput, Constants.BallHandling.kMaxOutput);
 
-        loadSensor = new DigitalInput(0);
+        loadSensor = new DigitalInput(Constants.BallHandling.kloadinput);
         addChild("LoadSensor", loadSensor);
 
-        stagingSensor = new DigitalInput(1);
+        stagingSensor = new DigitalInput(Constants.BallHandling.kstaginginput);
         addChild("StagingSensor", stagingSensor);
 
     }
