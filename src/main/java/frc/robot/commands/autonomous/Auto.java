@@ -30,7 +30,8 @@ public class Auto extends SequentialCommandGroup {
     public enum Automodes{
         StandStill,
         MoveForward,
-        AimAndShoot
+        AimAndShoot,
+        reverse
     }
 
 
