@@ -7,12 +7,15 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.BallHandling;
+import frc.robot.Constants.Drive;
 import frc.robot.commands.Ball.ShootBall;
+import frc.robot.commands.Drive.SetDriveDirection;
 import frc.robot.commands.Drive.TurnByAngle;
 import frc.robot.commands.Drive.moveFoward;
 import frc.robot.subsystems.BallHandlingSystem;
 import frc.robot.subsystems.DriveSystem;
 import frc.robot.subsystems.VisionSystem;
+import frc.robot.subsystems.DriveSystem.Directions;
 
 /**
  *
@@ -31,7 +34,8 @@ public class Auto extends SequentialCommandGroup {
         StandStill,
         MoveForward,
         AimAndShoot,
-        reverse
+        reverse,
+        Shoot
     }
 
 
@@ -41,15 +45,19 @@ public class Auto extends SequentialCommandGroup {
         moveFoward move = new moveFoward(drive, Constants.AutoMotorDistance, Constants.AutoMotorSpeed);
         TurnByAngle turn = new TurnByAngle(drive, angleToTurn);
         AutoShoot shoot = new AutoShoot(ballHandling);
-
+        SetDriveDirection Fowards = new SetDriveDirection(drive, Directions.Forwards);
+        SetDriveDirection Backwards = new SetDriveDirection(drive, Directions.Backwards);
         // addCommands(move, turn, shoot);
         if(choosenMode == Automodes.MoveForward){
-            addCommands(move);
+            addCommands(Fowards, move);
         } else if(choosenMode == Automodes.AimAndShoot){
-            addCommands(turn, shoot);
-        } else{
-    
+            addCommands(Fowards, turn, shoot);
+        } else if(choosenMode == Automodes.reverse){
+            addCommands(Backwards, move);
+        } else if(choosenMode == Automodes.Shoot){
+            addCommands(shoot);
         }
+
 
 
     }
