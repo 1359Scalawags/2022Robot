@@ -38,10 +38,10 @@ public class Constants {
     public static final double AngleTurnBy = 0;
     public static final class Drive {
         //Drive motor ports
-        public static final int kLeftFrontPort = 0;
-        public static final int kLeftRearPort = 1;
-        public static final int kRightFrontPort = 2;
-        public static final int kRightRearPort = 3;
+        public static final int kLeftFrontPort = 13;
+        public static final int kLeftRearPort = 14;
+        public static final int kRightFrontPort = 11;
+        public static final int kRightRearPort = 12;
         //Drive motor speeds
         public static final float kBoostSpeed = 0.85f;
         public static final float kMaxDriveSpeed = 0.85f;
@@ -65,11 +65,11 @@ public class Constants {
 
     public static final class Climb {
         //Climb Motors and Servos (Solenoids too)
-        public static final int kClimbMotor = 8;
-        public static final int kTraverseMotor = 7;
-        public static final int kAntiDropClimbServo = 0;
-        public static final int kAntiDropTraverseServo = 1;
-        public static final int kClimberSolenoid = 2;
+        public static final int kClimbMotor = 30;
+        // public static final int kTraverseMotor = 7;
+        public static final int kAntiDropClimbServo = 1;
+        // public static final int kAntiDropTraverseServo = 1;
+        // public static final int kClimberSolenoid = 2;
         //Climb Motor Speeds
         public static final float kClimbMotorSpeed = 0.5f;
         public static final float kTraverseMotorSpeed = 0.5f;
@@ -81,22 +81,22 @@ public class Constants {
 
 
         public static final boolean kClimbLimitSwitch = true;
-        public static final int kClimbLimitSwitchPort = 3;
-        public static final boolean kTraverseLimitSwitch = true;
-        public static final int kTraverseLimitSwitchPort = 4;
+        public static final int kClimbLimitSwitchPort = 0;
+        // public static final boolean kTraverseLimitSwitch = true;
+        // public static final int kTraverseLimitSwitchPort = 4;
         public static final double kClimbConversionFactor = 1;
-        public static final double kTraverseConversionFactor = 1;
+        // public static final double kTraverseConversionFactor = 1;
        
         public static final double kClimbHeightlimit = 20;
-        public static final double kTraverseHeightlimit = 20;
+        // public static final double kTraverseHeightlimit = 20;
     }
 
     public static final class BallHandling {
         //Ball Handling Motors
-        public static final int kLoadMotor1 = 4;
-        public static final int kLoadMotor2 = 9;
-        public static final int kStagingMotor = 6;
-        public static final int kShootMotor = 5;
+        public static final int kLoadMotor1 = 15;
+        // public static final int kLoadMotor2 = 9;
+        public static final int kStagingMotor = 25;
+        public static final int kShootMotor = 21;
         //Ball Motor Speeds
         public static final float kLoadMotorsSpeed = 0.5f;
         public static final float kStagingMotorSpeed = 0.5f;
