@@ -41,7 +41,13 @@ public class DriveSystem extends SubsystemBase {
     private MotorControllerGroup rightSpeedController;
     private RelativeEncoder rightEncoder;
 
-    boolean reverse = false;
+
+    public enum Directions{
+    Backwards,
+    Forwards
+    }
+   Directions direction = Directions.Forwards;
+    // boolean reverse = false;
     private DifferentialDrive differentialDrive;
     
     public DriveSystem() {
@@ -128,12 +134,17 @@ public class DriveSystem extends SubsystemBase {
    
 
     public void reverseDirection() {
-        if (reverse) {
-            reverse = false;
+        if (direction == Directions.Forwards) {
+            direction = Directions.Backwards;
         } else {
-            reverse = true;
+            direction = Directions.Forwards;
         }
     }
+
+    public void setDirection(Directions direction){
+    this.direction = direction;
+    }
+
     public double getDistanceLeft() {
         return leftEncoder.getPosition(); 
     }
@@ -172,7 +183,7 @@ public class DriveSystem extends SubsystemBase {
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
-        if (reverse) {
+        if (direction == Directions.Backwards) {
             differentialDrive.tankDrive(rightSpeed, leftSpeed);
         } else {
             differentialDrive.tankDrive(-leftSpeed, -rightSpeed);
