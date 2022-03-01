@@ -145,10 +145,19 @@ public class RobotContainer {
         // lowerTraverseClimberBtn.whenPressed(new LowerTraverse(m_climbSystem), true);
         // SmartDashboard.putData("LowerTraverseClimberBtn", new LowerTraverse(m_climbSystem));
 
+        final JoystickButton shootBallBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
         final JoystickButton loadBallBtn = new JoystickButton(assistController, XboxController.Button.kB.value);
+        final JoystickButton sequenceShotBtn = new JoystickButton(assistController, XboxController.Button.kA.value);    
+    
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
         SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
 
+        sequenceShotBtn.whenPressed(new SequenceShot(m_ballHandlingSystem), true);
+        SmartDashboard.putData("loadBallBtn", new SequenceShot(m_ballHandlingSystem));   
+        
+        shootBallBtn.whenPressed(new ShootBall(m_ballHandlingSystem), true);               
+        SmartDashboard.putData("lowerClimberBtn", new ShootBall(m_ballHandlingSystem));
+  
     }
 
     public XboxController getdriverController() {
