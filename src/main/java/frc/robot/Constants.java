@@ -61,6 +61,8 @@ public class Constants {
         
         public static final double AutoStraightSpeed = 1;
         public static final double maxTurnSpeed = .5;
+
+        public static final double kConversionFactor = 259.06735751;
     }
 
     public static final class Climb {

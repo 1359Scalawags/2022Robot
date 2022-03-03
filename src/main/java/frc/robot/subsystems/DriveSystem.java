@@ -34,7 +34,7 @@ public class DriveSystem extends SubsystemBase {
     private CANSparkMax leftFrontMotor;
     private CANSparkMax leftRearMotor;
     private MotorControllerGroup leftSpeedController;
-    private RelativeEncoder leftEncoder;
+    private RelativeEncoder leftEncoder; 
 
     private CANSparkMax rightFrontMotor;
     private CANSparkMax rightRearMotor;
@@ -89,12 +89,15 @@ public class DriveSystem extends SubsystemBase {
 
         differentialDrive = new DifferentialDrive(leftSpeedController, rightSpeedController);
         addChild("DifferentialDrive", differentialDrive);
+        
+    
         differentialDrive.setSafetyEnabled(true);
         differentialDrive.setExpiration(0.1);
         differentialDrive.setMaxOutput(1.0);
         leftEncoder = leftRearMotor.getEncoder();
+        leftEncoder.setPositionConversionFactor(Constants.Drive.kConversionFactor);
         rightEncoder = rightRearMotor.getEncoder();
-
+        rightEncoder.setPositionConversionFactor(Constants.Drive.kConversionFactor);
     }
     //CED even more gyro stuff
     public void ResetGyro(){
