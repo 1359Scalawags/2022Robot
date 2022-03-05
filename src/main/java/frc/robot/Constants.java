@@ -43,9 +43,10 @@ public class Constants {
         public static final int kRightFrontPort = 11;
         public static final int kRightRearPort = 12;
         //Drive motor speeds
-        public static final float kBoostSpeed = 0.75f;
-        public static final float kMaxDriveSpeed = 0.85f;
-        public static final float kBaseDriveSpeed = 0.25f;
+        public static final float kTeleopBoostSpeed = 0.7f;
+        public static final float kTeleopBaseDriveSpeed = 0.3f;        
+        public static final float kDriveSpeed = 0.85f;
+
         //Motor varibles
         public static final double PID_P = 0.00001;
         public static final double PID_I = 0.000005;

@@ -172,9 +172,9 @@ public class DriveSystem extends SubsystemBase {
         double headingError = getAngle() - targetHeading;
 
         leftSpeed =Utilities.Clamp(-(speed) - headingError * scale,
-        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        -Constants.Drive.kDriveSpeed, Constants.Drive.kDriveSpeed);
         rightSpeed = Utilities.Clamp(-(speed) + headingError * scale,
-        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        -Constants.Drive.kDriveSpeed, Constants.Drive.kDriveSpeed);
         tankDrive(leftSpeed, rightSpeed);
     }
     public void driveForward(double speed, double targetHeading) {
@@ -184,9 +184,9 @@ public class DriveSystem extends SubsystemBase {
         double headingError = getAngle() - targetHeading;
 
         leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale,
-        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        -Constants.Drive.kDriveSpeed, Constants.Drive.kDriveSpeed);
         rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale,
-        -Constants.Drive.kMaxDriveSpeed, Constants.Drive.kMaxDriveSpeed);
+        -Constants.Drive.kDriveSpeed, Constants.Drive.kDriveSpeed);
         tankDrive(leftSpeed, rightSpeed);
     }
 

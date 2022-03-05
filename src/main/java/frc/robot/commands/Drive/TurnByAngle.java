@@ -32,7 +32,7 @@ public class TurnByAngle extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_driveSystem.arcadeDrive(Constants.Drive.kBaseDriveSpeed, Constants.Drive.maxTurnSpeed, turnAngle+originalAngle);
+        m_driveSystem.arcadeDrive(Constants.Drive.kTeleopBaseDriveSpeed, Constants.Drive.maxTurnSpeed, turnAngle+originalAngle);
     }
 
     // Called once the command ends or is interrupted.

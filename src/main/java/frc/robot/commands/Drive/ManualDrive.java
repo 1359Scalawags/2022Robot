@@ -33,8 +33,8 @@ public class ManualDrive extends CommandBase {
         double rightJoystick = RobotContainer.getInstance().getdriverController().getRightY();
         double triggerJoystick = (RobotContainer.getInstance().getdriverController().getLeftTriggerAxis() + RobotContainer.getInstance().getdriverController().getRightTriggerAxis()) / 2;
         
-        double leftSpeed = leftJoystick * (Constants.Drive.kBaseDriveSpeed + Constants.Drive.kBoostSpeed * triggerJoystick);
-        double rightSpeed = rightJoystick * (Constants.Drive.kBaseDriveSpeed + Constants.Drive.kBoostSpeed * triggerJoystick);
+        double leftSpeed = leftJoystick * (Constants.Drive.kTeleopBaseDriveSpeed + Constants.Drive.kTeleopBoostSpeed * triggerJoystick);
+        double rightSpeed = rightJoystick * (Constants.Drive.kTeleopBaseDriveSpeed + Constants.Drive.kTeleopBoostSpeed * triggerJoystick);
         m_driveSystem.tankDrive(leftSpeed, rightSpeed);
     }
 
