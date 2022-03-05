@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Utilities;
+import frc.robot.extensions.SendableCANSparkMax;
 
 //import com.revrobotics.REVLibError;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -25,7 +26,7 @@ public class ClimbSystem extends SubsystemBase {
     private DigitalInput LowerClimbLimitSwitch;
     // private DigitalInput LowerTraverseLimitSwitch;
 
-    private CANSparkMax climbMotor;
+    private SendableCANSparkMax climbMotor;
     private Servo antidropClimbServo;
     // private Solenoid climberSolenoid;
     // private CANSparkMax traverseMotor;
@@ -43,7 +44,7 @@ public class ClimbSystem extends SubsystemBase {
     public ClimbSystem() {
 
 
-        climbMotor = new CANSparkMax(Constants.Climb.kClimbMotor, MotorType.kBrushless);
+        climbMotor = new SendableCANSparkMax(Constants.Climb.kClimbMotor, MotorType.kBrushless, this);
 
         climbMotor.restoreFactoryDefaults();
         climbMotor.setInverted(false);

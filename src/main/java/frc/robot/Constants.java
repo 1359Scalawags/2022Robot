@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.Timer; //TODO: Do we need to import a timer or not?
  * declared globally (i.e. public static). Do not put anything functional in
  * this class.
  *
- * <p>
+ * <p>un
  * It is advised to statically import this class (or one of its inner classes)
  * wherever the
  * constants are needed, to reduce verbosity.
@@ -74,12 +74,12 @@ public class Constants {
         // public static final int kClimberSolenoid = 2;
         //Climb Motor Speeds
         public static final float kClimbMotorSpeed = 0.5f;
-        public static final float kTraverseMotorSpeed = 0.5f;
-        //gonna need actual values here
-        public static final float transferLockedServoPosition = 1f;
-        public static final float transferUnlockedServoPosition = 1f;
-        public static final float kClimbServoLockPosition = 1.0f;
-        public static final float kClimbServoUnlockPosition = 2.0f;
+        // public static final float kTraverseMotorSpeed = 0.5f;
+        // //gonna need actual values here
+        // public static final float transferLockedServoPosition = 1f;
+        // public static final float transferUnlockedServoPosition = 1f;
+        public static final float kClimbServoLockPosition = 0.54f;
+        public static final float kClimbServoUnlockPosition = 0.75f;
 
 
         public static final boolean kClimbLimitSwitch = true;
