@@ -2,6 +2,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.commands.*;
+import frc.robot.extensions.SendableCANSparkMax;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -20,13 +21,13 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 public class BallHandlingSystem extends SubsystemBase {
 
-    private CANSparkMax loadMotor;
+    private SendableCANSparkMax loadMotor;
  //   private CANSparkMax loadMotor2;
  //   private MotorControllerGroup loadMotor;
-    private CANSparkMax stagingMotor;
+    private SendableCANSparkMax stagingMotor;
 
 
-    private CANSparkMax shootMotor;
+    private SendableCANSparkMax shootMotor;
     private RelativeEncoder shootEncoder;
     private SparkMaxPIDController shootController;
 
@@ -49,20 +50,20 @@ public class BallHandlingSystem extends SubsystemBase {
         // loadMotor2.setIdleMode(IdleMode.kCoast);
 
         // loadMotor = new MotorControllerGroup(loadMotor1);
-        loadMotor = new CANSparkMax(Constants.BallHandling.kLoadMotor1, MotorType.kBrushless);
+        loadMotor = new SendableCANSparkMax(Constants.BallHandling.kLoadMotor1, MotorType.kBrushless, this);
 
         loadMotor.restoreFactoryDefaults();
         loadMotor.setInverted(false);
         loadMotor.setIdleMode(IdleMode.kCoast);
         //addChild("LoadMotors", loadMotor);
 
-        stagingMotor = new CANSparkMax(Constants.BallHandling.kStagingMotor, MotorType.kBrushless);
+        stagingMotor = new SendableCANSparkMax(Constants.BallHandling.kStagingMotor, MotorType.kBrushless, this);
 
         stagingMotor.restoreFactoryDefaults();
         stagingMotor.setInverted(false);
         stagingMotor.setIdleMode(IdleMode.kCoast);
 
-        shootMotor = new CANSparkMax(Constants.BallHandling.kShootMotor, MotorType.kBrushless);
+        shootMotor = new SendableCANSparkMax(Constants.BallHandling.kShootMotor, MotorType.kBrushless, this);
         shootMotor.restoreFactoryDefaults();
         shootMotor.setInverted(false);
         shootMotor.setIdleMode(IdleMode.kCoast);
@@ -109,6 +110,12 @@ public class BallHandlingSystem extends SubsystemBase {
 
     public double getShooterMotorRPM() {
         return shootEncoder.getVelocity();
+    }
+
+    public void stopAllBallMotors() {
+        setLoadMotor(0);
+        setStagingMotor(0);
+        setShootMotorRPM(0);
     }
 
     public boolean getBallLoadedSensor() {
