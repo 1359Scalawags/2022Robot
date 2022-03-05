@@ -5,6 +5,7 @@ package frc.robot.subsystems;
 // import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.Utilities;
 import frc.robot.extensions.SendableCANSparkMax;
 
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Servo;
 // import edu.wpi.first.wpilibj.Solenoid;
 // import edu.wpi.first.wpilibj.simulation.EncoderSim;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ClimbSystem extends SubsystemBase {
     private DigitalInput LowerClimbLimitSwitch;
@@ -38,8 +40,8 @@ public class ClimbSystem extends SubsystemBase {
     // private RelativeEncoder traverseEncoder;
 
     // used to turn off motors to prevent unnecessary strain
-    public int localClimbMotorMultiplier;
-    public int localTraverseMotorSpeed;
+    private int localClimbMotorMultiplier;
+    // private int localTraverseMotorSpeed;
 
     public ClimbSystem() {
 
@@ -75,15 +77,24 @@ public class ClimbSystem extends SubsystemBase {
         // traverseEncoder.setPositionConversionFactor(Constants.Climb.kTraverseConversionFactor);
     }
 
+    //private int counter = 0;
     @Override
     public void periodic() {
+        double currentJoystick = RobotContainer.getInstance().getassistController().getLeftY();
+        int tempMultiplier = 1;
+        //counter++;
+        //System.out.println("Running: " + counter);
+
         // Ced Makes sure the motors don't fry or breack anything when they hit the
         // bottom
-        if (LowerClimbLimitSwitch.get() == Constants.PRESSED) {
+        if (LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitchActivated) {
             // TODO: figure out wich direction down is and adjust accordingly
-            if (climbMotor.get() < 0) {
-                climbMotor.set(0);
+            if (climbMotor.get() < 0 || RobotContainer.getInstance().getassistController().getLeftY() < 0) {
+                climbMotor.stopMotor();
+                tempMultiplier = 0;
+                System.out.println("LowerClimbSwitchActivated & Motor Turned off");
             }
+            System.out.println("LowerclimbSwitchActivated");
         }
 
         // if (LowerTraverseLimitSwitch.get() == Constants.Climb.kTraverseLimitSwitch) {
@@ -98,11 +109,11 @@ public class ClimbSystem extends SubsystemBase {
         // 2) Climber is locked and going down (OK)
         // 3) Climber is locked and going up (NOT OK)
         boolean isServoCloseToLockPosition = Utilities.IsCloseTo(antidropClimbServo.get(), Constants.Climb.kClimbServoLockPosition, Constants.Climb.kClimbServoPositionTolerance);
-        if (isServoCloseToLockPosition && climbMotor.get() > 0) {
-            localClimbMotorMultiplier = 0;
-        } else {
-            localClimbMotorMultiplier = 1;
-        }
+        if (isServoCloseToLockPosition && (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0)) {
+            tempMultiplier  = 0;
+            climbMotor.stopMotor();
+            System.out.println("Servo locked and trying to go up...Motor disabled");
+        } 
 
         // if (Utilities.IsCloseTo(antidropTraverseServo.get(), Constants.Climb.transferLockedServoPosition)) {
         //     localTraverseMotorSpeed = 0;
@@ -111,9 +122,10 @@ public class ClimbSystem extends SubsystemBase {
         // }
 
         if (climbEncoder.getPosition() > Constants.Climb.kClimbHeightlimit) {
+            if (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0) {
+                climbMotor.stopMotor();
+                tempMultiplier  = 0;
 
-            if (climbMotor.get() > 0) {
-                climbMotor.set(0);
             }
         }
     //   //  if (traverseEncoder.getPosition() > Constants.Climb.kTraverseHeightlimit) {
@@ -122,6 +134,7 @@ public class ClimbSystem extends SubsystemBase {
     //             traverseMotor.set(0);
     //         }
     //     }
+        localClimbMotorMultiplier = tempMultiplier;
         
     }
 
@@ -167,8 +180,13 @@ public class ClimbSystem extends SubsystemBase {
         }
     }
 
-    public void move(double climbSpeed, double traverseSpeed) {
-        climbMotor.set(climbSpeed * localClimbMotorMultiplier);
+    public void move(double climbSpeed) {
+        if(Math.abs(climbSpeed) > 0.1f) {
+            climbMotor.set(climbSpeed * localClimbMotorMultiplier);
+        }
+        else {
+            climbMotor.stopMotor();
+        }
         // traverseMotor.set(traverseSpeed * localTraverseMotorSpeed);
     }
 

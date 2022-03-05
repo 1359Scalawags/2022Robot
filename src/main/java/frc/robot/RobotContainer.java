@@ -78,6 +78,7 @@ public class RobotContainer {
 
         // Configure default commands
         m_driveSystem.setDefaultCommand(new ManualDrive(m_driveSystem));
+        m_climbSystem.setDefaultCommand(new ManuelClimber(m_climbSystem));
         // Configure autonomous sendable chooser
 
         m_autoAngleChooser.addOption("0", 0);

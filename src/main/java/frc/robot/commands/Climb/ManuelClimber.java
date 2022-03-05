@@ -25,9 +25,8 @@ public class ManuelClimber extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double leftSpeed = RobotContainer.getInstance().getassistController().getLeftY();
-        double rightSpeed = RobotContainer.getInstance().getassistController().getRightY();
-        m_climbSystem.move(leftSpeed, rightSpeed);
+        double climbSpeed= RobotContainer.getInstance().getassistController().getLeftY();
+        m_climbSystem.move(climbSpeed);
     }
 
     // Called once the command ends or is interrupted.

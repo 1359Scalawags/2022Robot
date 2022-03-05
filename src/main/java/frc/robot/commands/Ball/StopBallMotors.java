@@ -12,6 +12,7 @@ public class StopBallMotors extends CommandBase {
 
     public StopBallMotors(BallHandlingSystem system) {
         m_ballHandlingSystem = system;
+        addRequirements(system);
     }
     
     // Called when the command is initially scheduled.
@@ -24,6 +25,7 @@ public class StopBallMotors extends CommandBase {
     @Override
     public void execute() {
         m_ballHandlingSystem.stopAllBallMotors();
+
     }
 
     // Called once the command ends or is interrupted.

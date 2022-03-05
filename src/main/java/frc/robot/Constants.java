@@ -84,7 +84,7 @@ public class Constants {
         public static final float kClimbServoPositionTolerance = 0.05f;
 
 
-        public static final boolean kClimbLimitSwitch = true;
+        public static final boolean kClimbLimitSwitchActivated = false;
         public static final int kClimbLimitSwitchPort = 0;
         // public static final boolean kTraverseLimitSwitch = true;
         // public static final int kTraverseLimitSwitchPort = 4;
