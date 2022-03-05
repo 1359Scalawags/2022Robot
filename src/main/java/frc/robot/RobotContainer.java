@@ -7,6 +7,7 @@ import frc.robot.commands.Climb.*;
 import frc.robot.commands.Drive.*;
 import frc.robot.commands.autonomous.AutoDrive;
 import frc.robot.commands.autonomous.AutoShoot;
+import frc.robot.helper.DPadButton;
 import frc.robot.commands.autonomous.Auto;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -47,6 +48,12 @@ public class RobotContainer {
     SendableChooser<Integer> m_autoAngleChooser = new SendableChooser<Integer>();
 
 
+    // Dpad
+    private DPadButton intakeBallsButton;
+    private DPadButton offBallButton;
+    private DPadButton rejectBallsButton;
+    private DPadButton alignLoadChamber;
+    private DPadButton alignShootChamber;
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
@@ -126,6 +133,8 @@ public class RobotContainer {
         unlockClimberBtn.whenPressed(new UnlockClimber(m_climbSystem), true);
         SmartDashboard.putData("unlockClimberBtn", new UnlockClimber(m_climbSystem));
 
+
+
         // final JoystickButton raiseClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
         // raiseClimberBtn.whenPressed(new ManuelClimber(m_climbSystem), true);
         // SmartDashboard.putData("raiseClimberBtn", new ManuelClimber(m_climbSystem));
@@ -149,6 +158,13 @@ public class RobotContainer {
         final JoystickButton sequenceShotBtn = new JoystickButton(assistController, XboxController.Button.kA.value);    
         final JoystickButton reverseBallBtn = new JoystickButton(assistController, XboxController.Button.kY.value);
         
+        alignLoadChamber = new DPadButton(assistController, DPadButton.Direction.DOWN);
+        alignLoadChamber.whenPressed(new LoadBall(m_ballHandlingSystem));
+  
+        alignShootChamber = new DPadButton(assistController, DPadButton.Direction.UP);
+        alignShootChamber.whenPressed(new SequenceShot(m_ballHandlingSystem));
+    
+
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
         SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
 
