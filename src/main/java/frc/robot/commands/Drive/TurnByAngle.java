@@ -10,7 +10,7 @@ import frc.robot.subsystems.DriveSystem;
  */
 public class TurnByAngle extends CommandBase {
 
-    private final DriveSystem m_driveSystem;
+    private DriveSystem m_driveSystem;
     private double turnAngle;
     private double originalAngle;
 

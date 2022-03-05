@@ -113,9 +113,9 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public void stopAllBallMotors() {
-        setLoadMotor(0);
-        setStagingMotor(0);
-        setShootMotorRPM(0);
+        loadMotor.stopMotor();
+        stagingMotor.stopMotor();
+        shootMotor.stopMotor();
     }
 
     public boolean getBallLoadedSensor() {

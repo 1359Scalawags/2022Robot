@@ -11,7 +11,7 @@ import frc.robot.subsystems.BallHandlingSystem;
  */
 public class ShootBall extends CommandBase {
 
-    private final BallHandlingSystem m_ballHandlingSystem;
+    private BallHandlingSystem m_ballHandlingSystem;
 
     private Timer shootTimer;
 

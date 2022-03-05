@@ -7,7 +7,7 @@ import frc.robot.subsystems.BallHandlingSystem;
 
 public class StartShooter extends CommandBase {
 
-    private final BallHandlingSystem m_ballHandlingSystem;
+    private BallHandlingSystem m_ballHandlingSystem;
 
     public StartShooter(BallHandlingSystem subsystem) {
         m_ballHandlingSystem = subsystem;

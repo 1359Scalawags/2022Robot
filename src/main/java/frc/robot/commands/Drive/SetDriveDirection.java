@@ -11,8 +11,8 @@ import frc.robot.subsystems.DriveSystem.Directions;
  */
 public class SetDriveDirection extends CommandBase {
 
-    private final DriveSystem m_driveSystem;
-    private final Directions m_direction;
+    private DriveSystem m_driveSystem;
+    private Directions m_direction;
     public SetDriveDirection(DriveSystem subsystem, Directions direction) {
         m_direction = direction;
         m_driveSystem = subsystem;

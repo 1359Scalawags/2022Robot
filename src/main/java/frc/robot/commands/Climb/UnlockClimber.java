@@ -10,7 +10,7 @@ import frc.robot.subsystems.ClimbSystem;
  */
 public class UnlockClimber extends CommandBase {
 
-    private final ClimbSystem m_climbSystem;
+    private ClimbSystem m_climbSystem;
 
     public UnlockClimber(ClimbSystem subsystem) {
 

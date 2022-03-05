@@ -162,10 +162,10 @@ public class RobotContainer {
 
 
         loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
-        loadBallDpadBtn.whenPressed(new LoadBall(m_ballHandlingSystem));
+        loadBallDpadBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
   
         sequenceShotDPad = new DPadButton(assistController, DPadButton.Direction.UP);
-        sequenceShotDPad.whenPressed(new SequenceShot(m_ballHandlingSystem));
+        sequenceShotDPad.whenPressed(new SequenceShot(m_ballHandlingSystem), true);
     
 
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);

@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class ReverseBall extends CommandBase {
 
-    private final BallHandlingSystem m_ballHandlingSystem;
+    private BallHandlingSystem m_ballHandlingSystem;
 
     private boolean isBallAlreadyLoaded;
     private boolean isBallAlreadyStaged;

@@ -8,7 +8,7 @@ import frc.robot.Constants.BallHandling;
 
 public class StopBallMotors extends CommandBase {
 
-    private final BallHandlingSystem m_ballHandlingSystem;
+    private BallHandlingSystem m_ballHandlingSystem;
 
     public StopBallMotors(BallHandlingSystem system) {
         m_ballHandlingSystem = system;
@@ -23,7 +23,7 @@ public class StopBallMotors extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-
+        m_ballHandlingSystem.stopAllBallMotors();
     }
 
     // Called once the command ends or is interrupted.

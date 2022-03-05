@@ -12,7 +12,7 @@ import frc.robot.subsystems.DriveSystem;
  */
 public class ManualDrive extends CommandBase {
 
-    private final DriveSystem m_driveSystem;
+    private DriveSystem m_driveSystem;
  
 
     public ManualDrive(DriveSystem subsystem) {

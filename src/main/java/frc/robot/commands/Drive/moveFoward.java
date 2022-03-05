@@ -13,7 +13,7 @@ import frc.robot.subsystems.DriveSystem;
  */
 public class moveFoward extends CommandBase {
 
-    private final DriveSystem m_driveSystem;
+    private DriveSystem m_driveSystem;
     private double speed;
     private double start;
     private double current;
