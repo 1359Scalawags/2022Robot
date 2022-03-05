@@ -7,6 +7,7 @@ import frc.robot.commands.Climb.*;
 import frc.robot.commands.Drive.*;
 import frc.robot.commands.autonomous.AutoDrive;
 import frc.robot.commands.autonomous.AutoShoot;
+import frc.robot.helper.DPadButton;
 import frc.robot.commands.autonomous.Auto;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -47,6 +48,8 @@ public class RobotContainer {
     SendableChooser<Integer> m_autoAngleChooser = new SendableChooser<Integer>();
 
 
+    // Dpad
+ 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
@@ -126,6 +129,8 @@ public class RobotContainer {
         unlockClimberBtn.whenPressed(new UnlockClimber(m_climbSystem), true);
         SmartDashboard.putData("unlockClimberBtn", new UnlockClimber(m_climbSystem));
 
+
+
         // final JoystickButton raiseClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
         // raiseClimberBtn.whenPressed(new ManuelClimber(m_climbSystem), true);
         // SmartDashboard.putData("raiseClimberBtn", new ManuelClimber(m_climbSystem));
@@ -150,6 +155,19 @@ public class RobotContainer {
         final JoystickButton reverseBallBtn = new JoystickButton(assistController, XboxController.Button.kY.value);
         final JoystickButton stopBallMotorsBtn = new JoystickButton(assistController, XboxController.Button.kB.value);
         
+       
+
+       DPadButton loadBallDpadBtn;
+      DPadButton sequenceShotDPad;
+
+
+        loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
+        loadBallDpadBtn.whenPressed(new LoadBall(m_ballHandlingSystem));
+  
+        sequenceShotDPad = new DPadButton(assistController, DPadButton.Direction.UP);
+        sequenceShotDPad.whenPressed(new SequenceShot(m_ballHandlingSystem));
+    
+
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
         SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
 
