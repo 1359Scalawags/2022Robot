@@ -49,11 +49,7 @@ public class RobotContainer {
 
 
     // Dpad
-    private DPadButton intakeBallsButton;
-    private DPadButton offBallButton;
-    private DPadButton rejectBallsButton;
-    private DPadButton alignLoadChamber;
-    private DPadButton alignShootChamber;
+ 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
@@ -157,12 +153,17 @@ public class RobotContainer {
         final JoystickButton loadBallBtn = new JoystickButton(assistController, XboxController.Button.kX.value);
         final JoystickButton sequenceShotBtn = new JoystickButton(assistController, XboxController.Button.kA.value);    
         final JoystickButton reverseBallBtn = new JoystickButton(assistController, XboxController.Button.kY.value);
-        
-        alignLoadChamber = new DPadButton(assistController, DPadButton.Direction.DOWN);
-        alignLoadChamber.whenPressed(new LoadBall(m_ballHandlingSystem));
+       
+
+       DPadButton loadBallDpadBtn;
+      DPadButton sequenceShotDPad;
+
+
+        loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
+        loadBallDpadBtn.whenPressed(new LoadBall(m_ballHandlingSystem));
   
-        alignShootChamber = new DPadButton(assistController, DPadButton.Direction.UP);
-        alignShootChamber.whenPressed(new SequenceShot(m_ballHandlingSystem));
+        sequenceShotDPad = new DPadButton(assistController, DPadButton.Direction.UP);
+        sequenceShotDPad.whenPressed(new SequenceShot(m_ballHandlingSystem));
     
 
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
