@@ -38,6 +38,7 @@ public class RobotContainer {
     public final ClimbSystem m_climbSystem = new ClimbSystem();
     public final BallHandlingSystem m_ballHandlingSystem = new BallHandlingSystem();
     public final DriveSystem m_driveSystem = new DriveSystem();
+    public final DisplaySystem m_dDisplaySystem = new DisplaySystem();
 
     // Joysticks
     private final XboxController assistController = new XboxController(1);
