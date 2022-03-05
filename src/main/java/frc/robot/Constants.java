@@ -111,11 +111,11 @@ public class Constants {
 
         public static final boolean BALLPRESENT = false;
 
-        public static final double kP = 6e-5; 
+        public static final double kP = 4.9e-4; 
         public static final double kI = 0;
         public static final double kD = 0; 
         public static final double kIz = 0; 
-        public static final double kFF = 0.000015; 
+        public static final double kFF = 0; 
         public static final int kMaxOutput = 1; 
         public static final int kMinOutput = -1;
 

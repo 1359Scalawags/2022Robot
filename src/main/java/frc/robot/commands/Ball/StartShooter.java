@@ -36,7 +36,7 @@ public class StartShooter extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if( Utilities.IsCloseTo(Constants.BallHandling.kShootMotorMaxRPM, m_ballHandlingSystem.getShooterMotorRPM(), 50)) {
+        if( Utilities.IsCloseTo(Constants.BallHandling.kShootMotorMaxRPM, m_ballHandlingSystem.getShooterMotorRPM(), 100)) {
             return true;
         }
         return false;
