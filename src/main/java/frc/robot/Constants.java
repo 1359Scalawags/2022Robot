@@ -80,6 +80,7 @@ public class Constants {
         // public static final float transferUnlockedServoPosition = 1f;
         public static final float kClimbServoLockPosition = 0.54f;
         public static final float kClimbServoUnlockPosition = 0.75f;
+        public static final float kClimbServoPositionTolerance = 0.05f;
 
 
         public static final boolean kClimbLimitSwitch = true;
