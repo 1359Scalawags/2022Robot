@@ -146,8 +146,8 @@ public class RobotContainer {
 
         final JoystickButton shootBallBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
         final JoystickButton loadBallBtn = new JoystickButton(assistController, XboxController.Button.kB.value);
-        final JoystickButton sequenceShotBtn = new JoystickButton(assistController, XboxController.Button.kA.value);    
-    
+        final JoystickButton sequenceShotBtn = new JoystickButton(assistController, XboxController.Button.kY.value);    
+        
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
         SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
 
