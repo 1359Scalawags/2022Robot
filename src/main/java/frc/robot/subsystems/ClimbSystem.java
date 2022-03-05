@@ -97,7 +97,7 @@ public class ClimbSystem extends SubsystemBase {
         // 1) Climber is unlocked and move any direction (OK)
         // 2) Climber is locked and going down (OK)
         // 3) Climber is locked and going up (NOT OK)
-        boolean isServoCloseToLockPosition = Utilities.IsCloseTo(antidropClimbServo.get(), Constants.Climb.kClimbServoLockPosition);
+        boolean isServoCloseToLockPosition = Utilities.IsCloseTo(antidropClimbServo.get(), Constants.Climb.kClimbServoLockPosition, Constants.Climb.kClimbServoPositionTolerance);
         if (isServoCloseToLockPosition && climbMotor.get() > 0) {
             localClimbMotorMultiplier = 0;
         } else {
