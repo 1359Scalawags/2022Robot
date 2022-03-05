@@ -42,9 +42,9 @@ public class ClimbSystem extends SubsystemBase {
     // used to turn off motors to prevent unnecessary strain
     private int localClimbMotorMultiplier;
     // private int localTraverseMotorSpeed;
+    private boolean climberIsLocked;
 
     public ClimbSystem() {
-
 
         climbMotor = new SendableCANSparkMax(Constants.Climb.kClimbMotor, MotorType.kBrushless, this);
 
@@ -75,6 +75,7 @@ public class ClimbSystem extends SubsystemBase {
         climbEncoder.setPositionConversionFactor(Constants.Climb.kClimbConversionFactor);
         // traverseEncoder = traverseMotor.getEncoder();
         // traverseEncoder.setPositionConversionFactor(Constants.Climb.kTraverseConversionFactor);
+        lockClimber(true);
     }
 
     //private int counter = 0;
@@ -172,12 +173,16 @@ public class ClimbSystem extends SubsystemBase {
 
         if (isLocked == true) {
             antidropClimbServo.set(Constants.Climb.kClimbServoLockPosition);
-
+            climberIsLocked = true;
             // traverseMotor.set(0);
         } else {
             antidropClimbServo.set(Constants.Climb.kClimbServoUnlockPosition);
-
+            climberIsLocked = false;
         }
+    }
+
+    public boolean getClimberLocked() {
+        return climberIsLocked;
     }
 
     public void move(double climbSpeed) {
