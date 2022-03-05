@@ -122,7 +122,7 @@ public class RobotContainer {
         lockClimberBtn.whenPressed(new LockClimber(m_climbSystem), true);
         SmartDashboard.putData("lockClimberBtn", new LockClimber(m_climbSystem));
 
-        final JoystickButton unlockClimberBtn = new JoystickButton(driverController, XboxController.Button.kA.value);
+        final JoystickButton unlockClimberBtn = new JoystickButton(driverController, XboxController.Button.kY.value);
         unlockClimberBtn.whenPressed(new UnlockClimber(m_climbSystem), true);
         SmartDashboard.putData("unlockClimberBtn", new UnlockClimber(m_climbSystem));
 
@@ -144,10 +144,10 @@ public class RobotContainer {
         // lowerTraverseClimberBtn.whenPressed(new LowerTraverse(m_climbSystem), true);
         // SmartDashboard.putData("LowerTraverseClimberBtn", new LowerTraverse(m_climbSystem));
 
-        final JoystickButton shootBallBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
-        final JoystickButton loadBallBtn = new JoystickButton(assistController, XboxController.Button.kB.value);
-        final JoystickButton sequenceShotBtn = new JoystickButton(assistController, XboxController.Button.kY.value);    
-        final JoystickButton reverseBallBtn = new JoystickButton(assistController, XboxController.Button.kX.value);
+        // final JoystickButton shootBallBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
+        final JoystickButton loadBallBtn = new JoystickButton(assistController, XboxController.Button.kX.value);
+        final JoystickButton sequenceShotBtn = new JoystickButton(assistController, XboxController.Button.kA.value);    
+        final JoystickButton reverseBallBtn = new JoystickButton(assistController, XboxController.Button.kY.value);
         
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
         SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
@@ -155,8 +155,8 @@ public class RobotContainer {
         sequenceShotBtn.whenPressed(new SequenceShot(m_ballHandlingSystem), true);
         SmartDashboard.putData("loadBallBtn", new SequenceShot(m_ballHandlingSystem));   
         
-        shootBallBtn.whenPressed(new ShootBall(m_ballHandlingSystem), true);               
-        SmartDashboard.putData("lowerClimberBtn", new ShootBall(m_ballHandlingSystem));
+        // shootBallBtn.whenPressed(new ShootBall(m_ballHandlingSystem), true);               
+        // SmartDashboard.putData("lowerClimberBtn", new ShootBall(m_ballHandlingSystem));
 
         reverseBallBtn.whenPressed(new ReverseBall(m_ballHandlingSystem), true);
         SmartDashboard.putData("reverseBallBtn", new ReverseBall(m_ballHandlingSystem));
