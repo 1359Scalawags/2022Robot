@@ -5,6 +5,7 @@ import frc.robot.commands.*;
 import frc.robot.helper.PID_Values;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.Constants;
 import frc.robot.Utilities;
 
@@ -18,6 +19,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.simulation.DriverStationSim;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 
 
@@ -28,7 +30,9 @@ public class DriveSystem extends SubsystemBase {
     
     // CED Gyro stuff
     private PID_Values gyroPids;
-    private ADIS16470_IMU driveGyro;
+    
+    //private ADIS16470_IMU driveGyro;
+    private ADXRS450_Gyro driveGyro;
     private PIDController gyroControl;
 
     private CANSparkMax leftFrontMotor;
@@ -52,7 +56,8 @@ public class DriveSystem extends SubsystemBase {
     
     public DriveSystem() {
         gyroPids = new PID_Values(Constants.Drive.gyrokP, Constants.Drive.gyrokI, Constants.Drive.gyrokD, Constants.Drive.gyrokIz, Constants.Drive.gyrokFf);
-        driveGyro = new ADIS16470_IMU();
+        //driveGyro = new ADIS16470_IMU();
+        driveGyro = new ADXRS450_Gyro();
         addChild("Gyro", driveGyro);
         gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);
 
