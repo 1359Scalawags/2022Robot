@@ -61,7 +61,7 @@ public class RobotContainer {
         SmartDashboard.putData("ProcessCameraImage", new ProcessCameraImage(m_visionSystem));
         SmartDashboard.putData("AutoShoot", new AutoShoot(m_ballHandlingSystem));
         SmartDashboard.putData("AutoDrive", new AutoDrive(m_driveSystem));
-        SmartDashboard.putData("AutoShootAndDrive", new Auto(m_driveSystem, m_ballHandlingSystem, m_visionSystem));
+
         SmartDashboard.putData("LockClimber", new LockClimber(m_climbSystem));
         // SmartDashboard.putData("UnlockClimber", new UnlockTraverse(m_climbSystem));
         SmartDashboard.putData("RaiseClimber", new ManuelClimber(m_climbSystem));
@@ -77,10 +77,6 @@ public class RobotContainer {
         m_driveSystem.setDefaultCommand(new ManualDrive(m_driveSystem));
         // Configure autonomous sendable chooser
 
-        m_autoChooser.addOption("AutoShoot", new AutoShoot(m_ballHandlingSystem));
-        m_autoChooser.addOption("AutoDrive", new AutoDrive(m_driveSystem));
-        m_autoChooser.addOption("AutoShootAndDrive", new Auto(m_driveSystem, m_ballHandlingSystem, m_visionSystem));
-
         m_autoAngleChooser.addOption("0", 0);
         m_autoAngleChooser.addOption("90", 90);
         m_autoAngleChooser.addOption("180", 180);
@@ -88,9 +84,12 @@ public class RobotContainer {
         // m_chooser.setDefaultOption("$command.getName()", new ${name.replace(' ',
         // '')}( m_${name.substring(0,1).toLowerCase()}${name.substring(1).replace(' ',
         // '')} ));
-
+        m_autoChooser.addOption("AutoShoot", new AutoShoot(m_ballHandlingSystem));
+        m_autoChooser.addOption("AutoDrive", new AutoDrive(m_driveSystem));
+        m_autoChooser.addOption("AutoShootAndDrive", new Auto(m_driveSystem, m_ballHandlingSystem, m_visionSystem, getAutonomousAngle()));
         SmartDashboard.putData("Auto Mode", m_autoChooser);
         SmartDashboard.putData("Auto Angle", m_autoAngleChooser);
+        SmartDashboard.putData("AutoShootAndDrive", new Auto(m_driveSystem, m_ballHandlingSystem, m_visionSystem, getAutonomousAngle()));
     }
 
     public static RobotContainer getInstance() {

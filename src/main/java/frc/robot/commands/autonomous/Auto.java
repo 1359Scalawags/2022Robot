@@ -28,7 +28,7 @@ public class Auto extends SequentialCommandGroup {
     private BallHandlingSystem ballHandling;
     private VisionSystem vision;
 
-        int angleToTurn = RobotContainer.getInstance().getAutonomousAngle();
+       
 
     public enum Automodes{
         StandStill,
@@ -41,7 +41,10 @@ public class Auto extends SequentialCommandGroup {
 
     private Automodes choosenMode;
 
-    public Auto(DriveSystem drive, BallHandlingSystem ballHandling, VisionSystem vision) {
+        private int angleToTurn;
+
+    public Auto(DriveSystem drive, BallHandlingSystem ballHandling, VisionSystem vision, int angle) {
+        angleToTurn = angle;
         moveFoward move = new moveFoward(drive, Constants.AutoMotorDistance, Constants.AutoMotorSpeed);
         TurnByAngle turn = new TurnByAngle(drive, angleToTurn);
         AutoShoot shoot = new AutoShoot(ballHandling);
@@ -58,7 +61,7 @@ public class Auto extends SequentialCommandGroup {
             addCommands(shoot);
         }
 
-
+       
 
     }
 

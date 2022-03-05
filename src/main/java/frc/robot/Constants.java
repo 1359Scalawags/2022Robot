@@ -103,8 +103,8 @@ public class Constants {
         public static final float kLoadMotorsSpeed = 0.5f;
         public static final float kStagingMotorSpeed = 0.5f;
         public static final float kShootMotorSpeed = 0.5f;
-        public static final float kMinShootMotorSpeed = 0.95f;
-        public static final float kShootMotorMaxRPM = 5000.0f;
+        public static final float kMinShootMotorSpeed = 0.5f;
+        public static final float kShootMotorMaxRPM = 500.0f;
         //Ball Timers
         public static final float shootTimerLength = 3f; //TODO: Change this later if needed
         public static final float reverseballTimer = 5f;
