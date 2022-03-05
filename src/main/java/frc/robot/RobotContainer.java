@@ -148,6 +148,7 @@ public class RobotContainer {
         final JoystickButton loadBallBtn = new JoystickButton(assistController, XboxController.Button.kX.value);
         final JoystickButton sequenceShotBtn = new JoystickButton(assistController, XboxController.Button.kA.value);    
         final JoystickButton reverseBallBtn = new JoystickButton(assistController, XboxController.Button.kY.value);
+        final JoystickButton stopBallMotorsBtn = new JoystickButton(assistController, XboxController.Button.kB.value);
         
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
         SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
@@ -160,6 +161,9 @@ public class RobotContainer {
 
         reverseBallBtn.whenPressed(new ReverseBall(m_ballHandlingSystem), true);
         SmartDashboard.putData("reverseBallBtn", new ReverseBall(m_ballHandlingSystem));
+
+        stopBallMotorsBtn.whenPressed(new StopBallMotors(m_ballHandlingSystem), true);
+        SmartDashboard.putData("stopBallMotorsBtn", new StopBallMotors(m_ballHandlingSystem));
   
     }
 

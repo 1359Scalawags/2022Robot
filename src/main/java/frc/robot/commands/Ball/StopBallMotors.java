@@ -4,10 +4,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BallHandlingSystem;
 import frc.robot.Constants;
 import frc.robot.Utilities;
+import frc.robot.Constants.BallHandling;
 
 public class StopBallMotors extends CommandBase {
 
     private final BallHandlingSystem m_ballHandlingSystem;
+
+    public StopBallMotors(BallHandlingSystem system) {
+        m_ballHandlingSystem = system;
+    }
     
     // Called when the command is initially scheduled.
     @Override
@@ -36,7 +41,6 @@ public class StopBallMotors extends CommandBase {
     @Override
     public boolean runsWhenDisabled() {
         return false;
-    }
     }
 
 }
