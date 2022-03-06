@@ -16,6 +16,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
@@ -32,8 +33,10 @@ public class BallHandlingSystem extends SubsystemBase {
     private SparkMaxPIDController shootController;
 
 
-    private DigitalInput loadSensor;
-    private DigitalInput stagingSensor;
+    // private DigitalInput loadSensor;
+    private AnalogInput loadSensor;
+    // private DigitalInput stagingSensor;
+    private AnalogInput stagingSensor;
 
     public BallHandlingSystem() {
 
@@ -77,10 +80,12 @@ public class BallHandlingSystem extends SubsystemBase {
         shootController.setFF(Constants.BallHandling.kFF);
         shootController.setOutputRange(Constants.BallHandling.kMinOutput, Constants.BallHandling.kMaxOutput);
 
-        loadSensor = new DigitalInput(Constants.BallHandling.kloadinput);
+        // loadSensor = new DigitalInput(Constants.BallHandling.kloadinput);
+        loadSensor = new AnalogInput(Constants.BallHandling.kloadinput);
         addChild("LoadSensor", loadSensor);
 
-        stagingSensor = new DigitalInput(Constants.BallHandling.kstaginginput);
+        // stagingSensor = new DigitalInput(Constants.BallHandling.kstaginginput);
+        stagingSensor = new AnalogInput(Constants.BallHandling.kstaginginput);
         addChild("StagingSensor", stagingSensor);
 
     }
@@ -119,7 +124,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallLoadedSensor() {
-        if (loadSensor.get() == Constants.BallHandling.BALLPRESENT) {
+        if (loadSensor.getAverageValue() > Constants.BallHandling.kMinLoadValue) {
             return true;
         } else {
             return false;
@@ -127,7 +132,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallStagedSensor() {
-        if (stagingSensor.get() == Constants.BallHandling.BALLPRESENT) {
+        if (stagingSensor.getAverageValue() > Constants.BallHandling.kMinStagingValue ) {
             return true;
         } else {
             return false;
