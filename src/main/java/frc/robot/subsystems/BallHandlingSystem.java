@@ -82,10 +82,12 @@ public class BallHandlingSystem extends SubsystemBase {
 
         // loadSensor = new DigitalInput(Constants.BallHandling.kloadinput);
         loadSensor = new AnalogInput(Constants.BallHandling.kloadinput);
+        loadSensor.setAverageBits(5);
         addChild("LoadSensor", loadSensor);
 
         // stagingSensor = new DigitalInput(Constants.BallHandling.kstaginginput);
         stagingSensor = new AnalogInput(Constants.BallHandling.kstaginginput);
+        stagingSensor.setAverageBits(5);
         addChild("StagingSensor", stagingSensor);
 
     }
