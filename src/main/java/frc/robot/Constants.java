@@ -79,7 +79,7 @@ public class Constants {
         // //gonna need actual values here
         // public static final float transferLockedServoPosition = 1f;
         // public static final float transferUnlockedServoPosition = 1f;
-        public static final float kClimbServoLockPosition = 0.54f;
+        public static final float kClimbServoLockPosition = 0.40f;
         public static final float kClimbServoUnlockPosition = 0.75f;
         public static final float kClimbServoPositionTolerance = 0.05f;
 
@@ -91,7 +91,7 @@ public class Constants {
         public static final double kClimbConversionFactor = 1;
         // public static final double kTraverseConversionFactor = 1;
        
-        public static final double kClimbHeightlimit = 20;
+        public static final double kClimbHeightlimit = 288;
         // public static final double kTraverseHeightlimit = 20;
     }
 
@@ -106,7 +106,7 @@ public class Constants {
         public static final float kStagingMotorSpeed = 0.5f;
         public static final float kShootMotorSpeed = 0.5f;
         public static final float kMinShootMotorSpeed = 0.5f;
-        public static final float kShootMotorMaxRPM = 500.0f;
+        public static final float kShootMotorMaxRPM = 2500.0f;
         //Ball Timers
         public static final float shootTimerLength = 3f; //TODO: Change this later if needed
         public static final float reverseballTimer = 5f;

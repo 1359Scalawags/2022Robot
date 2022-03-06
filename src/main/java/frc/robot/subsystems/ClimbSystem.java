@@ -72,6 +72,7 @@ public class ClimbSystem extends SubsystemBase {
         // addChild("LowerTraverseLimitSwitch", LowerTraverseLimitSwitch);
 
         climbEncoder = climbMotor.getEncoder();
+        climbEncoder.setPosition(0);
         climbEncoder.setPositionConversionFactor(Constants.Climb.kClimbConversionFactor);
         // traverseEncoder = traverseMotor.getEncoder();
         // traverseEncoder.setPositionConversionFactor(Constants.Climb.kTraverseConversionFactor);
@@ -89,6 +90,7 @@ public class ClimbSystem extends SubsystemBase {
         // Ced Makes sure the motors don't fry or breack anything when they hit the
         // bottom
         if (LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitchActivated) {
+            climbEncoder.setPosition(0);
             // TODO: figure out wich direction down is and adjust accordingly
             if (climbMotor.get() < 0 || RobotContainer.getInstance().getassistController().getLeftY() < 0) {
                 climbMotor.stopMotor();
