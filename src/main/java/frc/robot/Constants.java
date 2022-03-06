@@ -32,7 +32,6 @@ public class Constants {
     public static final boolean NOTPRESSED = true;
     public static final double TOLERANCE = .1;
 
-   
     public static final double AutoMotorSpeed = 1;
     public static final double AutoMotorDistance = 1;
     public static final double AngleTurnBy = 0;
@@ -79,7 +78,7 @@ public class Constants {
         // //gonna need actual values here
         // public static final float transferLockedServoPosition = 1f;
         // public static final float transferUnlockedServoPosition = 1f;
-        public static final float kClimbServoLockPosition = 0.40f;
+        public static final float kClimbServoLockPosition = 0.54f;
         public static final float kClimbServoUnlockPosition = 0.75f;
         public static final float kClimbServoPositionTolerance = 0.05f;
 
@@ -91,7 +90,7 @@ public class Constants {
         public static final double kClimbConversionFactor = 1;
         // public static final double kTraverseConversionFactor = 1;
        
-        public static final double kClimbHeightlimit = 288;
+        public static final double kClimbHeightlimit = 20;
         // public static final double kTraverseHeightlimit = 20;
     }
 
@@ -106,7 +105,7 @@ public class Constants {
         public static final float kStagingMotorSpeed = 0.5f;
         public static final float kShootMotorSpeed = 0.5f;
         public static final float kMinShootMotorSpeed = 0.5f;
-        public static final float kShootMotorMaxRPM = 2500.0f;
+        public static final float kShootMotorMaxRPM = 500.0f;
         //Ball Timers
         public static final float shootTimerLength = 3f; //TODO: Change this later if needed
         public static final float reverseballTimer = 5f;
@@ -120,15 +119,14 @@ public class Constants {
         public static final double kFF = 0; 
         public static final int kMaxOutput = 1; 
         public static final int kMinOutput = -1;
-        // Ball handling inputs
-        public static final int kloadinput = 0;        //TODO: Find out and put the actual port numbers for the digital inputs on the robot, here!!!
-        public static final int kstaginginput = 1;
-        //
-        public static final int kMinStagingValue = 3;
-        public static final int kMinLoadValue = 3;
+
+        public static final int kloadinput = 7;        //TODO: Find out and put the actual port numbers for the digital inputs on the robot, here!!!
+        public static final int kstaginginput = 8;
 
     }
-
+    public static final class DisplaySystem {
+    public static final int PDHCANID = 1;
+    }
     
 
 }

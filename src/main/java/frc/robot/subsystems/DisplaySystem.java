@@ -66,7 +66,8 @@ public class DisplaySystem extends SubsystemBase {
             climbLockEntry.setBoolean(!climbSystem.getClimberLocked());
         }
         if(batteryVolege != null) {
-            batteryVolege.setDouble(m_pdh.getVoltage());
+            m_pdh = new PowerDistribution(Constants.DisplaySystem.PDHCANID,ModuleType.kRev);
+            batteryVolege.setDouble(m_pdh.getVoltage()); 
         }
     }
 
