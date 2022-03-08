@@ -59,16 +59,15 @@ public class DisplaySystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        if(timeEntry != null) {
-            timeEntry.setDouble(DriverStation.getMatchTime());
-        }
-        if(climbLockEntry != null) {
-            climbLockEntry.setBoolean(!climbSystem.getClimberLocked());
-        }
-        if(batteryVolege != null) {
-            m_pdh = new PowerDistribution(Constants.DisplaySystem.PDHCANID,ModuleType.kRev);
-            batteryVolege.setDouble(m_pdh.getVoltage()); 
-        }
+        // if(timeEntry != null) {
+        //     timeEntry.setDouble(DriverStation.getMatchTime());
+        // }
+        // if(climbLockEntry != null) {
+        //     climbLockEntry.setBoolean(!climbSystem.getClimberLocked());
+        // }
+        // if(batteryVolege != null) {
+        //     batteryVolege.setDouble(m_pdh.getVoltage()); 
+        // }
     }
 
 }

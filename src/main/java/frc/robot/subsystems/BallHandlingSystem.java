@@ -102,9 +102,20 @@ public class BallHandlingSystem extends SubsystemBase {
 
     }
 
+    private int pingCounter = 0;
     @Override
     public void periodic() {
-        
+        if(pingCounter > 2) {
+            stageSensor.ping();
+            loadSensor.ping();
+            pingCounter = 0;
+        }
+        else {
+            System.out.println("stage: " + stageSensor.getRangeMM());
+            System.out.println("load:  " + loadSensor.getRangeMM());
+        }
+        pingCounter++;
+
     }
 
     @Override
