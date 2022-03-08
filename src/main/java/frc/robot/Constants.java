@@ -125,7 +125,11 @@ public class Constants {
 
         public static final int kloadPingChannel = 3;
         public static final int kloadEchoChannel = 4;
-        public static final int kLoadSensorTripValue = 120;
+        public static final int kloadSensorTripValue = 120;
+
+        public static final int kstagePingChannel = 6;
+        public static final int kstageEchoChannel = 7;
+        public static final int kstageSensorTripValue = 120;
 
         public static final int kstaginginput = 8;
 
