@@ -40,8 +40,9 @@ public class BallHandlingSystem extends SubsystemBase {
     private Ultrasonic loadSensor;
     private LinearFilter loadSensorFilter;
     // private DigitalInput stagingSensor;
-    private AnalogInput stagingSensor;
-
+    // private AnalogInput stagingSensor;
+    private LinearFilter stageSensorFilter;
+    private Ultrasonic stageSensor;
     public BallHandlingSystem() {
 
         // loadMotor1 = new CANSparkMax(Constants.BallHandling.kLoadMotor1, MotorType.kBrushless);
@@ -92,9 +93,12 @@ public class BallHandlingSystem extends SubsystemBase {
         addChild("LoadSensor", loadSensor);
 
         // stagingSensor = new DigitalInput(Constants.BallHandling.kstaginginput);
-        stagingSensor = new AnalogInput(Constants.BallHandling.kstaginginput);
-        stagingSensor.setAverageBits(5);
-        addChild("StagingSensor", stagingSensor);
+        // stagingSensor = new AnalogInput(Constants.BallHandling.kstaginginput);
+        // stagingSensor.setAverageBits(5);
+        // addChild("StagingSensor", stagingSensor);
+        stageSensor = new Ultrasonic(Constants.BallHandling.kstagePingChannel, Constants.BallHandling.kstageEchoChannel);
+        stageSensorFilter = LinearFilter.movingAverage(Constants.BallHandling.kSensorAverageSamples);
+        addChild("StageSensor", stageSensor);
 
     }
 
@@ -140,7 +144,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallStagedSensor() {
-        if (stagingSensor.getAverageValue() > 0.000f ) {
+        if (stageSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kLoadSensorTripValue) {
             return true;
         } else {
             return false;
