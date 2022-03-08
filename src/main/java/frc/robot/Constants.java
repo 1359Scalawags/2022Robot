@@ -120,7 +120,13 @@ public class Constants {
         public static final int kMaxOutput = 1; 
         public static final int kMinOutput = -1;
 
-        public static final int kloadinput = 7;        //TODO: Find out and put the actual port numbers for the digital inputs on the robot, here!!!
+        //public static final int kloadinput = 7;        //TODO: Find out and put the actual port numbers for the digital inputs on the robot, here!!!
+        public static final int kSensorAverageSamples = 5;
+
+        public static final int kloadPingChannel = 3;
+        public static final int kloadEchoChannel = 4;
+        public static final int kLoadSensorTripValue = 120;
+
         public static final int kstaginginput = 8;
 
     }

@@ -16,8 +16,10 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 public class BallHandlingSystem extends SubsystemBase {
@@ -34,7 +36,9 @@ public class BallHandlingSystem extends SubsystemBase {
 
 
     // private DigitalInput loadSensor;
-    private AnalogInput loadSensor;
+    // private AnalogInput loadSensor;
+    private Ultrasonic loadSensor;
+    private LinearFilter loadSensorFilter;
     // private DigitalInput stagingSensor;
     private AnalogInput stagingSensor;
 
@@ -81,8 +85,10 @@ public class BallHandlingSystem extends SubsystemBase {
         shootController.setOutputRange(Constants.BallHandling.kMinOutput, Constants.BallHandling.kMaxOutput);
 
         // loadSensor = new DigitalInput(Constants.BallHandling.kloadinput);
-        loadSensor = new AnalogInput(Constants.BallHandling.kloadinput);
-        loadSensor.setAverageBits(5);
+        //loadSensor = new AnalogInput(Constants.BallHandling.kloadinput);
+        ///loadSensor.setAverageBits(5);
+        loadSensor = new Ultrasonic(Constants.BallHandling.kloadPingChannel, Constants.BallHandling.kloadEchoChannel);
+        loadSensorFilter = LinearFilter.movingAverage(Constants.BallHandling.kSensorAverageSamples);
         addChild("LoadSensor", loadSensor);
 
         // stagingSensor = new DigitalInput(Constants.BallHandling.kstaginginput);
@@ -94,7 +100,7 @@ public class BallHandlingSystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-
+        
     }
 
     @Override
@@ -126,7 +132,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallLoadedSensor() {
-        if (loadSensor.getAverageValue() > Constants.BallHandling.kMinLoadValue) {
+        if (loadSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kLoadSensorTripValue) {
             return true;
         } else {
             return false;
@@ -134,7 +140,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallStagedSensor() {
-        if (stagingSensor.getAverageValue() > Constants.BallHandling.kMinStagingValue ) {
+        if (stagingSensor.getAverageValue() > 0.000f ) {
             return true;
         } else {
             return false;
