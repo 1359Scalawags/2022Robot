@@ -136,7 +136,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallLoadedSensor() {
-        if (loadSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kLoadSensorTripValue) {
+        if (loadSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kloadSensorTripValue) {
             return true;
         } else {
             return false;
@@ -144,7 +144,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallStagedSensor() {
-        if (stageSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kLoadSensorTripValue) {
+        if (stageSensorFilter.calculate(stageSensor.getRangeMM()) < Constants.BallHandling.kstageSensorTripValue) {
             return true;
         } else {
             return false;
