@@ -72,7 +72,7 @@ public class ClimbSystem extends SubsystemBase {
         // addChild("LowerTraverseLimitSwitch", LowerTraverseLimitSwitch);
 
         climbEncoder = climbMotor.getEncoder();
-        climbEncoder.setPosition(0);
+        //climbEncoder.setPosition(0);
         climbEncoder.setPositionConversionFactor(Constants.Climb.kClimbConversionFactor);
         // traverseEncoder = traverseMotor.getEncoder();
         // traverseEncoder.setPositionConversionFactor(Constants.Climb.kTraverseConversionFactor);

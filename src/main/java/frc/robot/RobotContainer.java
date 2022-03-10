@@ -9,6 +9,7 @@ import frc.robot.commands.autonomous.AutoDrive;
 import frc.robot.commands.autonomous.AutoShoot;
 import frc.robot.commands.autonomous.Auto.Automodes;
 import frc.robot.helper.DPadButton;
+import frc.robot.helper.DPadButton.Direction;
 import frc.robot.commands.autonomous.Auto;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -167,16 +168,23 @@ public class RobotContainer {
         
        
 
-       DPadButton loadBallDpadBtn;
-      DPadButton sequenceShotDPad;
+        DPadButton loadBallDpadBtn;
+        DPadButton sequenceShotDPad;
+        DPadButton reverseBallDpad;
+        DPadButton StopBallDpadBtn;
 
 
         loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
         loadBallDpadBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
   
-        sequenceShotDPad = new DPadButton(assistController, DPadButton.Direction.UP);
+        sequenceShotDPad = new DPadButton(assistController, DPadButton.Direction.RIGHT);
         sequenceShotDPad.whenPressed(new SequenceShot(m_ballHandlingSystem), true);
-    
+
+        reverseBallDpad = new DPadButton(assistController, DPadButton.Direction.UP);
+        reverseBallDpad.whenPressed(new ReverseBall(m_ballHandlingSystem), true);
+
+        StopBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.LEFT);
+        StopBallDpadBtn.whenPressed(new StopBallMotors(m_ballHandlingSystem), true);
 
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
         SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
