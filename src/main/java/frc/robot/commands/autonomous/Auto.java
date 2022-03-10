@@ -28,8 +28,6 @@ public class Auto extends SequentialCommandGroup {
     private BallHandlingSystem ballHandling;
     private VisionSystem vision;
 
-       
-
     public enum Automodes{
         StandStill,
         MoveForward,
@@ -38,10 +36,8 @@ public class Auto extends SequentialCommandGroup {
         Shoot
     }
 
-
     private Automodes choosenMode;
-
-        private int angleToTurn;
+    private int angleToTurn;
 
     public Auto(DriveSystem drive, BallHandlingSystem ballHandling, VisionSystem vision, int angle) {
         angleToTurn = angle;
@@ -60,8 +56,6 @@ public class Auto extends SequentialCommandGroup {
         } else if(choosenMode == Automodes.Shoot){
             addCommands(shoot);
         }
-
-       
 
     }
 
