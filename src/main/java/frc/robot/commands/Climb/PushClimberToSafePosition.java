@@ -4,11 +4,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.ClimbSystem;
 
-public class IndexClimber extends CommandBase {
-    
+public class PushClimberToSafePosition extends CommandBase {
     private ClimbSystem m_climber;
 
-    public IndexClimber(ClimbSystem climber) {
+    public PushClimberToSafePosition(ClimbSystem climber) {
         m_climber = climber;
         addRequirements(climber);
 
@@ -22,7 +21,7 @@ public class IndexClimber extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_climber.move(-Constants.Climb.kClimbMotorSpeed);
+        m_climber.move(Constants.Climb.kClimbMotorSpeed);
     }
     
 
@@ -35,7 +34,7 @@ public class IndexClimber extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(m_climber.getClimbPosition() <= 0) {
+        if(m_climber.getClimbPosition() >= Constants.Climb.kClimbReboundHeight) {
             return true;
         }
         return false;
