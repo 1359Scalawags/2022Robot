@@ -36,8 +36,9 @@ public class Auto extends SequentialCommandGroup {
     private Automodes choosenMode;
     private int angleToTurn;
 
-    public Auto(DriveSystem drive, BallHandlingSystem ballHandling, VisionSystem vision, int angle) {
+    public Auto(DriveSystem drive, BallHandlingSystem ballHandling, Automodes mode, int angle) {
         angleToTurn = angle;
+        choosenMode = mode;
         moveFoward move = new moveFoward(drive, Constants.AutoMotorDistance, Constants.AutoMotorSpeed);
         TurnByAngle turn = new TurnByAngle(drive, angleToTurn);
         AutoShoot shoot = new AutoShoot(ballHandling);
