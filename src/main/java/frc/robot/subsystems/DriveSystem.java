@@ -11,6 +11,7 @@ import frc.robot.Utilities;
 
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.REVLibError;
+import com.revrobotics.CANSparkMax.ExternalFollower;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -70,10 +71,14 @@ public class DriveSystem extends SubsystemBase {
         leftFrontMotor.setIdleMode(IdleMode.kCoast);
 
         leftRearMotor = new CANSparkMax(Constants.Drive.kLeftRearPort, MotorType.kBrushless);
-
+        
         leftRearMotor.restoreFactoryDefaults();
         leftRearMotor.setInverted(false);
         leftRearMotor.setIdleMode(IdleMode.kCoast);
+
+        leftFrontMotor.follow(ExternalFollower.kFollowerDisabled,0);
+        leftRearMotor.follow(leftFrontMotor);
+
         leftSpeedController = new MotorControllerGroup(leftFrontMotor, leftRearMotor);
         addChild("LeftSpeedController", leftSpeedController);
 
