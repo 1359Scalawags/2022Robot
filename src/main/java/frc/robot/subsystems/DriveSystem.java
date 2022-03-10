@@ -41,6 +41,7 @@ public class DriveSystem extends SubsystemBase {
     private MotorControllerGroup leftSpeedController;
     private RelativeEncoder leftEncoder; 
 
+
     private CANSparkMax rightFrontMotor;
     private CANSparkMax rightRearMotor;
     private MotorControllerGroup rightSpeedController;
@@ -79,6 +80,8 @@ public class DriveSystem extends SubsystemBase {
         leftFrontMotor.follow(ExternalFollower.kFollowerDisabled,0);
         leftRearMotor.follow(leftFrontMotor);
 
+
+        
         leftSpeedController = new MotorControllerGroup(leftFrontMotor, leftRearMotor);
         addChild("LeftSpeedController", leftSpeedController);
 
@@ -94,8 +97,13 @@ public class DriveSystem extends SubsystemBase {
         rightRearMotor.setInverted(true);
         rightRearMotor.setIdleMode(IdleMode.kCoast);
 
+        rightFrontMotor.follow(ExternalFollower.kFollowerDisabled,0);
+        rightRearMotor.follow(rightFrontMotor);
+
         rightSpeedController = new MotorControllerGroup(rightFrontMotor, rightRearMotor);
         addChild("RightSpeedController", rightSpeedController);
+
+
 
         differentialDrive = new DifferentialDrive(leftSpeedController, rightSpeedController);
         addChild("DifferentialDrive", differentialDrive);
