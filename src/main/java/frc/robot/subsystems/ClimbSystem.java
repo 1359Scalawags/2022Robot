@@ -50,7 +50,7 @@ public class ClimbSystem extends SubsystemBase {
 
         climbMotor.restoreFactoryDefaults();
         climbMotor.setInverted(false);
-        climbMotor.setIdleMode(IdleMode.kCoast);
+        climbMotor.setIdleMode(IdleMode.kBrake);
         // climberSolenoid = new Solenoid(Constants.Climb.kClimberSolenoid, PneumaticsModuleType.CTREPCM, 0);
         // addChild("ClimberSolenoid", climberSolenoid);
 
