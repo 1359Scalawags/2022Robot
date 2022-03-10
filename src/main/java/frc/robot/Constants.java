@@ -91,10 +91,10 @@ public class Constants {
         public static final double kClimbConversionFactor = 1;
         // public static final double kTraverseConversionFactor = 1;
        
-        public static final double kClimbHeightlimit = 288;
+        public static final double kClimbHeightlimit = 238;
         // public static final double kTraverseHeightlimit = 20;
-        public static final double kReleaseTensionSpeed = -0.1;
-        public static final double kReleaseTensionTimer = 0.05;
+        public static final double kReleaseTensionSpeed = -0.5;
+        public static final double kReleaseTensionTimer = 0.2;
     }
 
     public static final class BallHandling {

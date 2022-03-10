@@ -12,12 +12,13 @@ public class ReleaseTension extends CommandBase {
     public ReleaseTension(ClimbSystem subsystem) {
         m_climbSystem = subsystem;
         addRequirements(m_climbSystem);
-       
+        m_timer = new Timer();
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        m_timer.reset();
         m_timer.start();
     }
 
