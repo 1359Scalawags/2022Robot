@@ -226,7 +226,7 @@ public class RobotContainer {
     // }
 
     public Command getClimbIndexer() {
-        return new IndexClimber(m_climbSystem);
+        return new IndexClimberSequence(m_climbSystem);
     }
 
 }
