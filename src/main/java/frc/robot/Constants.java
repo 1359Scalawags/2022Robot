@@ -92,6 +92,8 @@ public class Constants {
         // public static final double kTraverseConversionFactor = 1;
        
         public static final double kClimbHeightlimit = 238;
+        public static final double kClimbReboundHeight = 40;
+
         // public static final double kTraverseHeightlimit = 20;
         public static final double kReleaseTensionSpeed = -0.5;
         public static final double kReleaseTensionTimer = 0.2;

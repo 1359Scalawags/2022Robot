@@ -225,4 +225,8 @@ public class RobotContainer {
     //     return m_autoAngleChooser.getSelected();
     // }
 
+    public Command getClimbIndexer() {
+        return new IndexClimber(m_climbSystem);
+    }
+
 }

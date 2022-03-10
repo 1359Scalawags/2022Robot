@@ -2,48 +2,43 @@ package frc.robot.commands.Climb;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.ClimbSystem;
 
-/**
- *
- */
-public class ManuelClimber extends CommandBase {
+public class IndexClimber extends CommandBase {
+    
+    private ClimbSystem m_climber;
 
-    private ClimbSystem m_climbSystem;
+    public IndexClimber(ClimbSystem climber) {
+        m_climber = climber;
+        addRequirements(climber);
 
-    public ManuelClimber(ClimbSystem subsystem) {
-        m_climbSystem = subsystem;
-        addRequirements(m_climbSystem);
     }
 
-    // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-
+              
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if(m_climbSystem.getClimbPosition() < Constants.Climb.kClimbReboundHeight) {
-            m_climbSystem.move(Constants.Climb.kClimbMotorSpeed);
-        }
-        double climbSpeed= RobotContainer.getInstance().getassistController().getLeftY();
-        m_climbSystem.move(climbSpeed);
-
+        m_climber.move(-Constants.Climb.kClimbMotorSpeed);
     }
+    
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        m_climber.move(0);
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;            
-
+        if(m_climber.getClimbPosition() <= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
