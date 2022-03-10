@@ -93,10 +93,6 @@ public class ClimbSystem extends SubsystemBase {
          return climbEncoder.getPosition();
      } 
     
-    
-    
-    
-
     @Override
     public void simulationPeriodic() {
 
@@ -140,5 +136,4 @@ public class ClimbSystem extends SubsystemBase {
             climbMotor.stopMotor();
         }
     }
-
 }
