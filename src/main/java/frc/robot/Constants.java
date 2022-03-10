@@ -6,9 +6,13 @@ public class Constants {
     public static final boolean NOTPRESSED = true;
     public static final double TOLERANCE = .1;
 
-    public static final double AutoMotorSpeed = 1;
-    public static final double AutoMotorDistance = 1;
-    public static final double AngleTurnBy = 0;
+    public static final class Auto {
+        //TODO: Calibrate the distance the robot travels
+        public static final double MotorSpeed = 1;
+        public static final double MotorDistance = 1;
+        public static final double AngleTurnBy = 0;
+    }
+
     public static final class Drive {
         //Drive motor ports
         public static final int kLeftFrontPort = 13;
@@ -98,11 +102,10 @@ public class Constants {
         public static final int kstageEchoChannel = 7;
         public static final int kstageSensorTripValue = 100;
 
-
-
     }
+
     public static final class DisplaySystem {
-    public static final int PDHCANID = 1;
+        public static final int PDHCANID = 1;
     }
     
 

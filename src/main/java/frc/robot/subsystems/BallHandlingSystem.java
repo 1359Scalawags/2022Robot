@@ -1,39 +1,27 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.commands.*;
 import frc.robot.extensions.SendableCANSparkMax;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Constants.*;
 
-import com.revrobotics.REVLibError;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.LinearFilter;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 public class BallHandlingSystem extends SubsystemBase {
 
     private SendableCANSparkMax loadMotor;
- //   private CANSparkMax loadMotor2;
- //   private MotorControllerGroup loadMotor;
     private SendableCANSparkMax stagingMotor;
-
 
     private SendableCANSparkMax shootMotor;
     private RelativeEncoder shootEncoder;
     private SparkMaxPIDController shootController;
-
 
     // private DigitalInput loadSensor;
     // private AnalogInput loadSensor;
@@ -45,20 +33,8 @@ public class BallHandlingSystem extends SubsystemBase {
     private Ultrasonic stageSensor;
     public BallHandlingSystem() {
 
-        // loadMotor1 = new CANSparkMax(Constants.BallHandling.kLoadMotor1, MotorType.kBrushless);
-
-        // loadMotor1.restoreFactoryDefaults();
-        // loadMotor1.setInverted(false);
-        // loadMotor1.setIdleMode(IdleMode.kCoast);
-
-        // loadMotor2 = new CANSparkMax(Constants.BallHandling.kLoadMotor2, MotorType.kBrushless);
-
-        // loadMotor2.restoreFactoryDefaults();
-        // loadMotor2.setInverted(false);
-        // loadMotor2.setIdleMode(IdleMode.kCoast);
-
         // loadMotor = new MotorControllerGroup(loadMotor1);
-        loadMotor = new SendableCANSparkMax(Constants.BallHandling.kLoadMotor1, MotorType.kBrushless, this);
+        loadMotor = new SendableCANSparkMax(Constants.BallHandling.kLoadMotor, MotorType.kBrushless, this);
 
         loadMotor.restoreFactoryDefaults();
         loadMotor.setInverted(false);
@@ -111,9 +87,8 @@ public class BallHandlingSystem extends SubsystemBase {
             pingCounter = 0;
         }
         else {
-            //TODO: Take this out when we're done
-            System.out.println("stage: " + stageSensor.getRangeMM());
-            System.out.println("load:  " + loadSensor.getRangeMM());
+            // System.out.println("stage: " + stageSensor.getRangeMM());
+            // System.out.println("load:  " + loadSensor.getRangeMM());
         }
         pingCounter++;
 

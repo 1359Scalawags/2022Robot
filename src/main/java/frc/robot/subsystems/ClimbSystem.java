@@ -12,18 +12,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Servo;
-// import edu.wpi.first.wpilibj.simulation.EncoderSim;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ClimbSystem extends SubsystemBase {
     private DigitalInput LowerClimbLimitSwitch;
-    // private DigitalInput LowerTraverseLimitSwitch;
 
     private SendableCANSparkMax climbMotor;
+    private RelativeEncoder climbEncoder;  
     private Servo antidropClimbServo;
-
-
-    private RelativeEncoder climbEncoder;
 
     // used to turn off motors to prevent unnecessary strain
     private int localClimbMotorMultiplier;

@@ -1,14 +1,8 @@
 
 package frc.robot.commands.autonomous;
 
-import org.ejml.equation.Variable;
-
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
-import frc.robot.Constants.BallHandling;
-import frc.robot.Constants.Drive;
-import frc.robot.commands.Ball.ShootBall;
 import frc.robot.commands.Drive.SetDriveDirection;
 import frc.robot.commands.Drive.TurnByAngle;
 import frc.robot.commands.Drive.moveFoward;
@@ -37,9 +31,13 @@ public class Auto extends SequentialCommandGroup {
     private int angleToTurn;
 
     public Auto(DriveSystem drive, BallHandlingSystem ballHandling, Automodes mode, int angle) {
-        angleToTurn = angle;
-        choosenMode = mode;
-        moveFoward move = new moveFoward(drive, Constants.AutoMotorDistance, Constants.AutoMotorSpeed);
+        // copy the information we received for future use
+        this.drive = drive;
+        this.ballHandling = ballHandling;
+        this.angleToTurn = angle;
+        this.choosenMode = mode;
+
+        moveFoward move = new moveFoward(drive, Constants.Auto.MotorDistance, Constants.Auto.MotorSpeed);
         TurnByAngle turn = new TurnByAngle(drive, angleToTurn);
         AutoShoot shoot = new AutoShoot(ballHandling);
         SetDriveDirection Fowards = new SetDriveDirection(drive, Directions.Forwards);
