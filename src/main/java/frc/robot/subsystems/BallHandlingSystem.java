@@ -111,6 +111,7 @@ public class BallHandlingSystem extends SubsystemBase {
             pingCounter = 0;
         }
         else {
+            //TODO: Take this out when we're done
             System.out.println("stage: " + stageSensor.getRangeMM());
             System.out.println("load:  " + loadSensor.getRangeMM());
         }

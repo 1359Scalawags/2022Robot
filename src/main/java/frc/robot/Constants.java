@@ -82,6 +82,7 @@ public class Constants {
         public static final float kClimbServoUnlockPosition = 0.65f;
         public static final float kClimbServoPositionTolerance = 0.05f;
 
+        
 
         public static final boolean kClimbLimitSwitchActivated = false;
         public static final int kClimbLimitSwitchPort = 0;
@@ -92,6 +93,8 @@ public class Constants {
        
         public static final double kClimbHeightlimit = 288;
         // public static final double kTraverseHeightlimit = 20;
+        public static final double kReleaseTensionSpeed = -0.1;
+        public static final double kReleaseTensionTimer = 0.05;
     }
 
     public static final class BallHandling {
@@ -103,9 +106,9 @@ public class Constants {
         //Ball Motor Speeds
         public static final float kLoadMotorsSpeed = 0.5f;
         public static final float kStagingMotorSpeed = 0.5f;
-        public static final float kShootMotorSpeed = 0.5f;
-        public static final float kMinShootMotorSpeed = 0.5f;
-        public static final float kShootMotorMaxRPM = 500.0f;
+        //public static final float kShootMotorSpeed = 0.5f;
+        //public static final float kMinShootMotorSpeed = 0.5f;
+        public static final float kShootMotorMaxRPM = 3750f;
         //Ball Timers
         public static final float shootTimerLength = 3f; //TODO: Change this later if needed
         public static final float reverseballTimer = 5f;
@@ -125,11 +128,11 @@ public class Constants {
 
         public static final int kloadPingChannel = 3;
         public static final int kloadEchoChannel = 4;
-        public static final int kloadSensorTripValue = 120;
+        public static final int kloadSensorTripValue = 80;
 
         public static final int kstagePingChannel = 6;
         public static final int kstageEchoChannel = 7;
-        public static final int kstageSensorTripValue = 120;
+        public static final int kstageSensorTripValue = 100;
 
         public static final int kstaginginput = 8;
 
