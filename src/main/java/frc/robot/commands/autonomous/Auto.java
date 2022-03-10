@@ -20,9 +20,6 @@ import frc.robot.subsystems.DriveSystem.Directions;
 /**
  *
  */
-
-
-
 public class Auto extends SequentialCommandGroup {
     private DriveSystem drive;
     private BallHandlingSystem ballHandling;
