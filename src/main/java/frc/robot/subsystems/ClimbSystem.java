@@ -53,23 +53,26 @@ public class ClimbSystem extends SubsystemBase {
         // bottom
         if (LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitchActivated) {
             climbEncoder.setPosition(0);
-            if (climbMotor.get() < 0 || RobotContainer.getInstance().getassistController().getLeftY() < 0) {
+            //} else if (climbMotor.get() < 0 || RobotContainer.getInstance().getassistController().getLeftY() < 0) {
+            if (climbMotor.get() < 0) {
                 climbMotor.stopMotor();
                 tempMultiplier = 0;
                 System.out.println("LowerClimbSwitchActivated & Motor Turned off");
-            }
+            } else
             System.out.println("LowerclimbSwitchActivated");
         }
 
         boolean isServoCloseToLockPosition = Utilities.IsCloseTo(antidropClimbServo.get(), Constants.Climb.kClimbServoLockPosition, Constants.Climb.kClimbServoPositionTolerance);
-        if (isServoCloseToLockPosition && (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0)) {
-            tempMultiplier  = 0;
+        //if (isServoCloseToLockPosition && (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0)) {
+        if (isServoCloseToLockPosition && climbMotor.get() > 0) {
+                tempMultiplier  = 0;
             climbMotor.stopMotor();
             System.out.println("Servo locked and trying to go up...Motor disabled");
         } 
 
         if (climbEncoder.getPosition() > Constants.Climb.kClimbHeightlimit) {
-            if (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0) {
+            //if (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0) {
+            if (climbMotor.get() > 0 ) {
                 climbMotor.stopMotor();
                 tempMultiplier  = 0;
 
@@ -87,6 +90,10 @@ public class ClimbSystem extends SubsystemBase {
     public double getClimbPosition() {
          return climbEncoder.getPosition();
      } 
+
+    public boolean getBottomLimit() {
+        return (LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitchActivated);
+    }
     
     @Override
     public void simulationPeriodic() {

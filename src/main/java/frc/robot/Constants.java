@@ -61,7 +61,7 @@ public class Constants {
         public static final double kClimbReboundHeight = 40;
 
         public static final double kReleaseTensionSpeed = -0.5;
-        public static final double kReleaseTensionTimer = 0.2;
+        public static final double kReleaseTensionTimer = 0.1;
     }
 
     public static final class BallHandling {

@@ -11,11 +11,11 @@ public class IndexClimberSequence extends SequentialCommandGroup {
         addCommands(
             new UnlockClimberMaster(m_ClimbSystem),
             new UnlockClimber(m_ClimbSystem),
-            new Delay(m_ClimbSystem, 0.5),
+            //new Delay(m_ClimbSystem, 0.5),
             new PullClimberToIndex(m_ClimbSystem),
-            new Delay(m_ClimbSystem, 0.5),
+            //new Delay(m_ClimbSystem, 0.5),
             new PushClimberToSafePosition(m_ClimbSystem),
-            new Delay(m_ClimbSystem, 0.5),
+            //new Delay(m_ClimbSystem, 0.5),
             new LockClimber(m_ClimbSystem),
             new LockClimberMaster(m_ClimbSystem)
         );
