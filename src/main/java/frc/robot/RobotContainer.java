@@ -9,17 +9,15 @@ import frc.robot.commands.autonomous.AutoDrive;
 import frc.robot.commands.autonomous.AutoShoot;
 import frc.robot.commands.autonomous.Auto.Automodes;
 import frc.robot.helper.DPadButton;
-import frc.robot.helper.DPadButton.Direction;
 import frc.robot.commands.autonomous.Auto;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.*;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since
