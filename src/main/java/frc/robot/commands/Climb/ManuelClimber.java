@@ -29,7 +29,7 @@ public class ManuelClimber extends CommandBase {
         if(m_climbSystem.getClimbPosition() < Constants.Climb.kClimbReboundHeight) {
             m_climbSystem.move(Constants.Climb.kClimbMotorSpeed);
         } else {
-           double climbSpeed= RobotContainer.getInstance().getassistController().getLeftY();
+           double climbSpeed= -RobotContainer.getInstance().getassistController().getLeftY();
            m_climbSystem.move(climbSpeed);          
         }
 

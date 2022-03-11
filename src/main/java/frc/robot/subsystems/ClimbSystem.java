@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 import frc.robot.Utilities;
 import frc.robot.extensions.SendableCANSparkMax;
 
@@ -49,43 +48,61 @@ public class ClimbSystem extends SubsystemBase {
     @Override
     public void periodic() {
 
-        int tempMultiplier = 1;
-
-        // Ced Makes sure the motors don't fry or breack anything when they hit the
-        // bottom
-        if (LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitchActivated) {
-            climbEncoder.setPosition(0);
-            //} else if (climbMotor.get() < 0 || RobotContainer.getInstance().getassistController().getLeftY() < 0) {
-            if (requestedMotorSpeed < 0) {
-                climbMotor.stopMotor();
-                tempMultiplier = 0;
-                //System.out.println("LowerClimbSwitchActivated & Motor Turned off");
-            } 
-        }
-
+        int safetyMultiplier = 0;
         boolean isServoCloseToLockPosition = Utilities.IsCloseTo(antidropClimbServo.get(), Constants.Climb.kClimbServoLockPosition, Constants.Climb.kClimbServoPositionTolerance);
-        //if (isServoCloseToLockPosition && (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0)) {
-        if (isServoCloseToLockPosition && requestedMotorSpeed > 0) {
-            tempMultiplier  = 0;
-            climbMotor.stopMotor();
-            //System.out.println("Servo locked and trying to go up...Motor disabled");
-        } 
-
-        if (climbEncoder.getPosition() > Constants.Climb.kClimbHeightlimit) {
-            //if (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0) {
-            if (requestedMotorSpeed > 0) {
-                climbMotor.stopMotor();
-                tempMultiplier  = 0;
-
+        if(LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitchActivated) {
+            climbEncoder.setPosition(0);
+        }        
+            
+        if(!climberIsMasterLocked) {
+            if(requestedMotorSpeed > 0 || climbMotor.get() > 0) {
+                if(!isServoCloseToLockPosition && climbEncoder.getPosition() > Constants.Climb.kClimbHeightlimit) {
+                    safetyMultiplier = 1;
+                }
+            } else if(requestedMotorSpeed < 0 || climbMotor.get() < 0) {
+                if(LowerClimbLimitSwitch.get() != Constants.Climb.kClimbLimitSwitchActivated) {
+                    safetyMultiplier = 1;
+                }
             }
         }
 
-        if(climberIsMasterLocked) {
-            climbMotor.stopMotor();
-            tempMultiplier = 0;
-        }
+        climbMotor.set(requestedMotorSpeed * safetyMultiplier);
+
+        // // Ced Makes sure the motors don't fry or breack anything when they hit the
+        // // bottom
+        // if (LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitchActivated) {
+        //     climbEncoder.setPosition(0);
+        //     //} else if (climbMotor.get() < 0 || RobotContainer.getInstance().getassistController().getLeftY() < 0) {
+        //     if (requestedMotorSpeed < 0) {
+        //         climbMotor.stopMotor();
+        //         tempMultiplier = 0;
+        //         //System.out.println("LowerClimbSwitchActivated & Motor Turned off");
+        //     } 
+        // }
+
+        
+        // //if (isServoCloseToLockPosition && (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0)) {
+        // if (isServoCloseToLockPosition && requestedMotorSpeed > 0) {
+        //     tempMultiplier  = 0;
+        //     climbMotor.stopMotor();
+        //     //System.out.println("Servo locked and trying to go up...Motor disabled");
+        // } 
+
+        // if (climbEncoder.getPosition() > Constants.Climb.kClimbHeightlimit) {
+        //     //if (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0) {
+        //     if (requestedMotorSpeed > 0) {
+        //         climbMotor.stopMotor();
+        //         tempMultiplier  = 0;
+
+        //     }
+        // }
+
+        // if(climberIsMasterLocked) {
+        //     climbMotor.stopMotor();
+        //     tempMultiplier = 0;
+        // }
         //localClimbMotorMultiplier = tempMultiplier;
-        climbMotor.set(requestedMotorSpeed * tempMultiplier);
+        //climbMotor.set(requestedMotorSpeed * tempMultiplier);
     }
 
     public double getClimbPosition() {
