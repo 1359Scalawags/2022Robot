@@ -73,7 +73,7 @@ public class Constants {
         //Ball Motor Speeds
         public static final float kLoadMotorsSpeed = 0.5f;
         public static final float kStagingMotorSpeed = 0.5f;
-        public static final float kShootMotorMaxRPM = 3750f;
+        public static final float kShootMotorMaxRPM = 2500f;
 
         //Ball Timers
         public static final float shootTimerLength = 3f; //TODO: Change this later if needed
@@ -94,8 +94,8 @@ public class Constants {
         
         //TODO: Do we need to change the Averaging sample count
         public static final int kSensorAverageSamples = 5; 
-        public static final int kloadPingChannel = 3;
-        public static final int kloadEchoChannel = 4;
+        public static final int kloadPingChannel = 1;
+        public static final int kloadEchoChannel = 2;
         public static final int kloadSensorTripValue = 80;
 
         public static final int kstagePingChannel = 6;
