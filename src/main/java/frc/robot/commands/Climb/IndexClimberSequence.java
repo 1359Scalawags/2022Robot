@@ -6,11 +6,12 @@ import frc.robot.subsystems.ClimbSystem;
 public class IndexClimberSequence extends SequentialCommandGroup {
     private ClimbSystem m_ClimbSystem;
     public IndexClimberSequence(ClimbSystem climber) {
+        m_ClimbSystem = climber;
         addCommands(
-            new UnlockClimber(climber),
-            new PullClimberToIndex(climber),
-            new PushClimberToSafePosition(climber),
-            new LockClimber(climber)
+            new UnlockClimber(m_ClimbSystem),
+            new PullClimberToIndex(m_ClimbSystem),
+            new PushClimberToSafePosition(m_ClimbSystem),
+            new LockClimber(m_ClimbSystem)
         );
 
     }
