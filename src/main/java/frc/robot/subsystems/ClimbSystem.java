@@ -56,7 +56,7 @@ public class ClimbSystem extends SubsystemBase {
             
         if(!climberIsMasterLocked) {
             if(requestedMotorSpeed > 0 || climbMotor.get() > 0) {
-                if(!isServoCloseToLockPosition && climbEncoder.getPosition() > Constants.Climb.kClimbHeightlimit) {
+                if(!isServoCloseToLockPosition && climbEncoder.getPosition() < Constants.Climb.kClimbHeightlimit) {
                     safetyMultiplier = 1;
                 }
             } else if(requestedMotorSpeed < 0 || climbMotor.get() < 0) {

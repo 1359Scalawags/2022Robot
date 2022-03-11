@@ -51,13 +51,13 @@ public class Constants {
         public static final float kClimbMotorSpeed = 0.5f;
         public static final float kClimbServoLockPosition = 0.4f;
         public static final float kClimbServoUnlockPosition = 0.65f;
-        public static final float kClimbServoPositionTolerance = 0.125f;
+        public static final float kClimbServoPositionTolerance = 0.15f;
 
         public static final boolean kClimbLimitSwitchActivated = false;
         public static final int kClimbLimitSwitchPort = 0;
         public static final double kClimbConversionFactor = 1;
        
-        public static final double kClimbHeightlimit = 238;
+        public static final double kClimbHeightlimit = 280;
         public static final double kClimbReboundHeight = 40;
 
         public static final double kReleaseTensionSpeed = -0.5;

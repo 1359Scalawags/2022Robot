@@ -22,7 +22,8 @@ public class LockClimber extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_climbSystem.setServoLock(true);        
+        m_climbSystem.setServoLock(true); 
+        System.out.println("LOCKING");  
     }
 
     // Called every time the scheduler runs while the command is scheduled.
