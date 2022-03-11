@@ -8,11 +8,11 @@ import frc.robot.subsystems.ClimbSystem;
 /**
  *
  */
-public class UnlockClimber extends CommandBase {
+public class UnlockClimberMaster extends CommandBase {
 
     private ClimbSystem m_climbSystem;
 
-    public UnlockClimber(ClimbSystem subsystem) {
+    public UnlockClimberMaster(ClimbSystem subsystem) {
 
         m_climbSystem = subsystem;
         addRequirements(m_climbSystem);
@@ -23,7 +23,6 @@ public class UnlockClimber extends CommandBase {
     @Override
     public void initialize() {
         m_climbSystem.setMasterLock(false);
-        m_climbSystem.setServoLock(false);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

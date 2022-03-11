@@ -1,35 +1,34 @@
+package frc.robot.commands;
 
-package frc.robot.commands.Climb;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import frc.robot.subsystems.ClimbSystem;
+public class Delay extends CommandBase {
+    private Timer timer;
+    private double waitTime;
 
-/**
- *
- */
-public class UnlockClimber extends CommandBase {
-
-    private ClimbSystem m_climbSystem;
-
-    public UnlockClimber(ClimbSystem subsystem) {
-
-        m_climbSystem = subsystem;
-        addRequirements(m_climbSystem);
-
+    public Delay(SubsystemBase system, double time) {
+        waitTime = time;
+        this.timer = new Timer();
+        if(system != null) {
+            addRequirements(system);
+        }
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_climbSystem.setMasterLock(false);
-        m_climbSystem.setServoLock(false);
+        timer.reset();
+        timer.start();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+
     }
+    
 
     // Called once the command ends or is interrupted.
     @Override
@@ -39,12 +38,16 @@ public class UnlockClimber extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return true;
+        if(timer.get() > waitTime) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean runsWhenDisabled() {
         return false;
-
     }
+
+
 }
