@@ -5,7 +5,7 @@ package frc.robot.commands.Ball;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.Utilities;
+//import frc.robot.Utilities;
 import frc.robot.subsystems.BallHandlingSystem;
 
 public class StartShooter extends CommandBase {
@@ -46,7 +46,7 @@ public class StartShooter extends CommandBase {
         //     return true;
         // }
         // System.out.println(m_ballHandlingSystem.getShooterMotorRPM());
-        if(m_timer.get() > 3) {
+        if(m_timer.get() > Constants.BallHandling.shootTimerStartupTime) {
             return true;
         }
         return false;
