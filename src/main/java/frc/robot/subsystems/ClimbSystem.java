@@ -21,11 +21,13 @@ public class ClimbSystem extends SubsystemBase {
     private Servo antidropClimbServo;
 
     // used to turn off motors to prevent unnecessary strain
-    private int localClimbMotorMultiplier;
+    //private int localClimbMotorMultiplier;
     private boolean climberIsMasterLocked;
+    private double requestedMotorSpeed;
 
     public ClimbSystem() {
         climberIsMasterLocked = true;
+        requestedMotorSpeed = 0;
         climbMotor = new SendableCANSparkMax(Constants.Climb.kClimbMotor, MotorType.kBrushless, this);
 
         climbMotor.restoreFactoryDefaults();
@@ -54,25 +56,24 @@ public class ClimbSystem extends SubsystemBase {
         if (LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitchActivated) {
             climbEncoder.setPosition(0);
             //} else if (climbMotor.get() < 0 || RobotContainer.getInstance().getassistController().getLeftY() < 0) {
-            if (climbMotor.get() < 0) {
+            if (requestedMotorSpeed < 0) {
                 climbMotor.stopMotor();
                 tempMultiplier = 0;
-                System.out.println("LowerClimbSwitchActivated & Motor Turned off");
-            } else
-            System.out.println("LowerclimbSwitchActivated");
+                //System.out.println("LowerClimbSwitchActivated & Motor Turned off");
+            } 
         }
 
         boolean isServoCloseToLockPosition = Utilities.IsCloseTo(antidropClimbServo.get(), Constants.Climb.kClimbServoLockPosition, Constants.Climb.kClimbServoPositionTolerance);
         //if (isServoCloseToLockPosition && (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0)) {
-        if (isServoCloseToLockPosition && climbMotor.get() > 0) {
-                tempMultiplier  = 0;
+        if (isServoCloseToLockPosition && requestedMotorSpeed > 0) {
+            tempMultiplier  = 0;
             climbMotor.stopMotor();
-            System.out.println("Servo locked and trying to go up...Motor disabled");
+            //System.out.println("Servo locked and trying to go up...Motor disabled");
         } 
 
         if (climbEncoder.getPosition() > Constants.Climb.kClimbHeightlimit) {
             //if (climbMotor.get() > 0 || RobotContainer.getInstance().getassistController().getLeftY() > 0) {
-            if (climbMotor.get() > 0 ) {
+            if (requestedMotorSpeed > 0) {
                 climbMotor.stopMotor();
                 tempMultiplier  = 0;
 
@@ -83,8 +84,8 @@ public class ClimbSystem extends SubsystemBase {
             climbMotor.stopMotor();
             tempMultiplier = 0;
         }
-        localClimbMotorMultiplier = tempMultiplier;
-        
+        //localClimbMotorMultiplier = tempMultiplier;
+        climbMotor.set(requestedMotorSpeed * tempMultiplier);
     }
 
     public double getClimbPosition() {
@@ -132,10 +133,10 @@ public class ClimbSystem extends SubsystemBase {
 
     public void move(double climbSpeed) {
         if(Math.abs(climbSpeed) > 0.1f) {
-            climbMotor.set(climbSpeed * localClimbMotorMultiplier);
+            requestedMotorSpeed = climbSpeed;
         }
         else {
-            climbMotor.stopMotor();
+            requestedMotorSpeed = 0;
         }
     }
 }
