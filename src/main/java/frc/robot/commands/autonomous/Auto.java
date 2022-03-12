@@ -3,6 +3,8 @@ package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
+import frc.robot.commands.Delay;
+import frc.robot.commands.Ball.SequenceShot;
 import frc.robot.commands.Drive.SetDriveDirection;
 import frc.robot.commands.Drive.TurnByAngle;
 import frc.robot.commands.Drive.moveFoward;
@@ -39,14 +41,20 @@ public class Auto extends SequentialCommandGroup {
 
         moveFoward move = new moveFoward(drive, Constants.Auto.MotorDistance, Constants.Auto.MotorSpeed);
         TurnByAngle turn = new TurnByAngle(drive, angleToTurn);
-        AutoShoot shoot = new AutoShoot(ballHandling);
-        SetDriveDirection Fowards = new SetDriveDirection(drive, Directions.Forwards);
+        // AutoShoot shoot = new AutoShoot(ballHandling);
+        SequenceShot shoot = new SequenceShot(ballHandling);
+        SetDriveDirection Forwards = new SetDriveDirection(drive, Directions.Forwards);
         SetDriveDirection Backwards = new SetDriveDirection(drive, Directions.Backwards);
+        Delay delay = new Delay(ballHandling, 4);
         // addCommands(move, turn, shoot);
+
+        //TODO: Remove this if we need to choose a mode
+        choosenMode = Automodes.AimAndShoot;
+        
         if(choosenMode == Automodes.MoveForward){
-            addCommands(Fowards, move);
+            addCommands(Forwards, move);
         } else if(choosenMode == Automodes.AimAndShoot){
-            addCommands(Fowards, turn, shoot);
+            addCommands(delay, shoot, Backwards, move, Forwards);
         } else if(choosenMode == Automodes.reverse){
             addCommands(Backwards, move);
         } else if(choosenMode == Automodes.Shoot){
