@@ -8,8 +8,8 @@ public class Constants {
 
     public static final class Auto {
         //TODO: Calibrate the distance the robot travels
-        public static final double MotorSpeed = 1;
-        public static final double MotorDistance = 1;
+        public static final double MotorSpeed = .4;
+        public static final double MotorDistance = 8;
         public static final double AngleTurnBy = 0;
     }
 
@@ -20,8 +20,8 @@ public class Constants {
         public static final int kRightFrontPort = 11;
         public static final int kRightRearPort = 12;
         //Drive motor speeds
-        public static final float kTeleopBoostSpeed = 0.7f;
-        public static final float kTeleopBaseDriveSpeed = 0.3f;        
+        public static final float kTeleopBoostSpeed = 0.6f;
+        public static final float kTeleopBaseDriveSpeed = 0.4f;        
         public static final float kDriveSpeed = 0.85f;
 
         //Motor varibles
@@ -40,7 +40,7 @@ public class Constants {
         public static final double AutoStraightSpeed = 1;
         public static final double maxTurnSpeed = .5;
 
-        public static final double kConversionFactor = 259.06735751;
+        public static final double kConversionFactor = .16;
     }
 
     public static final class Climb {
@@ -58,7 +58,7 @@ public class Constants {
         public static final double kClimbConversionFactor = 1;
        
         public static final double kClimbHeightlimit = 280;
-        public static final double kClimbReboundHeight = 40;
+        public static final double kClimbReboundHeight = 25;
 
         public static final double kReleaseTensionSpeed = -0.5;
         public static final double kReleaseTensionTimer = 0.1;
@@ -73,11 +73,11 @@ public class Constants {
         //Ball Motor Speeds
         public static final float kLoadMotorsSpeed = 0.5f;
         public static final float kStagingMotorSpeed = 0.5f;
-        public static final float kShootMotorMaxRPM = 2500f;
+        public static final float kShootMotorMaxRPM = 2250f;
 
         //Ball Timers
-        public static final float shootTimerStartupTime = 2f;
-        public static final float shootTimerLength = 3f; //TODO: Change this later if needed
+        public static final float shootTimerStartupTime = 1f;
+        public static final float shootTimerLength = 1.5f; 
         public static final float reverseballTimer = 5f;
 
         public static final boolean BALLPRESENT = false;
@@ -93,15 +93,17 @@ public class Constants {
         //public static final int kloadinput = 7;        
         //public static final int kstaginginput = 8;        
         
-        //TODO: Do we need to change the Averaging sample count
+        
         public static final int kSensorAverageSamples = 5; 
-        public static final int kloadPingChannel = 1;
-        public static final int kloadEchoChannel = 2;
-        public static final int kloadSensorTripValue = 80;
+        public static final int kloadPingChannel = 3;
+        public static final int kloadEchoChannel = 4;
+        public static final int kloadSensorTripValue = 150;
 
-        public static final int kstagePingChannel = 6;
-        public static final int kstageEchoChannel = 7;
-        public static final int kstageSensorTripValue = 100;
+        public static final int kstagePingChannel = 8;
+        public static final int kstageEchoChannel = 9;
+        public static final int kstageSensorTripValue = 150;
+
+        public static final int kUltrasonicFrameCount = 5;
 
     }
 
