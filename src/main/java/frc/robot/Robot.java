@@ -25,9 +25,7 @@ public class Robot extends TimedRobot {
 
     private RobotContainer m_robotContainer;
 
-    UsbCamera camera1;
-    UsbCamera camera2;
-    VideoSink server;
+
     //Joystick joy1 = new Joystick(0); // Worry about this later
 
     /**
@@ -41,12 +39,7 @@ public class Robot extends TimedRobot {
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
 
-        camera1 = CameraServer.startAutomaticCapture(0);
-        camera2 = CameraServer.startAutomaticCapture(1);
-        server = CameraServer.getServer();
 
-        camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
-        camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
     }
 
     /**
@@ -89,7 +82,6 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
-        server.setSource(camera1);
     }
 
     /**
@@ -113,7 +105,6 @@ public class Robot extends TimedRobot {
         Command indexClimber = m_robotContainer.getClimbIndexer();
         indexClimber.schedule();
 
-        server.setSource(camera2);
     }
 
     /**

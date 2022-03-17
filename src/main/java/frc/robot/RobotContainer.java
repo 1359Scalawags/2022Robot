@@ -8,9 +8,11 @@ import frc.robot.commands.Drive.*;
 import frc.robot.commands.autonomous.AutoDrive;
 import frc.robot.commands.autonomous.AutoShoot;
 import frc.robot.commands.autonomous.Auto.Automodes;
+import frc.robot.commands.vision.SetCameraSource;
 import frc.robot.helper.DPadButton;
 import frc.robot.commands.autonomous.Auto;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.VisionSystem.USBCameras;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -205,6 +207,17 @@ public class RobotContainer {
         stopBallMotorsBtn.whenPressed(new StopBallMotors(m_ballHandlingSystem), true);
         SmartDashboard.putData("stopBallMotorsBtn", new StopBallMotors(m_ballHandlingSystem));
   
+        final JoystickButton topCameraBtn = new JoystickButton(assistController, XboxController.Button.kLeftBumper.value);
+        final JoystickButton botCameraBtn = new JoystickButton(assistController, XboxController.Button.kRightBumper.value);
+        final JoystickButton top2CameraBtn = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
+        final JoystickButton bot2CameraBtn = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+
+        topCameraBtn.whenPressed(new SetCameraSource(m_visionSystem, USBCameras.TopCamera));
+        botCameraBtn.whenPressed(new SetCameraSource(m_visionSystem, USBCameras.BottomCamera));
+        top2CameraBtn.whenPressed(new SetCameraSource(m_visionSystem, USBCameras.TopCamera));
+        bot2CameraBtn.whenPressed(new SetCameraSource(m_visionSystem, USBCameras.BottomCamera));
+
+
     }
 
     public XboxController getdriverController() {
