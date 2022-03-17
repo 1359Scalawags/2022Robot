@@ -43,22 +43,25 @@ public class Auto extends SequentialCommandGroup {
         TurnByAngle turn = new TurnByAngle(drive, angleToTurn);
         // AutoShoot shoot = new AutoShoot(ballHandling);
         SequenceShot shoot = new SequenceShot(ballHandling);
-        SetDriveDirection Forwards = new SetDriveDirection(drive, Directions.Forwards);
-        SetDriveDirection Backwards = new SetDriveDirection(drive, Directions.Backwards);
+        SetDriveDirection forwardMode = new SetDriveDirection(drive, Directions.Forwards);
+        SetDriveDirection reverseMode = new SetDriveDirection(drive, Directions.Backwards);
         Delay delay = new Delay(ballHandling, 4);
         // addCommands(move, turn, shoot);
 
         //TODO: Remove this if we need to choose a mode
-        choosenMode = Automodes.AimAndShoot;
+        //choosenMode = Automodes.AimAndShoot;
         
+        //AUTONOMOUS MOVES OPPOSITE DIRECTION OF JOYSTICK CONTROL
         if(choosenMode == Automodes.MoveForward){
-            addCommands(Forwards, move);
+            addCommands(reverseMode, move, forwardMode);
         } else if(choosenMode == Automodes.AimAndShoot){
-            addCommands(delay, shoot, Backwards, move, Forwards);
+            addCommands(delay, shoot, reverseMode, move, forwardMode);
         } else if(choosenMode == Automodes.reverse){
-            addCommands(Backwards, move);
+            addCommands(forwardMode, move);
         } else if(choosenMode == Automodes.Shoot){
             addCommands(shoot);
+        } else {
+            addCommands(shoot, reverseMode, move, forwardMode);
         }
 
     }
