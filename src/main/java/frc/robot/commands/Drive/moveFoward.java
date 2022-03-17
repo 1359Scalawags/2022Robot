@@ -1,6 +1,7 @@
 package frc.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 // import edu.wpi.first.wpilibj2.command.Subsystem;
 // import frc.robot.Constants;
 // import frc.robot.Robot;
@@ -34,6 +35,7 @@ public class moveFoward extends CommandBase {
 
         start = m_driveSystem.getAverageDistance();
         target = m_driveSystem.getAngle();
+        //System.out.println("REQUESTED DISTANCE: " + distance);
 
     }
 
@@ -42,8 +44,10 @@ public class moveFoward extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_driveSystem.driveForward(speed, target);
+        //m_driveSystem.driveForward(speed, target);
         current = m_driveSystem.getAverageDistance();
+        m_driveSystem.tankDrive(Constants.Auto.MotorSpeed, Constants.Auto.MotorSpeed);
+        //System.out.println("CURRENT DISTANCE: " + (current-start));
     }
 
     // Called once the command ends or is interrupted.
@@ -56,6 +60,11 @@ public class moveFoward extends CommandBase {
     @Override
     public boolean isFinished() {
         if(Math.abs(current - start) >= distance) {
+            //System.out.println("MOVED FORWARD: " + (current - start));
+            //System.out.println("AVERAGE DISTANCE: " + m_driveSystem.getAverageDistance());
+            //System.out.println("LEFT DISTANCE: " + m_driveSystem.getDistanceLeft());
+            //System.out.println("RIGHT DISTANCE: " + m_driveSystem.getDistanceRight()); 
+
             return true;
         } else {
             return false;

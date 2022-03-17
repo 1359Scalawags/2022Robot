@@ -16,7 +16,7 @@ public class PullClimberToIndex extends CommandBase {
 
     @Override
     public void initialize() {
-        System.out.println("PULLING");         
+        //System.out.println("PULLING");         
     }
 
     // Called every time the scheduler runs while the command is scheduled.

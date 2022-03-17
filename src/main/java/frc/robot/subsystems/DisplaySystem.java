@@ -3,8 +3,7 @@ package frc.robot.subsystems;
 import java.util.Map;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
-
-
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 
@@ -34,7 +33,7 @@ public class DisplaySystem extends SubsystemBase {
                         .withWidget(BuiltInWidgets.kDial)
                         .withProperties(Map.of("min", 0, "max", 135))
                         .withSize(3,3)
-                        .withPosition(10, 0)
+                        .withPosition(7, 0)
                         .getEntry();
 
             climbLockEntry = mainTab
@@ -46,26 +45,32 @@ public class DisplaySystem extends SubsystemBase {
                         .getEntry();
 
             batteryVolege = mainTab
-                        .add("Batter Voltege", 0)
+                        .add("Battery Voltege", 0)
                         .withWidget(BuiltInWidgets.kNumberBar)
                         .withProperties(Map.of("min", 0, "max", 135))
-                        .withSize(1,3)
-                        .withPosition(4, 0)
+                        .withSize(3,1)
+                        .withPosition(0, 1)
                         .getEntry();
     }
 
 
+    private int counter = 0;
     @Override
     public void periodic() {
-        // if(timeEntry != null) {
-        //     timeEntry.setDouble(DriverStation.getMatchTime());
-        // }
-        // if(climbLockEntry != null) {
-        //     climbLockEntry.setBoolean(!climbSystem.getClimberLocked());
-        // }
-        // if(batteryVolege != null) {
-        //     batteryVolege.setDouble(m_pdh.getVoltage()); 
-        // }
+        if(counter > 5) {
+            if(timeEntry != null) {
+                timeEntry.setDouble(DriverStation.getMatchTime());
+            }
+            if(climbLockEntry != null) {
+                climbLockEntry.setBoolean(!climbSystem.getMasterLocked());
+            }
+            if(batteryVolege != null) {
+                batteryVolege.setDouble(m_pdh.getVoltage()); 
+            }
+            counter = 0;
+        }
+        
+        counter++;
     }
 
 }

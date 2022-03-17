@@ -82,15 +82,17 @@ public class BallHandlingSystem extends SubsystemBase {
     @Override
     public void periodic() {
         if(pingCounter == 1) {
+            System.out.println("Ping Stage");
             stageSensor.ping();
-        } else if(pingCounter == 6) {
+        } else if(pingCounter == 1 + Constants.BallHandling.kUltrasonicFrameCount) {
+            System.out.println("Ping Load");
             loadSensor.ping();
-        } else if(pingCounter == 10) {
+        } else if(pingCounter == 1 + 2 * Constants.BallHandling.kUltrasonicFrameCount) {
             pingCounter = 0;
         }
         else {
-            // System.out.println("stage: " + stageSensor.getRangeMM());
-            // System.out.println("load:  " + loadSensor.getRangeMM());
+            System.out.println("stage: " + stageSensor.getRangeMM());
+            System.out.println("load:  " + loadSensor.getRangeMM());
         }
         pingCounter++;
 

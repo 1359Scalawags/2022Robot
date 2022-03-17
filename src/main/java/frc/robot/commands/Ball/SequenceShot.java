@@ -17,8 +17,8 @@ public class SequenceShot extends SequentialCommandGroup {
         
         addCommands(
             new StartShooter(subsystem),
-            new ShootBall(subsystem),
-            new LoadBall(subsystem)
+            new ShootBall(subsystem)
+           // new LoadBall(subsystem)
         );
     }
 }

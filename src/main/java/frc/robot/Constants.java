@@ -79,6 +79,7 @@ public class Constants {
         public static final float shootTimerStartupTime = 1f;
         public static final float shootTimerLength = 1.5f; 
         public static final float reverseballTimer = 5f;
+        public static final float manualStageBallTime = 1.0f;
 
         public static final boolean BALLPRESENT = false;
 

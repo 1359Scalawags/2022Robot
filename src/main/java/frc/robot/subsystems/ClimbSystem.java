@@ -43,12 +43,15 @@ public class ClimbSystem extends SubsystemBase {
         //climbEncoder.setPosition(0);
         climbEncoder.setPositionConversionFactor(Constants.Climb.kClimbConversionFactor);
         setServoLock(true);
+
+        //TODO: add this if we need to manually index climber
+        //climbEncoder.setPosition(0.0);
     }
 
     @Override
     public void periodic() {
 
-        int safetyMultiplier = 0;
+        float safetyMultiplier = 0;
         boolean isServoCloseToLockPosition = Utilities.IsCloseTo(antidropClimbServo.get(), Constants.Climb.kClimbServoLockPosition, Constants.Climb.kClimbServoPositionTolerance);
         if(LowerClimbLimitSwitch.get() == Constants.Climb.kClimbLimitSwitchActivated) {
             climbEncoder.setPosition(0);
@@ -61,7 +64,11 @@ public class ClimbSystem extends SubsystemBase {
                 }
             } else if(requestedMotorSpeed < 0 || climbMotor.get() < 0) {
                 if(LowerClimbLimitSwitch.get() != Constants.Climb.kClimbLimitSwitchActivated) {
-                    safetyMultiplier = 1;
+                    if(climbEncoder.getPosition() < 10) {
+                        safetyMultiplier = 0.15f;
+                    } else {
+                        safetyMultiplier = 1;
+                    }
                 }
             }
         }

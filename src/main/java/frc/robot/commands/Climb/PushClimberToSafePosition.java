@@ -15,7 +15,7 @@ public class PushClimberToSafePosition extends CommandBase {
 
     @Override
     public void initialize() {
-        System.out.println("PUSHING");               
+        //System.out.println("PUSHING");               
     }
 
     // Called every time the scheduler runs while the command is scheduled.
