@@ -1,7 +1,7 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.helper.PID_Values;
+import frc.robot.helper.PIDValues;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
@@ -25,7 +25,7 @@ public class DriveSystem extends SubsystemBase {
 
     
     // CED Gyro stuff
-    private PID_Values gyroPids;
+    private PIDValues gyroPids;
     
     //private ADIS16470_IMU driveGyro;
     private ADXRS450_Gyro driveGyro;
@@ -52,7 +52,7 @@ public class DriveSystem extends SubsystemBase {
     private DifferentialDrive differentialDrive;
     
     public DriveSystem() {
-        gyroPids = new PID_Values(Constants.Drive.gyrokP, Constants.Drive.gyrokI, Constants.Drive.gyrokD, Constants.Drive.gyrokIz, Constants.Drive.gyrokFf);
+        gyroPids = new PIDValues(Constants.Drive.gyrokP, Constants.Drive.gyrokI, Constants.Drive.gyrokD, Constants.Drive.gyrokIz, Constants.Drive.gyrokFf);
         //driveGyro = new ADIS16470_IMU();
         driveGyro = new ADXRS450_Gyro();
         addChild("Gyro", driveGyro);
