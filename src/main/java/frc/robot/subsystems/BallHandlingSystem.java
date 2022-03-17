@@ -2,6 +2,8 @@
 package frc.robot.subsystems;
 
 import frc.robot.extensions.SendableCANSparkMax;
+import frc.robot.helper.PIDValues;
+import frc.robot.helper.PIDVelocityTuner;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -35,6 +37,7 @@ public class BallHandlingSystem extends SubsystemBase {
 
         // loadMotor = new MotorControllerGroup(loadMotor1);
         loadMotor = new SendableCANSparkMax(Constants.BallHandling.kLoadMotor, MotorType.kBrushless, this);
+        addChild("Loading Motor", loadMotor);
 
         loadMotor.restoreFactoryDefaults();
         loadMotor.setInverted(false);
@@ -42,12 +45,15 @@ public class BallHandlingSystem extends SubsystemBase {
         //addChild("LoadMotors", loadMotor);
 
         stagingMotor = new SendableCANSparkMax(Constants.BallHandling.kStagingMotor, MotorType.kBrushless, this);
+        addChild("Staging Motor", stagingMotor);
 
         stagingMotor.restoreFactoryDefaults();
         stagingMotor.setInverted(false);
         stagingMotor.setIdleMode(IdleMode.kCoast);
 
         shootMotor = new SendableCANSparkMax(Constants.BallHandling.kShootMotor, MotorType.kBrushless, this);
+        addChild("Shooting Motor", shootMotor);
+       
         shootMotor.restoreFactoryDefaults();
         shootMotor.setInverted(false);
         shootMotor.setIdleMode(IdleMode.kCoast);
@@ -60,7 +66,7 @@ public class BallHandlingSystem extends SubsystemBase {
         shootController.setIZone(Constants.BallHandling.kIz);
         shootController.setFF(Constants.BallHandling.kFF);
         shootController.setOutputRange(Constants.BallHandling.kMinOutput, Constants.BallHandling.kMaxOutput);
-
+        
         // loadSensor = new DigitalInput(Constants.BallHandling.kloadinput);
         //loadSensor = new AnalogInput(Constants.BallHandling.kloadinput);
         ///loadSensor.setAverageBits(5);
@@ -82,17 +88,17 @@ public class BallHandlingSystem extends SubsystemBase {
     @Override
     public void periodic() {
         if(pingCounter == 1) {
-            System.out.println("Ping Stage");
+            //System.out.println("Ping Stage");
             stageSensor.ping();
         } else if(pingCounter == 1 + Constants.BallHandling.kUltrasonicFrameCount) {
-            System.out.println("Ping Load");
+            //System.out.println("Ping Load");
             loadSensor.ping();
         } else if(pingCounter == 1 + 2 * Constants.BallHandling.kUltrasonicFrameCount) {
             pingCounter = 0;
         }
         else {
-            System.out.println("stage: " + stageSensor.getRangeMM());
-            System.out.println("load:  " + loadSensor.getRangeMM());
+            //System.out.println("stage: " + stageSensor.getRangeMM());
+            //System.out.println("load:  " + loadSensor.getRangeMM());
         }
         pingCounter++;
 
@@ -144,6 +150,16 @@ public class BallHandlingSystem extends SubsystemBase {
 
     public double getBallShootVelocity() {
         return shootMotor.getEncoder().getVelocity();
+    }
+
+    public PIDVelocityTuner initializeShooterTest() {
+        PIDValues initialPID = new PIDValues(Constants.BallHandling.kP, 
+                                             Constants.BallHandling.kI, 
+                                             Constants.BallHandling.kD, 
+                                             Constants.BallHandling.kIz, 
+                                             Constants.BallHandling.kFF);
+        PIDVelocityTuner tuner = new PIDVelocityTuner(shootEncoder, shootController, initialPID, (int)Constants.BallHandling.kShootMotorMaxRPM);
+        return tuner;
     }
 
 }

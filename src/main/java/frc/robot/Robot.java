@@ -11,6 +11,7 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.helper.PIDVelocityTuner;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,9 +23,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
 
     private Command m_autonomousCommand;
-
     private RobotContainer m_robotContainer;
 
+    private PIDVelocityTuner m_tuner;
 
     //Joystick joy1 = new Joystick(0); // Worry about this later
 
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
+        m_tuner = m_robotContainer.m_ballHandlingSystem.initializeShooterTest();
 
 
     }
@@ -125,6 +127,9 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void testPeriodic() {
+        if(m_tuner != null) {
+            m_tuner.periodic();
+        }
     }
 
 }
