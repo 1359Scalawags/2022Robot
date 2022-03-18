@@ -1,9 +1,6 @@
 package frc.robot.helper;
 
 import com.revrobotics.CANSparkMax.ControlType;
-
-import org.opencv.video.DenseOpticalFlow;
-
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 
@@ -60,11 +57,11 @@ public class PIDPositionTuner {
         // SmartDashboard.putNumber("D Gain", pidValues.kD);
         // SmartDashboard.putNumber("I Zone", pidValues.kIz);
         // SmartDashboard.putNumber("Feed Forward", pidValues.kFf);
-        // SmartDashboard.putNumber("Target RPM", targetValue);
+        // SmartDashboard.putNumber("Target LOC", targetValue);
         // actualValue = (int)encoder.getVelocity();
         // errorValue = targetValue - actualValue;
-        // SmartDashboard.putNumber("Actual RPM", actualValue);
-        // SmartDashboard.putNumber("Error RPM", errorValue);
+        // SmartDashboard.putNumber("Actual LOC", actualValue);
+        // SmartDashboard.putNumber("Error LOC", errorValue);
     }
 
     public void periodic() {
@@ -74,7 +71,7 @@ public class PIDPositionTuner {
         // double d = SmartDashboard.getNumber("D Gain", 0);
         // double iz = SmartDashboard.getNumber("I Zone", 0);
         // double ff = SmartDashboard.getNumber("Feed Forward", 0);
-        // double target = SmartDashboard.getNumber("Target RPM", 0);
+        // double target = SmartDashboard.getNumber("Target LOC", 0);
 
         // if((p != pidValues.kP)) { controller.setP(p); pidValues.kP = p; }
         // if((i != pidValues.kI)) { controller.setI(i); pidValues.kI = i; }
@@ -83,10 +80,10 @@ public class PIDPositionTuner {
         // if((ff != pidValues.kFf)) { controller.setFF(ff); pidValues.kFf = ff; }
         // if(target != targetValue) {controller.setReference(target, ControlType.kVelocity); targetValue = target;}
 
-        // actualValue = encoder.getVelocity();
+        // actualValue = encoder.getPosition();
         // errorValue = targetValue - actualValue;
-        // SmartDashboard.putNumber("Actual RPM", actualValue);
-        // SmartDashboard.putNumber("Error RPM", errorValue);
+        // SmartDashboard.putNumber("Actual LOC", actualValue);
+        // SmartDashboard.putNumber("Error LOC", errorValue);
         // System.out.println("Target: " + targetValue + "  Actual: " + actualValue + "  Error: " + errorValue);
 
     }
@@ -104,9 +101,9 @@ public class PIDPositionTuner {
         if((d != pidValues.kD)) { controller.setD(d); pidValues.kD = d; }
         if((iz != pidValues.kIz)) { controller.setIZone(iz); pidValues.kIz = iz; }
         if((ff != pidValues.kFf)) { controller.setFF(ff); pidValues.kFf = ff; }
-        if(target != targetValue) {controller.setReference(target, ControlType.kVelocity); targetValue = target;}
+        if(target != targetValue) {controller.setReference(target, ControlType.kPosition); targetValue = target;}
 
-        actualValue = encoder.getVelocity();
+        actualValue = encoder.getPosition();
         errorValue = targetValue - actualValue;
 
         actualEntry.setDouble(actualValue);
@@ -151,21 +148,21 @@ public class PIDPositionTuner {
                     .getEntry();
 
         targetEntry = shuffleTab
-                    .add("Target RPM", 0)
+                    .add("Target LOC", 0)
                     .withWidget(BuiltInWidgets.kTextView)
                     .withSize(1,1)
                     .withPosition(1, 1)
                     .getEntry();
 
         actualEntry = shuffleTab
-                    .add("Actual RPM", 0)
+                    .add("Actual LOC", 0)
                     .withWidget(BuiltInWidgets.kTextView)
                     .withSize(1,1)
                     .withPosition(2, 1)
                     .getEntry();
 
         errorEntry = shuffleTab
-                    .add("Error RPM", 0)
+                    .add("Error LOC", 0)
                     .withWidget(BuiltInWidgets.kTextView)
                     .withSize(1,1)
                     .withPosition(3, 1)
