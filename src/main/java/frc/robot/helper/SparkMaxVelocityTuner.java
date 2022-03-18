@@ -49,7 +49,7 @@ public class SparkMaxVelocityTuner {
         controller.setD(this.pidValues.kD);
         controller.setIZone(this.pidValues.kIz);
         controller.setFF(this.pidValues.kFf);
-
+        
         initialize();
 
     }
@@ -89,7 +89,7 @@ public class SparkMaxVelocityTuner {
 
         actualEntry.setDouble(actualValue);
         errorEntry.setDouble(errorValue);
-        System.out.println("Actual: " + actualValue + " Error: " + errorValue);
+        //System.out.println("Actual: " + actualValue + " Error: " + errorValue);
     }
 
     private void layoutShuffleboard(ShuffleboardTab shuffleTab) {
