@@ -25,17 +25,17 @@ public class Constants {
         public static final float kDriveSpeed = 0.85f;
 
         //Motor varibles
-        public static final double PID_P = 0.00001;
-        public static final double PID_I = 0.000005;
-        public static final double PID_D = 0.0001;
-        public static final double PID_Iz = 0;
-        public static final double PID_Ff = 0;
+        // public static final double kDriveP = 0.00001; //these are not being used anywhere
+        // public static final double kDriveI = 0.000005;
+        // public static final double kDriveD = 0.0001;
+        // public static final double kDriveIz = 0;
+        // public static final double kDriveFf = 0; 
         //Gyro varibles
-        public static final double gyrokP =0.1;
-        public static final double gyrokI =0.1;
-        public static final double gyrokD =0.1;
-        public static final double gyrokIz =0.1;
-        public static final double gyrokFf =0.1;
+        public static final double kGyroP =0.1; //TODO: Tune these PID values
+        public static final double kGyroI =0.1;
+        public static final double kGyroD =0.1;
+        public static final double kGyroIz =0.1;
+        public static final double kGyroFf =0.1;
         
         public static final double AutoStraightSpeed = 1;
         public static final double maxTurnSpeed = .5;
@@ -83,13 +83,13 @@ public class Constants {
 
         public static final boolean BALLPRESENT = false;
 
-        public static final double kP = 4.9e-4; 
-        public static final double kI = 0;
-        public static final double kD = 0; 
-        public static final double kIz = 0; 
-        public static final double kFF = 0; 
-        public static final int kMaxOutput = 1; 
-        public static final int kMinOutput = -1;
+        public static final double kShooterP = 6e-5; //TODO: Tune this value
+        public static final double kShooterI = 0;
+        public static final double kShooterD = 0; 
+        public static final double kShooterIz = 0; 
+        public static final double kShooterFf = 0.000015; //TODO: Tune this value
+        public static final int kShooterMaxOutput = 1; 
+        public static final int kShooterMinOutput = -1;
 
         //public static final int kloadinput = 7;        
         //public static final int kstaginginput = 8;        

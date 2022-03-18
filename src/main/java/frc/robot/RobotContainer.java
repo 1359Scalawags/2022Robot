@@ -49,9 +49,6 @@ public class RobotContainer {
     // A chooser for autonomous commands
     SendableChooser<Automodes> m_autoChooser = new SendableChooser<Automodes>();
     SendableChooser<Integer> m_autoAngleChooser = new SendableChooser<Integer>();
-
-
-    // Dpad
  
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
