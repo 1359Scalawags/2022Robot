@@ -52,7 +52,7 @@ public class DriveSystem extends SubsystemBase {
     private DifferentialDrive differentialDrive;
     
     public DriveSystem() {
-        gyroPids = new PIDValues(Constants.Drive.gyrokP, Constants.Drive.gyrokI, Constants.Drive.gyrokD, Constants.Drive.gyrokIz, Constants.Drive.gyrokFf);
+        gyroPids = new PIDValues(Constants.Drive.kGyroP, Constants.Drive.kGyroI, Constants.Drive.kGyroD, Constants.Drive.kGyroIz, Constants.Drive.kGyroFf);
         //driveGyro = new ADIS16470_IMU();
         driveGyro = new ADXRS450_Gyro();
         addChild("Gyro", driveGyro);

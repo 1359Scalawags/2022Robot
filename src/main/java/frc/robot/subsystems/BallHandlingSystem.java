@@ -60,12 +60,12 @@ public class BallHandlingSystem extends SubsystemBase {
 
         shootEncoder = shootMotor.getEncoder();
         shootController = shootMotor.getPIDController();
-        shootController.setP(Constants.BallHandling.kP);
-        shootController.setI(Constants.BallHandling.kI);
-        shootController.setD(Constants.BallHandling.kD);
-        shootController.setIZone(Constants.BallHandling.kIz);
-        shootController.setFF(Constants.BallHandling.kFF);
-        shootController.setOutputRange(Constants.BallHandling.kMinOutput, Constants.BallHandling.kMaxOutput);
+        shootController.setP(Constants.BallHandling.kShooterP);
+        shootController.setI(Constants.BallHandling.kShooterI);
+        shootController.setD(Constants.BallHandling.kShooterD);
+        shootController.setIZone(Constants.BallHandling.kShooterIz);
+        shootController.setFF(Constants.BallHandling.kShooterFf);
+        shootController.setOutputRange(Constants.BallHandling.kShooterMinOutput, Constants.BallHandling.kShooterMaxOutput);
         
         // loadSensor = new DigitalInput(Constants.BallHandling.kloadinput);
         //loadSensor = new AnalogInput(Constants.BallHandling.kloadinput);
@@ -153,12 +153,12 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public PIDVelocityTuner initializeShooterTest() {
-        PIDValues initialPID = new PIDValues(Constants.BallHandling.kP, 
-                                             Constants.BallHandling.kI, 
-                                             Constants.BallHandling.kD, 
-                                             Constants.BallHandling.kIz, 
-                                             Constants.BallHandling.kFF);
-        PIDVelocityTuner tuner = new PIDVelocityTuner(shootEncoder, shootController, initialPID, (int)Constants.BallHandling.kShootMotorMaxRPM);
+        PIDValues initialPID = new PIDValues(Constants.BallHandling.kShooterP, 
+                                             Constants.BallHandling.kShooterI, 
+                                             Constants.BallHandling.kShooterD, 
+                                             Constants.BallHandling.kShooterIz, 
+                                             Constants.BallHandling.kShooterFf);
+        PIDVelocityTuner tuner = new PIDVelocityTuner("Shoot Tune", shootEncoder, shootController, initialPID, (int)Constants.BallHandling.kShootMotorMaxRPM);
         return tuner;
     }
 
