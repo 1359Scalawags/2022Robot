@@ -213,13 +213,14 @@ public class DriveSystem extends SubsystemBase {
         tankDrive(0, 0);
     }
 
-    public PIDVelocityTuner initializeTests() {
-        PIDValues initialPID = new PIDValues(Constants.Drive.kGyroP, 
-                                             Constants.Drive.kGyroI, 
-                                             Constants.Drive.kGyroD, 
-                                             Constants.Drive.kGyroIz, 
-                                             Constants.Drive.kGyroFf);
-        PIDVelocityTuner tuner = new PIDVelocityTuner("Gyro Tune", shootEncoder, shootController, initialPID, (int)Constants.BallHandling.kShootMotorMaxRPM);
-        return tuner;
-    }
+    // Gyro doesn't use a Rev-based controller, so this won't work
+    // public PIDVelocityTuner initializeTests() {
+    //     PIDValues initialPID = new PIDValues(Constants.Drive.kGyroP, 
+    //                                          Constants.Drive.kGyroI, 
+    //                                          Constants.Drive.kGyroD, 
+    //                                          Constants.Drive.kGyroIz, 
+    //                                          Constants.Drive.kGyroFf);
+    //     PIDVelocityTuner tuner = new PIDVelocityTuner("Gyro Tune", shootEncoder, shootController, initialPID, (int)Constants.BallHandling.kShootMotorMaxRPM);
+    //     return tuner;
+    // }
 }

@@ -4,7 +4,9 @@ import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -12,8 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Map;
 
 public class PIDPositionTuner {
-    private SparkMaxPIDController controller;
-    private RelativeEncoder encoder;
+    private SparkMaxPIDController sparkController;
+    //private PIDController stdController;
+    private RelativeEncoder sparkEncoder;
+    //private Encoder stdEncoder;
 
     private ShuffleboardTab tunerTab;
     private NetworkTableEntry pEntry;
@@ -31,8 +35,8 @@ public class PIDPositionTuner {
     private double actualValue;
 
     public PIDPositionTuner(String name, RelativeEncoder encoder, SparkMaxPIDController controller, PIDValues initialValues, int initialTarget) {
-        this.controller = controller;
-        this.encoder = encoder;
+        this.sparkController = controller;
+        this.sparkEncoder = encoder;
         this.pidValues = new PIDValues(initialValues);
         this.targetValue = initialTarget;
         tunerTab = Shuffleboard.getTab(name);
@@ -96,14 +100,14 @@ public class PIDPositionTuner {
         double ff = ffEntry.getDouble(0);
         double target = targetEntry.getDouble(0);
 
-        if((p != pidValues.kP)) { controller.setP(p); pidValues.kP = p; }
-        if((i != pidValues.kI)) { controller.setI(i); pidValues.kI = i; }
-        if((d != pidValues.kD)) { controller.setD(d); pidValues.kD = d; }
-        if((iz != pidValues.kIz)) { controller.setIZone(iz); pidValues.kIz = iz; }
-        if((ff != pidValues.kFf)) { controller.setFF(ff); pidValues.kFf = ff; }
-        if(target != targetValue) {controller.setReference(target, ControlType.kPosition); targetValue = target;}
+        if((p != pidValues.kP)) { sparkController.setP(p); pidValues.kP = p; }
+        if((i != pidValues.kI)) { sparkController.setI(i); pidValues.kI = i; }
+        if((d != pidValues.kD)) { sparkController.setD(d); pidValues.kD = d; }
+        if((iz != pidValues.kIz)) { sparkController.setIZone(iz); pidValues.kIz = iz; }
+        if((ff != pidValues.kFf)) { sparkController.setFF(ff); pidValues.kFf = ff; }
+        if(target != targetValue) {sparkController.setReference(target, ControlType.kPosition); targetValue = target;}
 
-        actualValue = encoder.getPosition();
+        actualValue = sparkEncoder.getPosition();
         errorValue = targetValue - actualValue;
 
         actualEntry.setDouble(actualValue);
