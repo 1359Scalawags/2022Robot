@@ -152,7 +152,7 @@ public class BallHandlingSystem extends SubsystemBase {
         return shootMotor.getEncoder().getVelocity();
     }
 
-    public PIDVelocityTuner initializeShooterTest() {
+    public PIDVelocityTuner initializeTests() {
         PIDValues initialPID = new PIDValues(Constants.BallHandling.kShooterP, 
                                              Constants.BallHandling.kShooterI, 
                                              Constants.BallHandling.kShooterD, 

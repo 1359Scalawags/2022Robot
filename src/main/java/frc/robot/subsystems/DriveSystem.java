@@ -2,6 +2,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.helper.PIDValues;
+import frc.robot.helper.PIDVelocityTuner;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
@@ -185,6 +186,8 @@ public class DriveSystem extends SubsystemBase {
         -Constants.Drive.kDriveSpeed, Constants.Drive.kDriveSpeed);
         tankDrive(leftSpeed, rightSpeed);
     }
+
+    //TODO: This function causes the robot to spin when drive is reversed
     public void driveForward(double speed, double targetHeading) {
         final double scale = .01;
         double leftSpeed;
@@ -208,5 +211,15 @@ public class DriveSystem extends SubsystemBase {
 
     public void stop() {
         tankDrive(0, 0);
+    }
+
+    public PIDVelocityTuner initializeTests() {
+        PIDValues initialPID = new PIDValues(Constants.Drive.kGyroP, 
+                                             Constants.Drive.kGyroI, 
+                                             Constants.Drive.kGyroD, 
+                                             Constants.Drive.kGyroIz, 
+                                             Constants.Drive.kGyroFf);
+        PIDVelocityTuner tuner = new PIDVelocityTuner("Gyro Tune", shootEncoder, shootController, initialPID, (int)Constants.BallHandling.kShootMotorMaxRPM);
+        return tuner;
     }
 }

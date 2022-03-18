@@ -44,8 +44,10 @@ public class moveFoward extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        //TODO: Fix gyro based code
         //m_driveSystem.driveForward(speed, target);
         current = m_driveSystem.getAverageDistance();
+        //TODO: This should use the variable speed so that the command is flexible for other uses
         m_driveSystem.tankDrive(Constants.Auto.MotorSpeed, Constants.Auto.MotorSpeed);
         //System.out.println("CURRENT DISTANCE: " + (current-start));
     }
