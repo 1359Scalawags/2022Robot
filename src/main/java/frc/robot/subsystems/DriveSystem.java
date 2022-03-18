@@ -2,7 +2,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.helper.PIDValues;
-import frc.robot.helper.PIDVelocityTuner;
+import frc.robot.helper.SparkMaxVelocityTuner;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;

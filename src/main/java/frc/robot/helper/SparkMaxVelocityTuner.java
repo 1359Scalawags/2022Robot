@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Map;
 
-public class PIDVelocityTuner {
+public class SparkMaxVelocityTuner {
 
     private String name;
 
@@ -37,7 +37,7 @@ public class PIDVelocityTuner {
     private double errorValue;
     private double actualValue;
 
-    public PIDVelocityTuner(String name, RelativeEncoder encoder, SparkMaxPIDController controller, PIDValues initialValues, int initialTarget) {
+    public SparkMaxVelocityTuner(String name, RelativeEncoder encoder, SparkMaxPIDController controller, PIDValues initialValues, int initialTarget) {
         this.name = name;
         this.controller = controller;
         this.encoder = encoder;

@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 
 import frc.robot.extensions.SendableCANSparkMax;
 import frc.robot.helper.PIDValues;
-import frc.robot.helper.PIDVelocityTuner;
+import frc.robot.helper.SparkMaxVelocityTuner;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -152,13 +152,13 @@ public class BallHandlingSystem extends SubsystemBase {
         return shootMotor.getEncoder().getVelocity();
     }
 
-    public PIDVelocityTuner initializeTests() {
+    public SparkMaxVelocityTuner initializeTests() {
         PIDValues initialPID = new PIDValues(Constants.BallHandling.kShooterP, 
                                              Constants.BallHandling.kShooterI, 
                                              Constants.BallHandling.kShooterD, 
                                              Constants.BallHandling.kShooterIz, 
                                              Constants.BallHandling.kShooterFf);
-        PIDVelocityTuner tuner = new PIDVelocityTuner("Shoot Tune", shootEncoder, shootController, initialPID, (int)Constants.BallHandling.kShootMotorMaxRPM);
+        SparkMaxVelocityTuner tuner = new SparkMaxVelocityTuner("Shoot Tune", shootEncoder, shootController, initialPID, (int)Constants.BallHandling.kShootMotorMaxRPM);
         return tuner;
     }
 
