@@ -133,6 +133,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     // TODO: Check the Trip Value from prior to competition
+    // !!The trip values were 80 for the load sensor and 100 for the stage sensor!!
     public boolean getBallLoadedSensor() {
         if (loadSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kloadSensorTripValue) {
             return true;

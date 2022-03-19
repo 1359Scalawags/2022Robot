@@ -98,11 +98,15 @@ public class Constants {
         public static final int kSensorAverageSamples = 5; 
         public static final int kloadPingChannel = 3;
         public static final int kloadEchoChannel = 4;
-        public static final int kloadSensorTripValue = 150;
+        // public static final int kloadSensorTripValue = 150;
+        public static final int kloadSensorTripValue = 80;
+        // !!WHY WAS THIS ↑ DELETED INSTEAD OF BEING COMMENTED OUT!!
 
         public static final int kstagePingChannel = 8;
         public static final int kstageEchoChannel = 9;
-        public static final int kstageSensorTripValue = 150;
+        // public static final int kstageSensorTripValue = 150;
+        public static final int kstageSensorTripValue = 100;
+        // !!WHY WAS THIS ↑ DELETED INSTEAD OF BEING COMMENTED OUT!!
 
         public static final int kUltrasonicFrameCount = 5;
 
