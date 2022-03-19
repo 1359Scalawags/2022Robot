@@ -4,9 +4,14 @@
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/BallHandlingSystem/LoadMotors": "Motor Controller",
       "/LiveWindow/BallHandlingSystem/LoadSensor": "Digital Input",
+      "/LiveWindow/BallHandlingSystem/Loading Motor": "Motor Controller",
+      "/LiveWindow/BallHandlingSystem/Shooting Motor": "Motor Controller",
+      "/LiveWindow/BallHandlingSystem/Staging Motor": "Motor Controller",
       "/LiveWindow/BallHandlingSystem/StagingSensor": "Digital Input",
       "/LiveWindow/ClimbSystem/LowerClimbLimitSwitch": "Digital Input",
       "/LiveWindow/ClimbSystem/LowerTraverseLimitSwitch": "Digital Input",
+      "/LiveWindow/ClimbSystem/SparkMax[30]": "Motor Controller",
+      "/LiveWindow/DisplaySystem": "Subsystem",
       "/LiveWindow/DriveSystem": "Subsystem",
       "/LiveWindow/DriveSystem/DifferentialDrive": "DifferentialDrive",
       "/LiveWindow/DriveSystem/Gyro": "Gyro",
@@ -14,6 +19,7 @@
       "/LiveWindow/Ungrouped/PIDController[1]": "PIDController",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/LiveWindow/VisionSystem": "Subsystem",
+      "/SmartDashboard/Auto Angle": "String Chooser",
       "/SmartDashboard/Auto Mode": "String Chooser",
       "/SmartDashboard/AutoDrive": "Command",
       "/SmartDashboard/AutoShoot": "Command",
@@ -36,8 +42,10 @@
       "/SmartDashboard/lockClimberBtn": "Command",
       "/SmartDashboard/lowerClimberBtn": "Command",
       "/SmartDashboard/raiseClimberBtn": "Command",
+      "/SmartDashboard/reverseBallBtn": "Command",
       "/SmartDashboard/reverseDriveBtn": "Command",
       "/SmartDashboard/rightStick": "Command",
+      "/SmartDashboard/stopBallMotorsBtn": "Command",
       "/SmartDashboard/unlockClimberBtn": "Command"
     }
   }

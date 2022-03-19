@@ -193,7 +193,7 @@ public class RobotContainer {
         // SmartDashboard.putData("loadBallBtn", new ManualStageBall(m_ballHandlingSystem));
 
         sequenceShotBtn.whenPressed(new SequenceShot(m_ballHandlingSystem), true);
-        SmartDashboard.putData("loadBallBtn", new SequenceShot(m_ballHandlingSystem));   
+        SmartDashboard.putData("sequenceShotBtn", new SequenceShot(m_ballHandlingSystem));   
         
         // shootBallBtn.whenPressed(new ShootBall(m_ballHandlingSystem), true);               
         // SmartDashboard.putData("lowerClimberBtn", new ShootBall(m_ballHandlingSystem));

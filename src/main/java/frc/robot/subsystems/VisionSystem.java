@@ -1,7 +1,6 @@
 
 package frc.robot.subsystems;
 
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -12,7 +11,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 //positive x value, right negative, left
-
 
 // import edu.wpi.first.networktables.NetworkTableEntry;
 // import edu.wpi.first.networktables.NetworkTableInstance;
@@ -29,7 +27,6 @@ public class VisionSystem extends SubsystemBase {
         BottomCamera
     }
 
-
     // variables for USB Cams
     UsbCamera camera1;
     UsbCamera camera2;
@@ -44,17 +41,31 @@ public class VisionSystem extends SubsystemBase {
     NetworkTableEntry ta = getValue("ta");
 
     public VisionSystem() {
-       // limelight initialization 
-       setCamMode(LimelightModes.vision);
-       
-       // USB Camera initialization
-       camera1 = CameraServer.startAutomaticCapture(0);
-       camera2 = CameraServer.startAutomaticCapture(1);
-       server = CameraServer.getServer();
-       server.setSource(camera1);
+        // limelight initialization
+        setCamMode(LimelightModes.vision);
 
-       camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
-       camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+        try {
+            // USB Camera initialization
+            camera1 = CameraServer.startAutomaticCapture(0);
+            camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+        } catch (Exception e) {
+            camera1 = null;
+        }
+
+        try {
+            camera2 = CameraServer.startAutomaticCapture(1);
+            camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+        } catch (Exception e) {
+            camera2 = null;
+        }
+
+        server = CameraServer.getServer();
+        if (camera1 != null) {
+            server.setSource(camera1);
+        } else if (camera2 != null) {
+            server.setSource(camera2);
+        }
+
     }
 
     public static void setCamMode(LimelightModes mode) {
@@ -62,10 +73,9 @@ public class VisionSystem extends SubsystemBase {
     }
 
     public void setUSBCamera(USBCameras camera) {
-        if(camera == USBCameras.BottomCamera) {
+        if (camera == USBCameras.BottomCamera) {
             server.setSource(camera2);
-        }
-        else if(camera == USBCameras.TopCamera) {
+        } else if (camera == USBCameras.TopCamera) {
             server.setSource(camera1);
         } else {
             server.setSource(null);
@@ -85,28 +95,27 @@ public class VisionSystem extends SubsystemBase {
         SmartDashboard.putNumber("LimelightArea", area);
     }
 
-
-
     private static NetworkTableEntry getValue(String key) {
-		if (table == null) {
-			table = NetworkTableInstance.getDefault().getTable("limelight");
-		}
+        if (table == null) {
+            table = NetworkTableInstance.getDefault().getTable("limelight");
+        }
         return table.getEntry(key);
     }
 
     @Override
     public void simulationPeriodic() {
-        
+
     }
 
+    public Double getTargetX() {
+        return x;
+    }
 
-    public Double getTargetX(){
-        return x; 
+    public Double getTargetY() {
+        return y;
     }
-    public Double getTargetY(){
-        return y; 
-    }
-    public Double getTargetArea(){
-        return area; 
+
+    public Double getTargetArea() {
+        return area;
     }
 }
