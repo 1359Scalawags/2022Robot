@@ -83,11 +83,11 @@ public class Constants {
 
         public static final boolean BALLPRESENT = false;
 
-        public static final double kShooterP = 6e-5; //TODO: Tune this value
+        public static final double kShooterP = 0.000001; //TODO: Tune this value
         public static final double kShooterI = 0;
         public static final double kShooterD = 0; 
         public static final double kShooterIz = 0; 
-        public static final double kShooterFf = 0.000015; //TODO: Tune this value
+        public static final double kShooterFf = 0.00078; //TODO: Tune this value
         public static final int kShooterMaxOutput = 1; 
         public static final int kShooterMinOutput = -1;
 

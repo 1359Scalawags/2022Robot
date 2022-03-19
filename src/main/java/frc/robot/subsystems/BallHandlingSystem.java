@@ -132,6 +132,7 @@ public class BallHandlingSystem extends SubsystemBase {
         shootMotor.stopMotor();
     }
 
+    // TODO: Check the Trip Value from prior to competition
     public boolean getBallLoadedSensor() {
         if (loadSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kloadSensorTripValue) {
             return true;
