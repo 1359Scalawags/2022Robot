@@ -48,8 +48,8 @@ public class Auto extends SequentialCommandGroup {
         Delay delay = new Delay(ballHandling, 4);
         // addCommands(move, turn, shoot);
 
-        //TODO: Remove this if we need to choose a mode
-        //choosenMode = Automodes.AimAndShoot;
+        // Uncomment this to force a specific mode
+        // choosenMode = Automodes.AimAndShoot;
         
         //AUTONOMOUS MOVES OPPOSITE DIRECTION OF JOYSTICK CONTROL
         if(choosenMode == Automodes.MoveForward){

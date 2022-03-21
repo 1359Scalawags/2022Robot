@@ -119,6 +119,7 @@ public class DriveSystem extends SubsystemBase {
       }
       public double getAngle() {
         //TODO: This should probably return a normalized angle
+        //Using 0 to 360 means you'll get odd behavior when rotating left past 0 (goes from 0 to 359)
         return driveGyro.getAngle();
       }
       public double getGyroRate() {

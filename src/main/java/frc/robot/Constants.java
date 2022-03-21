@@ -7,7 +7,7 @@ public class Constants {
     public static final double TOLERANCE = .1;
 
     public static final class Auto {
-        //TODO: Calibrate the distance the robot travels
+        //TODO: Calibrate the distance the robot travels more accurately
         public static final double MotorSpeed = .4;
         public static final double MotorDistance = 8;
         public static final double AngleTurnBy = 0;
@@ -31,7 +31,7 @@ public class Constants {
         // public static final double kDriveIz = 0;
         // public static final double kDriveFf = 0; 
         //Gyro varibles
-        public static final double kGyroP =0.1; //TODO: Tune these PID values
+        public static final double kGyroP =0.1; //TODO: These PID values are very large and should be changed
         public static final double kGyroI =0.1;
         public static final double kGyroD =0.1;
         public static final double kGyroIz =0.1;
@@ -83,11 +83,11 @@ public class Constants {
 
         public static final boolean BALLPRESENT = false;
 
-        public static final double kShooterP = 0.000001; //TODO: Tune this value
+        public static final double kShooterP = 0.000001; //TODO: Tune these 5 values
         public static final double kShooterI = 0;
         public static final double kShooterD = 0; 
         public static final double kShooterIz = 0; 
-        public static final double kShooterFf = 0.00078; //TODO: Tune this value
+        public static final double kShooterFf = 0.00078;
         public static final int kShooterMaxOutput = 1; 
         public static final int kShooterMinOutput = -1;
 
