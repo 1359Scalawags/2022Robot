@@ -26,13 +26,12 @@ public class ManuelClimber extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if(m_climbSystem.getClimbPosition() < Constants.Climb.kClimbReboundHeight) {
+        if (m_climbSystem.getClimbPosition() < Constants.Climb.kClimbReboundHeight) {
             m_climbSystem.move(Constants.Climb.kClimbMotorSpeed);
         } else {
-           double climbSpeed= -RobotContainer.getInstance().getassistController().getLeftY();
-           m_climbSystem.move(climbSpeed);          
+            double climbSpeed = -RobotContainer.getInstance().getassistController().getLeftY();
+            m_climbSystem.move(climbSpeed);
         }
-
 
     }
 
@@ -44,7 +43,7 @@ public class ManuelClimber extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;            
+        return false;
 
     }
 

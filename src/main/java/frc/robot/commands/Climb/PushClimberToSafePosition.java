@@ -15,7 +15,7 @@ public class PushClimberToSafePosition extends CommandBase {
 
     @Override
     public void initialize() {
-        //System.out.println("PUSHING");               
+        // System.out.println("PUSHING");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -23,7 +23,6 @@ public class PushClimberToSafePosition extends CommandBase {
     public void execute() {
         m_climber.move(Constants.Climb.kClimbMotorSpeed);
     }
-    
 
     // Called once the command ends or is interrupted.
     @Override
@@ -34,7 +33,7 @@ public class PushClimberToSafePosition extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(m_climber.getClimbPosition() >= Constants.Climb.kClimbReboundHeight) {
+        if (m_climber.getClimbPosition() >= Constants.Climb.kClimbReboundHeight) {
             return true;
         }
         return false;
