@@ -44,8 +44,8 @@ public class ClimbSystem extends SubsystemBase {
         climbEncoder.setPositionConversionFactor(Constants.Climb.kClimbConversionFactor);
         setServoLock(true);
 
-        //TODO: add this if we need to manually index climber
-        //climbEncoder.setPosition(0.0);
+        // Add this IF we need to manually index climber
+        // climbEncoder.setPosition(0.0);
     }
 
     @Override
