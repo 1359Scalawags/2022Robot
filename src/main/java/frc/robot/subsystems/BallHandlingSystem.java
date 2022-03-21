@@ -32,6 +32,7 @@ public class BallHandlingSystem extends SubsystemBase {
 
     private Ultrasonic loadSensor;
     private LinearFilter loadSensorFilter;
+    private double loadSensorAverage;
 
     private LinearFilter stageSensorFilter;
     private Ultrasonic stageSensor;
@@ -110,11 +111,14 @@ public class BallHandlingSystem extends SubsystemBase {
         // Calculate the average stage sensor value each frame
         double stageValue = stageSensor.getRangeMM();
         if(stageValue > 0 && Double.isFinite(stageValue)) {
-            stageSensorAverage = stageSensorFilter.calculate(stageSensor.getRangeMM());
+            stageSensorAverage = stageSensorFilter.calculate(stageValue);
         }
 
-        //TODO: Also calculate the load sensor average periodically
-        
+        double loadValue = loadSensor.getRangeMM();
+        if(loadValue > 0 && Double.isFinite(loadValue)) {
+            loadSensorAverage = loadSensorFilter.calculate(loadValue);
+        }
+
         pingCounter++;
 
     }
@@ -149,8 +153,7 @@ public class BallHandlingSystem extends SubsystemBase {
 
     // !!The trip values were 80 for the load sensor and 100 for the stage sensor!!
     public boolean getBallLoadedSensor() {
-        // TODO: This only evaluates when we're checking and may get checked multiple times per frame...use a variable to store the precalculated value
-        if (loadSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kloadSensorTripValue) {
+        if (loadSensorAverage < Constants.BallHandling.kloadSensorTripValue) {
             return true;
         } else {
             return false;
