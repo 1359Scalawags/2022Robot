@@ -118,6 +118,7 @@ public class DriveSystem extends SubsystemBase {
         driveGyro.reset();
       }
       public double getAngle() {
+        //TODO: This should probably return a normalized angle
         return driveGyro.getAngle();
       }
       public double getGyroRate() {
@@ -125,6 +126,7 @@ public class DriveSystem extends SubsystemBase {
       }
     
       public void arcadeDrive(double moveSpeed, double maxTurnSpeed, double targetAngle) {
+        //TODO: Target angle should be normalized
         double angleInput = driveGyro.getAngle();
         gyroControl.setSetpoint(targetAngle);
         double angleOutput = Utilities.Clamp(gyroControl.calculate(angleInput), -maxTurnSpeed, maxTurnSpeed);
@@ -175,6 +177,7 @@ public class DriveSystem extends SubsystemBase {
     }
 
     public void driveBackward(double speed, double targetHeading) {
+        //TODO: Target heading should probably be normalized
         final double scale = .01;
         double leftSpeed;
         double rightSpeed;
@@ -189,6 +192,7 @@ public class DriveSystem extends SubsystemBase {
 
     //TODO: This function causes the robot to spin when drive is reversed
     public void driveForward(double speed, double targetHeading) {
+        //TODO: Target heading should probably be normalized
         final double scale = .01;
         double leftSpeed;
         double rightSpeed;
