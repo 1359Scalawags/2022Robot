@@ -27,12 +27,17 @@ public class BallHandlingSystem extends SubsystemBase {
 
     // private DigitalInput loadSensor;
     // private AnalogInput loadSensor;
+    // private DigitalInput stagingSensor;
+    // private AnalogInput stagingSensor;    
+
     private Ultrasonic loadSensor;
     private LinearFilter loadSensorFilter;
-    // private DigitalInput stagingSensor;
-    // private AnalogInput stagingSensor;
+
     private LinearFilter stageSensorFilter;
     private Ultrasonic stageSensor;
+    private double stageSensorAverage;
+
+
     public BallHandlingSystem() {
 
         // loadMotor = new MotorControllerGroup(loadMotor1);
@@ -79,8 +84,9 @@ public class BallHandlingSystem extends SubsystemBase {
         // stagingSensor.setAverageBits(5);
         // addChild("StagingSensor", stagingSensor);
         stageSensor = new Ultrasonic(Constants.BallHandling.kstagePingChannel, Constants.BallHandling.kstageEchoChannel);
-        stageSensorFilter = LinearFilter.movingAverage(Constants.BallHandling.kSensorAverageSamples);
+        stageSensorFilter = LinearFilter.movingAverage(Constants.BallHandling.kSensorAverageSamples);      
         addChild("StageSensor", stageSensor);
+
 
     }
 
@@ -100,6 +106,15 @@ public class BallHandlingSystem extends SubsystemBase {
             //System.out.println("stage: " + stageSensor.getRangeMM());
             //System.out.println("load:  " + loadSensor.getRangeMM());
         }
+
+        // Calculate the average stage sensor value each frame
+        double stageValue = stageSensor.getRangeMM();
+        if(stageValue > 0 && Double.isFinite(stageValue)) {
+            stageSensorAverage = stageSensorFilter.calculate(stageSensor.getRangeMM());
+        }
+
+        //TODO: Also calculate the load sensor average periodically
+        
         pingCounter++;
 
     }
@@ -134,6 +149,7 @@ public class BallHandlingSystem extends SubsystemBase {
 
     // !!The trip values were 80 for the load sensor and 100 for the stage sensor!!
     public boolean getBallLoadedSensor() {
+        // TODO: This only evaluates when we're checking and may get checked multiple times per frame...use a variable to store the precalculated value
         if (loadSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kloadSensorTripValue) {
             return true;
         } else {
@@ -142,7 +158,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public boolean getBallStagedSensor() {
-        if (stageSensorFilter.calculate(stageSensor.getRangeMM()) < Constants.BallHandling.kstageSensorTripValue) {
+        if (stageSensorAverage < Constants.BallHandling.kstageSensorTripValue) {
             return true;
         } else {
             return false;
