@@ -145,6 +145,8 @@ public class BallHandlingSystem extends SubsystemBase {
 
         pingCounter++;
 
+        // TODO: prevent arm from tearing itself apart
+
     }
 
     @Override

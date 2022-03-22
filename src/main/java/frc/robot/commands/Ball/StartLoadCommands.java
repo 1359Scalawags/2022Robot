@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
  */
 public class StartLoadCommands extends ParallelCommandGroup {
 
-        private BallHandlingSystem m_ballHandlingSystem;
+    private BallHandlingSystem m_ballHandlingSystem;
         // private boolean isBallAlreadyLoaded;
         // private boolean isBallAlreadyStaged;
 

@@ -1,7 +1,7 @@
 package frc.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+// import frc.robot.Constants;
 // import edu.wpi.first.wpilibj2.command.Subsystem;
 // import frc.robot.Constants;
 // import frc.robot.Robot;
@@ -44,11 +44,10 @@ public class moveFoward extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        //TODO: Fix gyro based code
+        //TODO: Fix gyro based code (let's not worry about this now)
         //m_driveSystem.driveForward(speed, target);
         current = m_driveSystem.getAverageDistance();
-        //TODO: This should use the variable speed so that the command is flexible for other uses
-        m_driveSystem.tankDrive(Constants.Auto.MotorSpeed, Constants.Auto.MotorSpeed);
+        m_driveSystem.tankDrive(speed, speed);
         //System.out.println("CURRENT DISTANCE: " + (current-start));
     }
 
