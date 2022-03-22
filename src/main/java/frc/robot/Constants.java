@@ -31,11 +31,11 @@ public class Constants {
         // public static final double kDriveIz = 0;
         // public static final double kDriveFf = 0; 
         //Gyro varibles
-        public static final double kGyroP =0.1; //TODO: These PID values are very large and should be changed
-        public static final double kGyroI =0.1;
-        public static final double kGyroD =0.1;
-        public static final double kGyroIz =0.1;
-        public static final double kGyroFf =0.1;
+        public static final double kGyroP =0.001; //TODO: These PID values are very large and should be changed
+        public static final double kGyroI =0.000001;
+        public static final double kGyroD =0.00000001;
+        public static final double kGyroIz =0.01;
+        public static final double kGyroFf =0.00001;
         
         public static final double AutoStraightSpeed = 1;
         public static final double maxTurnSpeed = .5;
@@ -83,11 +83,11 @@ public class Constants {
 
         public static final boolean BALLPRESENT = false;
 
-        public static final double kShooterP = 0.000001; //TODO: Tune these 5 values
+        public static final double kShooterP = 0; //TODO: Tune these 5 values
         public static final double kShooterI = 0;
         public static final double kShooterD = 0; 
         public static final double kShooterIz = 0; 
-        public static final double kShooterFf = 0.00078;
+        public static final double kShooterFf = 0.000441; //2268 RPM
         public static final int kShooterMaxOutput = 1; 
         public static final int kShooterMinOutput = -1;
 
