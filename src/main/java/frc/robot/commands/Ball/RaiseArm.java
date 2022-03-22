@@ -27,8 +27,8 @@ public class RaiseArm extends CommandBase {
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
-    public void execute() {
-     
+    public void execute() { 
+        m_ballHandlingSystem.setArmExtendMotor(-Constants.BallHandling.kArmExtendMotorSpeed);
 
     }
 
@@ -41,7 +41,13 @@ public class RaiseArm extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        if(m_ballHandlingSystem.getArmLimitPressed()) {
+            m_ballHandlingSystem.setArmExtendMotor(0);
+            return true;
+        } else {
+            return false;
+        }
+      
       
     }
 
