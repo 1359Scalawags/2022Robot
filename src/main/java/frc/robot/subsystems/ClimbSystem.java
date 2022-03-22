@@ -65,7 +65,7 @@ public class ClimbSystem extends SubsystemBase {
             } else if(requestedMotorSpeed < 0 || climbMotor.get() < 0) {
                 if(LowerClimbLimitSwitch.get() != Constants.Climb.kClimbLimitSwitchActivated) {
                     if(climbEncoder.getPosition() < 10) {
-                        safetyMultiplier = 0.15f;
+                        safetyMultiplier = 0.5f;
                     } else {
                         safetyMultiplier = 1;
                     }

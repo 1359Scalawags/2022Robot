@@ -154,16 +154,20 @@ public class BallHandlingSystem extends SubsystemBase {
     // !!The trip values were 80 for the load sensor and 100 for the stage sensor!!
     public boolean getBallLoadedSensor() {
         if (loadSensorAverage < Constants.BallHandling.kloadSensorTripValue) {
+            System.out.println("Load: " + loadSensorAverage + " getBallLoadedSensor: true");
             return true;
         } else {
+            System.out.println("Load: " + loadSensorAverage + " getBallLoadedSensor: false");
             return false;
         }
     }
 
     public boolean getBallStagedSensor() {
         if (stageSensorAverage < Constants.BallHandling.kstageSensorTripValue) {
+            System.out.println("Stage: " + stageSensorAverage + " getBallStagedSensor: true");
             return true;
         } else {
+            System.out.println("Stage: " + stageSensorAverage + " getBallStagedSensor: false");
             return false;
         }
     }

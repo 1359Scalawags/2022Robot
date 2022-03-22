@@ -26,7 +26,7 @@ public class TurnByAngle extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        originalAngle = m_driveSystem.getAngle();
+        originalAngle = m_driveSystem.getNormalizedAngle();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -43,7 +43,7 @@ public class TurnByAngle extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(Utilities.IsCloseTo(m_driveSystem.getAngle(), turnAngle+originalAngle, 3))
+        if(Utilities.IsCloseTo(m_driveSystem.getNormalizedAngle(), turnAngle+originalAngle, 3))
             return true;
         else
             return false;
