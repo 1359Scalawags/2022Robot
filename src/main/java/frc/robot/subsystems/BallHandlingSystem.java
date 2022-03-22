@@ -210,6 +210,10 @@ public class BallHandlingSystem extends SubsystemBase {
         }
     }
 
+    public void setSpinMotor(double speed) {
+        armSpinMotor.set(speed);
+    }
+
     public boolean getArmLimitPressed() {
         return (armRetractLimit.get() == Constants.PRESSED);
     }

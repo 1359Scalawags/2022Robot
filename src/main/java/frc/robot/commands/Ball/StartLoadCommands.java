@@ -23,4 +23,9 @@ public class StartLoadCommands extends ParallelCommandGroup {
            // new LoadBall(subsystem)
         );
     }
+
+    @Override
+    public void end(boolean interrupted) {
+
+    }
 }

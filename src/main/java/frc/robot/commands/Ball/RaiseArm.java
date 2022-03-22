@@ -15,7 +15,7 @@ public class RaiseArm extends CommandBase {
     public RaiseArm(BallHandlingSystem subsystem) {
 
         m_ballHandlingSystem = subsystem;
-        addRequirements(m_ballHandlingSystem);
+        // addRequirements(m_ballHandlingSystem);
 
     }
 

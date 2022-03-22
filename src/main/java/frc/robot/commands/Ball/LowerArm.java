@@ -15,7 +15,7 @@ public class LowerArm extends CommandBase {
     public LowerArm(BallHandlingSystem subsystem) {
 
         m_ballHandlingSystem = subsystem;
-        addRequirements(m_ballHandlingSystem);
+        //addRequirements(m_ballHandlingSystem);
 
     }
 
@@ -29,7 +29,6 @@ public class LowerArm extends CommandBase {
     @Override
     public void execute() {
         m_ballHandlingSystem.setArmExtendMotor(Constants.BallHandling.kArmExtendMotorSpeed);
-
     }
 
     // Called once the command ends or is interrupted.

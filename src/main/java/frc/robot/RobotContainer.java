@@ -128,15 +128,15 @@ public class RobotContainer {
 
         final JoystickButton reverseDriveBtn = new JoystickButton(driverController, XboxController.Button.kBack.value);
         reverseDriveBtn.whenPressed(new ReverseDrive(m_driveSystem), true);
-        SmartDashboard.putData("reverseDriveBtn", new ReverseDrive(m_driveSystem));
+        //SmartDashboard.putData("reverseDriveBtn", new ReverseDrive(m_driveSystem));
 
         final JoystickButton lockClimberBtn = new JoystickButton(driverController, XboxController.Button.kX.value);
         lockClimberBtn.whenPressed(new LockClimber(m_climbSystem), true);
-        SmartDashboard.putData("lockClimberBtn", new LockClimber(m_climbSystem));
+        //SmartDashboard.putData("lockClimberBtn", new LockClimber(m_climbSystem));
 
         final JoystickButton unlockClimberBtn = new JoystickButton(driverController, XboxController.Button.kY.value);
         unlockClimberBtn.whenPressed(new ReleaseTensionAndUnlock(m_climbSystem), true);
-        SmartDashboard.putData("unlockClimberBtn", new ReleaseTensionAndUnlock(m_climbSystem));
+        //SmartDashboard.putData("unlockClimberBtn", new ReleaseTensionAndUnlock(m_climbSystem));
 
 
 
@@ -172,6 +172,7 @@ public class RobotContainer {
         DPadButton StopBallDpadBtn;
 
 
+        // TODO: fix dpad buttons so they match other buttons
         // loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
         // loadBallDpadBtn.whenPressed(new ManualStageBall(m_ballHandlingSystem), true);
         loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
@@ -188,21 +189,21 @@ public class RobotContainer {
         StopBallDpadBtn.whenPressed(new StopBallMotors(m_ballHandlingSystem), true);
 
         loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
-        SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
+        //SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
         // loadBallBtn.whenPressed(new ManualStageBall(m_ballHandlingSystem), true);
         // SmartDashboard.putData("loadBallBtn", new ManualStageBall(m_ballHandlingSystem));
 
         sequenceShotBtn.whenPressed(new SequenceShot(m_ballHandlingSystem), true);
-        SmartDashboard.putData("sequenceShotBtn", new SequenceShot(m_ballHandlingSystem));   
+        //SmartDashboard.putData("sequenceShotBtn", new SequenceShot(m_ballHandlingSystem));   
         
         // shootBallBtn.whenPressed(new ShootBall(m_ballHandlingSystem), true);               
         // SmartDashboard.putData("lowerClimberBtn", new ShootBall(m_ballHandlingSystem));
 
         reverseBallBtn.whenPressed(new ReverseBall(m_ballHandlingSystem), true);
-        SmartDashboard.putData("reverseBallBtn", new ReverseBall(m_ballHandlingSystem));
+        //SmartDashboard.putData("reverseBallBtn", new ReverseBall(m_ballHandlingSystem));
 
         stopLoadBallMotorsBtn.whenPressed(new StopLoadCommands(m_ballHandlingSystem), true);
-        SmartDashboard.putData("stopBallMotorsBtn", new StopBallMotors(m_ballHandlingSystem));
+        //SmartDashboard.putData("stopBallMotorsBtn", new StopBallMotors(m_ballHandlingSystem));
   
         final JoystickButton topCameraBtn = new JoystickButton(assistController, XboxController.Button.kLeftBumper.value);
         final JoystickButton botCameraBtn = new JoystickButton(assistController, XboxController.Button.kRightBumper.value);

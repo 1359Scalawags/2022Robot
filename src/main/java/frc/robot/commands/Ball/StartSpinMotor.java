@@ -16,14 +16,14 @@ public class StartSpinMotor extends CommandBase {
     public StartSpinMotor(BallHandlingSystem subsystem) {
 
         m_ballHandlingSystem = subsystem;
-        addRequirements(m_ballHandlingSystem);
+        //addRequirements(m_ballHandlingSystem);
 
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-          m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kArmSpinMotorSpeed);
+          m_ballHandlingSystem.setSpinMotor(Constants.BallHandling.kArmSpinMotorSpeed);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
