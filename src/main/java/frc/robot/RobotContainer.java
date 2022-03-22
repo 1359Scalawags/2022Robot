@@ -176,8 +176,7 @@ public class RobotContainer {
         // loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
         // loadBallDpadBtn.whenPressed(new ManualStageBall(m_ballHandlingSystem), true);
         loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
-        loadBallDpadBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
-
+        loadBallDpadBtn.whenPressed(new StartLoadCommands(m_ballHandlingSystem), true);
 
         sequenceShotDPad = new DPadButton(assistController, DPadButton.Direction.RIGHT);
         sequenceShotDPad.whenPressed(new SequenceShot(m_ballHandlingSystem), true);
@@ -186,9 +185,9 @@ public class RobotContainer {
         reverseBallDpad.whenPressed(new ReverseBall(m_ballHandlingSystem), true);
 
         StopBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.LEFT);
-        StopBallDpadBtn.whenPressed(new StopBallMotors(m_ballHandlingSystem), true);
+        StopBallDpadBtn.whenPressed(new StopLoadCommands(m_ballHandlingSystem), true);
 
-        loadBallBtn.whenPressed(new LoadBall(m_ballHandlingSystem), true);
+        loadBallBtn.whenPressed(new StartLoadCommands(m_ballHandlingSystem), true);
         //SmartDashboard.putData("loadBallBtn", new LoadBall(m_ballHandlingSystem));
         // loadBallBtn.whenPressed(new ManualStageBall(m_ballHandlingSystem), true);
         // SmartDashboard.putData("loadBallBtn", new ManualStageBall(m_ballHandlingSystem));
