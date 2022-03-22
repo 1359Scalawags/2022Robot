@@ -28,20 +28,25 @@ public class LowerArm extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-     
+        m_ballHandlingSystem.setArmExtendMotor(Constants.BallHandling.kArmExtendMotorSpeed);
 
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-    
+        
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        if(m_ballHandlingSystem.getArmIsExtended()) {
+            m_ballHandlingSystem.setArmExtendMotor(0);
+            return true;
+        } else {
+            return false;
+        }
       
     }
 

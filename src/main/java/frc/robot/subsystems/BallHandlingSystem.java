@@ -52,7 +52,7 @@ public class BallHandlingSystem extends SubsystemBase {
 
         armExtendMotor.restoreFactoryDefaults();
         armExtendMotor.setInverted(false);
-        armExtendMotor.setIdleMode(IdleMode.kCoast);
+        armExtendMotor.setIdleMode(IdleMode.kBrake);
 
         armSpinMotor = new SendableCANSparkMax(Constants.BallHandling.kArmSpinMotor, MotorType.kBrushless, this);
         addChild("Arm Extend Motor", armSpinMotor);
