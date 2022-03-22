@@ -22,7 +22,7 @@ public class StartSpinMotor extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-     
+        m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kArmSpinMotorSpeed);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -42,7 +42,7 @@ public class StartSpinMotor extends CommandBase {
     @Override
     public boolean isFinished() {
         return false;
-      
+        
     }
 
     @Override
