@@ -30,7 +30,7 @@ public class AutoDriveForward extends CommandBase {
     @Override
     public void initialize() {
         start = m_DriveSystem.getAverageDistance();
-        target = m_DriveSystem.getAngle();
+        target = m_DriveSystem.getNormalizedAngle();
     }
 
     // Called repeatedly when this Command is scheduled to run

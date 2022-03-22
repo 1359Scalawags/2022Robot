@@ -33,12 +33,18 @@ public class BallHandlingSystem extends SubsystemBase {
 
     // private DigitalInput loadSensor;
     // private AnalogInput loadSensor;
+    // private DigitalInput stagingSensor;
+    // private AnalogInput stagingSensor;    
+
     private Ultrasonic loadSensor;
     private LinearFilter loadSensorFilter;
-    // private DigitalInput stagingSensor;
-    // private AnalogInput stagingSensor;
+    private double loadSensorAverage;
+
     private LinearFilter stageSensorFilter;
     private Ultrasonic stageSensor;
+    private double stageSensorAverage;
+
+
     public BallHandlingSystem() {
 
         armExtendMotor = new SendableCANSparkMax(Constants.BallHandling.kArmExtendMotor, MotorType.kBrushless, this);
@@ -103,8 +109,9 @@ public class BallHandlingSystem extends SubsystemBase {
         // stagingSensor.setAverageBits(5);
         // addChild("StagingSensor", stagingSensor);
         stageSensor = new Ultrasonic(Constants.BallHandling.kstagePingChannel, Constants.BallHandling.kstageEchoChannel);
-        stageSensorFilter = LinearFilter.movingAverage(Constants.BallHandling.kSensorAverageSamples);
+        stageSensorFilter = LinearFilter.movingAverage(Constants.BallHandling.kSensorAverageSamples);      
         addChild("StageSensor", stageSensor);
+
 
     }
 
@@ -124,6 +131,18 @@ public class BallHandlingSystem extends SubsystemBase {
             //System.out.println("stage: " + stageSensor.getRangeMM());
             //System.out.println("load:  " + loadSensor.getRangeMM());
         }
+
+        // Calculate the average stage sensor value each frame
+        double stageValue = stageSensor.getRangeMM();
+        if(stageValue > 0 && Double.isFinite(stageValue)) {
+            stageSensorAverage = stageSensorFilter.calculate(stageValue);
+        }
+
+        double loadValue = loadSensor.getRangeMM();
+        if(loadValue > 0 && Double.isFinite(loadValue)) {
+            loadSensorAverage = loadSensorFilter.calculate(loadValue);
+        }
+
         pingCounter++;
 
     }
@@ -156,18 +175,23 @@ public class BallHandlingSystem extends SubsystemBase {
         shootMotor.stopMotor();
     }
 
+    // !!The trip values were 80 for the load sensor and 100 for the stage sensor!!
     public boolean getBallLoadedSensor() {
-        if (loadSensorFilter.calculate(loadSensor.getRangeMM()) < Constants.BallHandling.kloadSensorTripValue) {
+        if (loadSensorAverage < Constants.BallHandling.kloadSensorTripValue) {
+            System.out.println("Load: " + loadSensorAverage + " getBallLoadedSensor: true");
             return true;
         } else {
+            System.out.println("Load: " + loadSensorAverage + " getBallLoadedSensor: false");
             return false;
         }
     }
 
     public boolean getBallStagedSensor() {
-        if (stageSensorFilter.calculate(stageSensor.getRangeMM()) < Constants.BallHandling.kstageSensorTripValue) {
+        if (stageSensorAverage < Constants.BallHandling.kstageSensorTripValue) {
+            System.out.println("Stage: " + stageSensorAverage + " getBallStagedSensor: true");
             return true;
         } else {
+            System.out.println("Stage: " + stageSensorAverage + " getBallStagedSensor: false");
             return false;
         }
     }

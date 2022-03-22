@@ -5,7 +5,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.ClimbSystem;
 
 public class PullClimberToIndex extends CommandBase {
-    
+
     private ClimbSystem m_climber;
 
     public PullClimberToIndex(ClimbSystem climber) {
@@ -16,7 +16,7 @@ public class PullClimberToIndex extends CommandBase {
 
     @Override
     public void initialize() {
-        //System.out.println("PULLING");         
+        // System.out.println("PULLING");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -24,7 +24,6 @@ public class PullClimberToIndex extends CommandBase {
     public void execute() {
         m_climber.move(-Constants.Climb.kClimbMotorSpeed);
     }
-    
 
     // Called once the command ends or is interrupted.
     @Override
@@ -35,7 +34,7 @@ public class PullClimberToIndex extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(m_climber.getBottomLimit()) {
+        if (m_climber.getBottomLimit()) {
             System.out.println("HIT BOTTOM");
             return true;
         }

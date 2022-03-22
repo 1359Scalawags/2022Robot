@@ -12,8 +12,8 @@ public class ReverseBall extends CommandBase {
 
     private BallHandlingSystem m_ballHandlingSystem;
 
-    private boolean isBallAlreadyLoaded;
-    private boolean isBallAlreadyStaged;
+    // private boolean isBallAlreadyLoaded;
+    // private boolean isBallAlreadyStaged;
     private Timer reverseballTimer;
 
     public ReverseBall(BallHandlingSystem subsystem) {
@@ -29,8 +29,8 @@ public class ReverseBall extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        isBallAlreadyLoaded = m_ballHandlingSystem.getBallLoadedSensor();
-        isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
+        // isBallAlreadyLoaded = m_ballHandlingSystem.getBallLoadedSensor();
+        // isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
         reverseballTimer.start();
     }
 
@@ -51,7 +51,7 @@ public class ReverseBall extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(reverseballTimer.get() >= Constants.BallHandling.reverseballTimer) {
+        if (reverseballTimer.get() >= Constants.BallHandling.reverseballTimer) {
             return true;
         } else {
             return false;

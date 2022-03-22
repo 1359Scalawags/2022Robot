@@ -2,7 +2,6 @@
 package frc.robot.commands.Climb;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
 import frc.robot.subsystems.ClimbSystem;
 
 /**
@@ -22,8 +21,8 @@ public class LockClimber extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_climbSystem.setServoLock(true); 
-        //System.out.println("LOCKING");  
+        m_climbSystem.setServoLock(true);
+        // System.out.println("LOCKING");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -31,7 +30,6 @@ public class LockClimber extends CommandBase {
     public void execute() {
 
     }
-    
 
     // Called once the command ends or is interrupted.
     @Override

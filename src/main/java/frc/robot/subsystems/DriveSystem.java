@@ -117,15 +117,19 @@ public class DriveSystem extends SubsystemBase {
     public void ResetGyro(){
         driveGyro.reset();
       }
-      public double getAngle() {
-        return driveGyro.getAngle();
+      public double getNormalizedAngle() {
+        //TODO: This should probably return a normalized angle
+        //Using 0 to 360 means you'll get odd behavior when rotating left past 0 (goes from 0 to 359)
+        return Utilities.NormalizeAngle(driveGyro.getAngle());
       }
       public double getGyroRate() {
         return driveGyro.getRate();
       }
     
       public void arcadeDrive(double moveSpeed, double maxTurnSpeed, double targetAngle) {
-        double angleInput = driveGyro.getAngle();
+        //TODO: Target angle should be normalized
+        targetAngle = Utilities.NormalizeAngle(targetAngle);
+        double angleInput = this.getNormalizedAngle();
         gyroControl.setSetpoint(targetAngle);
         double angleOutput = Utilities.Clamp(gyroControl.calculate(angleInput), -maxTurnSpeed, maxTurnSpeed);
         differentialDrive.arcadeDrive(moveSpeed, angleOutput);
@@ -175,10 +179,11 @@ public class DriveSystem extends SubsystemBase {
     }
 
     public void driveBackward(double speed, double targetHeading) {
+        //TODO: Target heading should probably be normalized
         final double scale = .01;
         double leftSpeed;
         double rightSpeed;
-        double headingError = getAngle() - targetHeading;
+        double headingError = this.getNormalizedAngle() - Utilities.NormalizeAngle(targetHeading);
 
         leftSpeed =Utilities.Clamp(-(speed) - headingError * scale,
         -Constants.Drive.kDriveSpeed, Constants.Drive.kDriveSpeed);
@@ -189,10 +194,11 @@ public class DriveSystem extends SubsystemBase {
 
     //TODO: This function causes the robot to spin when drive is reversed
     public void driveForward(double speed, double targetHeading) {
+        //TODO: Target heading should probably be normalized
         final double scale = .01;
         double leftSpeed;
         double rightSpeed;
-        double headingError = getAngle() - targetHeading;
+        double headingError = getNormalizedAngle() - Utilities.NormalizeAngle(targetHeading);
 
         leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale,
         -Constants.Drive.kDriveSpeed, Constants.Drive.kDriveSpeed);

@@ -36,7 +36,7 @@ public class ReleaseTension extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if (m_timer.get() > Constants.Climb.kReleaseTensionTimer){
+        if (m_timer.get() > Constants.Climb.kReleaseTensionTimer) {
             m_climbSystem.move(0);
             return true;
         } else {

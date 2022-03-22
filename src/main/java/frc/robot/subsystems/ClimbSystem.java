@@ -44,8 +44,8 @@ public class ClimbSystem extends SubsystemBase {
         climbEncoder.setPositionConversionFactor(Constants.Climb.kClimbConversionFactor);
         setServoLock(true);
 
-        //TODO: add this if we need to manually index climber
-        //climbEncoder.setPosition(0.0);
+        // Add this IF we need to manually index climber
+        // climbEncoder.setPosition(0.0);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class ClimbSystem extends SubsystemBase {
             } else if(requestedMotorSpeed < 0 || climbMotor.get() < 0) {
                 if(LowerClimbLimitSwitch.get() != Constants.Climb.kClimbLimitSwitchActivated) {
                     if(climbEncoder.getPosition() < 10) {
-                        safetyMultiplier = 0.15f;
+                        safetyMultiplier = 0.5f;
                     } else {
                         safetyMultiplier = 1;
                     }

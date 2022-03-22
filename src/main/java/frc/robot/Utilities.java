@@ -15,5 +15,19 @@ public class Utilities {
 		double diff = Math.abs(a-b);
 		return diff < tolerance;
 	}
+
+	/**
+	 * Constrains an angle to the range -180 and 180
+	 * @param angle the original angle
+	 * @return an equivalent angle between -180 and 180
+	 */
+	public static double NormalizeAngle(double angle) {
+		double temp = angle % 360; // remove multiples of 360
+		temp = (temp + 360) % 360; // force it to be positive
+        if(temp > 180) {
+			temp -= 360;
+		}
+		return temp;
+	}
     
 }

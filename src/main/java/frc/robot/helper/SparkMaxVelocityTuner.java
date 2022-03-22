@@ -1,9 +1,6 @@
 package frc.robot.helper;
 
 import com.revrobotics.CANSparkMax.ControlType;
-
-import org.opencv.video.DenseOpticalFlow;
-
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 
@@ -11,8 +8,8 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import java.util.Map;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import java.util.Map;
 
 public class SparkMaxVelocityTuner {
 
@@ -37,7 +34,8 @@ public class SparkMaxVelocityTuner {
     private double errorValue;
     private double actualValue;
 
-    public SparkMaxVelocityTuner(String name, RelativeEncoder encoder, SparkMaxPIDController controller, PIDValues initialValues, int initialTarget) {
+    public SparkMaxVelocityTuner(String name, RelativeEncoder encoder, SparkMaxPIDController controller,
+            PIDValues initialValues, int initialTarget) {
         this.name = name;
         this.controller = controller;
         this.encoder = encoder;
@@ -49,12 +47,10 @@ public class SparkMaxVelocityTuner {
         controller.setD(this.pidValues.kD);
         controller.setIZone(this.pidValues.kIz);
         controller.setFF(this.pidValues.kFf);
-        
+
         initialize();
 
     }
-
-
 
     // ShuffleBoard version
     private void initialize() {
@@ -77,114 +73,134 @@ public class SparkMaxVelocityTuner {
         double ff = ffEntry.getDouble(0);
         double target = targetEntry.getDouble(0);
 
-        if((p != pidValues.kP)) { controller.setP(p); pidValues.kP = p; }
-        if((i != pidValues.kI)) { controller.setI(i); pidValues.kI = i; }
-        if((d != pidValues.kD)) { controller.setD(d); pidValues.kD = d; }
-        if((iz != pidValues.kIz)) { controller.setIZone(iz); pidValues.kIz = iz; }
-        if((ff != pidValues.kFf)) { controller.setFF(ff); pidValues.kFf = ff; }
-        if(target != targetValue) {controller.setReference(target, ControlType.kVelocity); targetValue = target;}
+        if ((p != pidValues.kP)) {
+            controller.setP(p);
+            pidValues.kP = p;
+        }
+        if ((i != pidValues.kI)) {
+            controller.setI(i);
+            pidValues.kI = i;
+        }
+        if ((d != pidValues.kD)) {
+            controller.setD(d);
+            pidValues.kD = d;
+        }
+        if ((iz != pidValues.kIz)) {
+            controller.setIZone(iz);
+            pidValues.kIz = iz;
+        }
+        if ((ff != pidValues.kFf)) {
+            controller.setFF(ff);
+            pidValues.kFf = ff;
+        }
+        if (target != targetValue) {
+            controller.setReference(target, ControlType.kVelocity);
+            targetValue = target;
+        }
 
         actualValue = encoder.getVelocity();
         errorValue = targetValue - actualValue;
 
         actualEntry.setDouble(actualValue);
         errorEntry.setDouble(errorValue);
-        //System.out.println("Actual: " + actualValue + " Error: " + errorValue);
+        // System.out.println("Actual: " + actualValue + " Error: " + errorValue);
     }
 
     private void layoutShuffleboard(ShuffleboardTab shuffleTab) {
         pEntry = shuffleTab
-                    .add("P Gain", 0)
-                    .withWidget(BuiltInWidgets.kTextView)
-                    .withSize(1,1)
-                    .withPosition(0, 0)
-                    .getEntry();
+                .add("P Gain", 0)
+                .withWidget(BuiltInWidgets.kTextView)
+                .withSize(1, 1)
+                .withPosition(0, 0)
+                .getEntry();
 
         iEntry = shuffleTab
-                    .add("I Gain", 0)
-                    .withWidget(BuiltInWidgets.kTextView)
-                    .withSize(1,1)
-                    .withPosition(1, 0)
-                    .getEntry();
+                .add("I Gain", 0)
+                .withWidget(BuiltInWidgets.kTextView)
+                .withSize(1, 1)
+                .withPosition(1, 0)
+                .getEntry();
 
         dEntry = shuffleTab
-                    .add("D Gain", 0)
-                    .withWidget(BuiltInWidgets.kTextView)
-                    .withSize(1,1)
-                    .withPosition(2, 0)
-                    .getEntry();
+                .add("D Gain", 0)
+                .withWidget(BuiltInWidgets.kTextView)
+                .withSize(1, 1)
+                .withPosition(2, 0)
+                .getEntry();
 
         izEntry = shuffleTab
-                    .add("I Zone", 0)
-                    .withWidget(BuiltInWidgets.kTextView)
-                    .withSize(1,1)
-                    .withPosition(3, 0)
-                    .getEntry();
+                .add("I Zone", 0)
+                .withWidget(BuiltInWidgets.kTextView)
+                .withSize(1, 1)
+                .withPosition(3, 0)
+                .getEntry();
 
         ffEntry = shuffleTab
-                    .add("Feed Forward", 0)
-                    .withWidget(BuiltInWidgets.kTextView)
-                    .withSize(1,1)
-                    .withPosition(4, 0)
-                    .getEntry();
+                .add("Feed Forward", 0)
+                .withWidget(BuiltInWidgets.kTextView)
+                .withSize(1, 1)
+                .withPosition(4, 0)
+                .getEntry();
 
         targetEntry = shuffleTab
-                    .add("Target RPM", 0)
-                    .withWidget(BuiltInWidgets.kTextView)
-                    .withSize(1,1)
-                    .withPosition(1, 1)
-                    .getEntry();
+                .add("Target RPM", 0)
+                .withWidget(BuiltInWidgets.kTextView)
+                .withSize(1, 1)
+                .withPosition(1, 1)
+                .getEntry();
 
         actualEntry = shuffleTab
-                    .add("Actual RPM", 0)
-                    .withWidget(BuiltInWidgets.kTextView)
-                    .withSize(1,1)
-                    .withPosition(2, 1)
-                    .getEntry();
+                .add("Actual RPM", 0)
+                .withWidget(BuiltInWidgets.kTextView)
+                .withSize(1, 1)
+                .withPosition(2, 1)
+                .getEntry();
 
         errorEntry = shuffleTab
-                    .add("Error RPM", 0)
-                    .withWidget(BuiltInWidgets.kTextView)
-                    .withSize(1,1)
-                    .withPosition(3, 1)
-                    .getEntry();                    
+                .add("Error RPM", 0)
+                .withWidget(BuiltInWidgets.kTextView)
+                .withSize(1, 1)
+                .withPosition(3, 1)
+                .getEntry();
     }
 
     // SmartDashboard version
     // private void initialize() {
-        // SmartDashboard.putNumber("P Gain", pidValues.kP);
-        // SmartDashboard.putNumber("I Gain", pidValues.kI);
-        // SmartDashboard.putNumber("D Gain", pidValues.kD);
-        // SmartDashboard.putNumber("I Zone", pidValues.kIz);
-        // SmartDashboard.putNumber("Feed Forward", pidValues.kFf);
-        // SmartDashboard.putNumber("Target RPM", targetValue);
-        // actualValue = (int)encoder.getVelocity();
-        // errorValue = targetValue - actualValue;
-        // SmartDashboard.putNumber("Actual RPM", actualValue);
-        // SmartDashboard.putNumber("Error RPM", errorValue);
+    // SmartDashboard.putNumber("P Gain", pidValues.kP);
+    // SmartDashboard.putNumber("I Gain", pidValues.kI);
+    // SmartDashboard.putNumber("D Gain", pidValues.kD);
+    // SmartDashboard.putNumber("I Zone", pidValues.kIz);
+    // SmartDashboard.putNumber("Feed Forward", pidValues.kFf);
+    // SmartDashboard.putNumber("Target RPM", targetValue);
+    // actualValue = (int)encoder.getVelocity();
+    // errorValue = targetValue - actualValue;
+    // SmartDashboard.putNumber("Actual RPM", actualValue);
+    // SmartDashboard.putNumber("Error RPM", errorValue);
     // }
 
     // SmartDashboard version
     // private void periodic() {
-        // double p = SmartDashboard.getNumber("P Gain", 0);
-        // double i = SmartDashboard.getNumber("I Gain", 0);
-        // double d = SmartDashboard.getNumber("D Gain", 0);
-        // double iz = SmartDashboard.getNumber("I Zone", 0);
-        // double ff = SmartDashboard.getNumber("Feed Forward", 0);
-        // double target = SmartDashboard.getNumber("Target RPM", 0);
+    // double p = SmartDashboard.getNumber("P Gain", 0);
+    // double i = SmartDashboard.getNumber("I Gain", 0);
+    // double d = SmartDashboard.getNumber("D Gain", 0);
+    // double iz = SmartDashboard.getNumber("I Zone", 0);
+    // double ff = SmartDashboard.getNumber("Feed Forward", 0);
+    // double target = SmartDashboard.getNumber("Target RPM", 0);
 
-        // if((p != pidValues.kP)) { controller.setP(p); pidValues.kP = p; }
-        // if((i != pidValues.kI)) { controller.setI(i); pidValues.kI = i; }
-        // if((d != pidValues.kD)) { controller.setD(d); pidValues.kD = d; }
-        // if((iz != pidValues.kIz)) { controller.setIZone(iz); pidValues.kIz = iz; }
-        // if((ff != pidValues.kFf)) { controller.setFF(ff); pidValues.kFf = ff; }
-        // if(target != targetValue) {controller.setReference(target, ControlType.kVelocity); targetValue = target;}
+    // if((p != pidValues.kP)) { controller.setP(p); pidValues.kP = p; }
+    // if((i != pidValues.kI)) { controller.setI(i); pidValues.kI = i; }
+    // if((d != pidValues.kD)) { controller.setD(d); pidValues.kD = d; }
+    // if((iz != pidValues.kIz)) { controller.setIZone(iz); pidValues.kIz = iz; }
+    // if((ff != pidValues.kFf)) { controller.setFF(ff); pidValues.kFf = ff; }
+    // if(target != targetValue) {controller.setReference(target,
+    // ControlType.kVelocity); targetValue = target;}
 
-        // actualValue = encoder.getVelocity();
-        // errorValue = targetValue - actualValue;
-        // SmartDashboard.putNumber("Actual RPM", actualValue);
-        // SmartDashboard.putNumber("Error RPM", errorValue);
-        // System.out.println("Target: " + targetValue + "  Actual: " + actualValue + "  Error: " + errorValue);
+    // actualValue = encoder.getVelocity();
+    // errorValue = targetValue - actualValue;
+    // SmartDashboard.putNumber("Actual RPM", actualValue);
+    // SmartDashboard.putNumber("Error RPM", errorValue);
+    // System.out.println("Target: " + targetValue + " Actual: " + actualValue + "
+    // Error: " + errorValue);
     // }
 
 }
