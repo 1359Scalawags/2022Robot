@@ -2,6 +2,7 @@
 package frc.robot.commands.Ball;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.subsystems.BallHandlingSystem;
 
@@ -22,13 +23,13 @@ public class StartSpinMotor extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-     
+          m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kArmSpinMotorSpeed);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-     
+
 
     }
 
@@ -40,9 +41,8 @@ public class StartSpinMotor extends CommandBase {
 
     // Returns true when the command should end.
     @Override
-    public boolean isFinished() {
-        return false;
-      
+    public boolean isFinished() { 
+        return true;
     }
 
     @Override
