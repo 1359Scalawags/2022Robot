@@ -6,6 +6,7 @@ import frc.robot.helper.PIDValues;
 import frc.robot.helper.SparkMaxVelocityTuner;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Utilities;
 
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
@@ -14,12 +15,17 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.filter.LinearFilter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
 public class BallHandlingSystem extends SubsystemBase {
 
     private SendableCANSparkMax loadMotor;
     private SendableCANSparkMax stagingMotor;
+    private SendableCANSparkMax armSpinMotor;
+    private SendableCANSparkMax armExtendMotor;
+    private RelativeEncoder armEncoder;
+    private DigitalInput armRetractLimit;
 
     private SendableCANSparkMax shootMotor;
     private RelativeEncoder shootEncoder;
@@ -34,6 +40,24 @@ public class BallHandlingSystem extends SubsystemBase {
     private LinearFilter stageSensorFilter;
     private Ultrasonic stageSensor;
     public BallHandlingSystem() {
+
+        armExtendMotor = new SendableCANSparkMax(Constants.BallHandling.kArmExtendMotor, MotorType.kBrushless, this);
+        addChild("Arm Extend Motor", armExtendMotor);
+
+        armExtendMotor.restoreFactoryDefaults();
+        armExtendMotor.setInverted(false);
+        armExtendMotor.setIdleMode(IdleMode.kCoast);
+
+        armSpinMotor = new SendableCANSparkMax(Constants.BallHandling.kArmSpinMotor, MotorType.kBrushless, this);
+        addChild("Arm Extend Motor", armSpinMotor);
+
+        armSpinMotor.restoreFactoryDefaults();
+        armSpinMotor.setInverted(false);
+        armSpinMotor.setIdleMode(IdleMode.kCoast);
+
+        armEncoder = armExtendMotor.getEncoder();
+
+        armRetractLimit = new DigitalInput(Constants.BallHandling.kArmRetractLimitID);
 
         // loadMotor = new MotorControllerGroup(loadMotor1);
         loadMotor = new SendableCANSparkMax(Constants.BallHandling.kLoadMotor, MotorType.kBrushless, this);
@@ -151,6 +175,26 @@ public class BallHandlingSystem extends SubsystemBase {
     public double getBallShootVelocity() {
         return shootMotor.getEncoder().getVelocity();
     }
+
+    public void setArmExtendMotor(double speed) {
+        if(speed > 0 && armEncoder.getPosition() < Constants.BallHandling.kArmMaxExtendAngle){
+            armExtendMotor.set(speed);
+        }else if(speed < 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
+            armExtendMotor.set(speed);
+        }else {
+            armExtendMotor.set(0);
+        }
+    }
+
+    public boolean getArmLimitPressed() {
+        return (armRetractLimit.get() == Constants.PRESSED);
+    }
+
+    public boolean getArmIsExtended() {
+        //return (armEncoder.getPosition() >= Constants.BallHandling.kArmMaxExtendAngle);
+        return Utilities.IsCloseTo(armEncoder.getPosition(), Constants.BallHandling.kArmMaxExtendAngle, Constants.BallHandling.kArmExtendTolerance);
+    }
+
 
     public SparkMaxVelocityTuner initializeTests() {
         PIDValues initialPID = new PIDValues(Constants.BallHandling.kShooterP, 

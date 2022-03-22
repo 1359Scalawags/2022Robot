@@ -3,7 +3,7 @@ package frc.robot;
 public class Constants {
 
     public static final boolean PRESSED = false;
-    public static final boolean NOTPRESSED = true;
+    public static final boolean NOTPRESSED = !PRESSED;
     public static final double TOLERANCE = .1;
 
     public static final class Auto {
@@ -83,6 +83,7 @@ public class Constants {
 
         public static final boolean BALLPRESENT = false;
 
+        //PID Things
         public static final double kShooterP = 6e-5; //TODO: Tune this value
         public static final double kShooterI = 0;
         public static final double kShooterD = 0; 
@@ -94,8 +95,8 @@ public class Constants {
         //public static final int kloadinput = 7;        
         //public static final int kstaginginput = 8;        
         
-        
-        public static final int kSensorAverageSamples = 5; 
+        //Sensor Stuff
+        public static final int kSensorAverageSamples = 3;
         public static final int kloadPingChannel = 3;
         public static final int kloadEchoChannel = 4;
         public static final int kloadSensorTripValue = 150;
@@ -106,6 +107,18 @@ public class Constants {
 
         public static final int kUltrasonicFrameCount = 5;
 
+        //Ball Arm Motors
+        public static final int kArmExtendMotor = 100; // TODO: Change theses later
+        public static final int kArmSpinMotor = 101;
+        
+        //Ball Arm Limits
+        public static final double kArmMaxExtendAngle = 0.3;
+        public static final int kArmRetractLimitID = 6; //TODO: Change the port
+        public static final double kArmExtendTolerance = .03;
+
+        //Arm Speeds
+        public static final double kArmSpinMotorSpeed = 0.5f; //Change Thses Later if needed
+        public static final double kArmExtendMotorSpeed = 0.5f;
     }
 
     public static final class DisplaySystem {
