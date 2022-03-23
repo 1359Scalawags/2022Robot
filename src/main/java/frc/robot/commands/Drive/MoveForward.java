@@ -11,7 +11,7 @@ import frc.robot.subsystems.DriveSystem;
 /**
  *
  */
-public class moveFoward extends CommandBase {
+public class MoveForward extends CommandBase {
 
     private DriveSystem m_driveSystem;
     private double speed;
@@ -21,7 +21,7 @@ public class moveFoward extends CommandBase {
     private double distance;
 
     
-    public moveFoward(DriveSystem subsystem, double distance, double speed) {
+    public MoveForward(DriveSystem subsystem, double distance, double speed) {
         m_driveSystem = subsystem;
         addRequirements(m_driveSystem);
         this.distance = distance; 

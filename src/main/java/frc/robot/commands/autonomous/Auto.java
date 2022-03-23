@@ -7,7 +7,7 @@ import frc.robot.commands.Delay;
 import frc.robot.commands.Ball.SequenceShot;
 import frc.robot.commands.Drive.SetDriveDirection;
 // import frc.robot.commands.Drive.TurnByAngle;
-import frc.robot.commands.Drive.moveFoward;
+import frc.robot.commands.Drive.MoveForward;
 import frc.robot.subsystems.BallHandlingSystem;
 import frc.robot.subsystems.DriveSystem;
 import frc.robot.subsystems.VisionSystem;
@@ -39,7 +39,7 @@ public class Auto extends SequentialCommandGroup {
         this.angleToTurn = angle;
         this.choosenMode = mode;
 
-        moveFoward move = new moveFoward(drive, Constants.Auto.MotorDistance, Constants.Auto.MotorSpeed);
+        MoveForward move = new MoveForward(drive, Constants.Auto.MotorDistance, Constants.Auto.MotorSpeed);
         // TurnByAngle turn = new TurnByAngle(drive, angleToTurn);
         // AutoShoot shoot = new AutoShoot(ballHandling);
         SequenceShot shoot = new SequenceShot(ballHandling);

@@ -8,11 +8,11 @@ import frc.robot.subsystems.ClimbSystem;
 /**
  *
  */
-public class ManuelClimber extends CommandBase {
+public class ManualClimber extends CommandBase {
 
     private ClimbSystem m_climbSystem;
 
-    public ManuelClimber(ClimbSystem subsystem) {
+    public ManualClimber(ClimbSystem subsystem) {
         m_climbSystem = subsystem;
         addRequirements(m_climbSystem);
     }
