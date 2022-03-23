@@ -54,14 +54,14 @@ public class BallHandlingSystem extends SubsystemBase {
         addChild("Arm Extend Motor", armExtendMotor);
 
         armExtendMotor.restoreFactoryDefaults();
-        armExtendMotor.setInverted(false);
+        armExtendMotor.setInverted(false); //TODO: (TEST) Is motor inverted?
         armExtendMotor.setIdleMode(IdleMode.kBrake);
 
         armSpinMotor = new SendableCANSparkMax(Constants.BallHandling.kArmSpinMotor, MotorType.kBrushless, this);
         addChild("Arm Extend Motor", armSpinMotor);
 
         armSpinMotor.restoreFactoryDefaults();
-        armSpinMotor.setInverted(false);
+        armSpinMotor.setInverted(false); //TODO: (TEST) Is motor inverted?
         armSpinMotor.setIdleMode(IdleMode.kCoast);
 
         armEncoder = armExtendMotor.getEncoder();
@@ -157,6 +157,7 @@ public class BallHandlingSystem extends SubsystemBase {
         }else if(requestedExtendSpeed < 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
             armExtendMotor.set(requestedExtendSpeed);
         }else {
+            // TODO: reset encoder if limit switch is pressed
             requestedExtendSpeed = 0;
             armExtendMotor.set(0);
         }
