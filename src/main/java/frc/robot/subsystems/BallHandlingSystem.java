@@ -44,9 +44,12 @@ public class BallHandlingSystem extends SubsystemBase {
     private Ultrasonic stageSensor;
     private double stageSensorAverage;
 
+    private double requestedExtendSpeed;
+
 
     public BallHandlingSystem() {
 
+        requestedExtendSpeed = 0;
         armExtendMotor = new SendableCANSparkMax(Constants.BallHandling.kArmExtendMotor, MotorType.kBrushless, this);
         addChild("Arm Extend Motor", armExtendMotor);
 
@@ -118,6 +121,7 @@ public class BallHandlingSystem extends SubsystemBase {
     private int pingCounter = 0;
     @Override
     public void periodic() {
+        // alternate sensor pings to avoid interference
         if(pingCounter == 1) {
             //System.out.println("Ping Stage");
             stageSensor.ping();
@@ -131,6 +135,7 @@ public class BallHandlingSystem extends SubsystemBase {
             //System.out.println("stage: " + stageSensor.getRangeMM());
             //System.out.println("load:  " + loadSensor.getRangeMM());
         }
+        pingCounter++;
 
         // Calculate the average stage sensor value each frame
         double stageValue = stageSensor.getRangeMM();
@@ -138,12 +143,23 @@ public class BallHandlingSystem extends SubsystemBase {
             stageSensorAverage = stageSensorFilter.calculate(stageValue);
         }
 
+        // Calculate the average load sensor value each frame
         double loadValue = loadSensor.getRangeMM();
         if(loadValue > 0 && Double.isFinite(loadValue)) {
             loadSensorAverage = loadSensorFilter.calculate(loadValue);
         }
 
-        pingCounter++;
+
+
+        // manage the extender motor speed
+        if(requestedExtendSpeed > 0 && armEncoder.getPosition() < Constants.BallHandling.kArmMaxExtendAngle){
+            armExtendMotor.set(requestedExtendSpeed);
+        }else if(requestedExtendSpeed < 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
+            armExtendMotor.set(requestedExtendSpeed);
+        }else {
+            requestedExtendSpeed = 0;
+            armExtendMotor.set(0);
+        }
 
     }
 
@@ -201,13 +217,14 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     public void setArmExtendMotor(double speed) {
-        if(speed > 0 && armEncoder.getPosition() < Constants.BallHandling.kArmMaxExtendAngle){
-            armExtendMotor.set(speed);
-        }else if(speed < 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
-            armExtendMotor.set(speed);
-        }else {
-            armExtendMotor.set(0);
-        }
+        requestedExtendSpeed = speed;
+        // if(speed > 0 && armEncoder.getPosition() < Constants.BallHandling.kArmMaxExtendAngle){
+        //     armExtendMotor.set(speed);
+        // }else if(speed < 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
+        //     armExtendMotor.set(speed);
+        // }else {
+        //     armExtendMotor.set(0);
+        // }
     }
 
     public void setSpinMotor(double speed) {

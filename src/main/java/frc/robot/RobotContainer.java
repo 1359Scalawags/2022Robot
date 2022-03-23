@@ -171,8 +171,6 @@ public class RobotContainer {
         DPadButton reverseBallDpad;
         DPadButton StopBallDpadBtn;
 
-
-        // TODO: fix dpad buttons so they match other buttons
         // loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
         // loadBallDpadBtn.whenPressed(new ManualStageBall(m_ballHandlingSystem), true);
         loadBallDpadBtn = new DPadButton(assistController, DPadButton.Direction.DOWN);
