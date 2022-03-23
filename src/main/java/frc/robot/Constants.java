@@ -111,12 +111,12 @@ public class Constants {
         public static final int kUltrasonicFrameCount = 3; // TODO: (TEST) Can we reduce this further?
 
         //Ball Arm Motors
-        public static final int kArmExtendMotor = 40; // TODO: Change theses later
+        public static final int kArmExtendMotor = 40; // TODO: (CHECK ROBOT) Do these need to be swapped?
         public static final int kArmSpinMotor = 41;
         
         //Ball Arm Limits
         public static final double kArmMaxExtendAngle = 0.3;
-        public static final int kArmRetractLimitID = 6; //TODO: Change the port
+        public static final int kArmRetractLimitID = 6; //TODO: (CHECK ROBOT) Which port is limit switch in?
         public static final double kArmExtendTolerance = .03;
 
         //Arm Speeds
