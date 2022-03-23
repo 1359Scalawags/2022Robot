@@ -11,6 +11,7 @@ import frc.robot.subsystems.DriveSystem;
 /**
  *
  */
+@Deprecated
 public class AutoDriveForward extends CommandBase {
 
 

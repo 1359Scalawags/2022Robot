@@ -8,6 +8,7 @@ import frc.robot.subsystems.DriveSystem;
 /**
  *
  */
+@Deprecated
 public class AutoDrive extends CommandBase {
 
     private final DriveSystem m_driveSystem;

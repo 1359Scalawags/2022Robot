@@ -8,6 +8,7 @@ import frc.robot.subsystems.BallHandlingSystem;
 /**
  *
  */
+@Deprecated
 public class AutoShoot extends CommandBase {
 
     private final BallHandlingSystem m_ballHandlingSystem;
