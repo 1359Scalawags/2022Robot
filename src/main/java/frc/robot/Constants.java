@@ -111,8 +111,8 @@ public class Constants {
         public static final int kUltrasonicFrameCount = 3; // TODO: Can we reduce this further?
 
         //Ball Arm Motors
-        public static final int kArmExtendMotor = 100; // TODO: Change theses later
-        public static final int kArmSpinMotor = 101;
+        public static final int kArmExtendMotor = 40; // TODO: Change theses later
+        public static final int kArmSpinMotor = 41;
         
         //Ball Arm Limits
         public static final double kArmMaxExtendAngle = 0.3;
