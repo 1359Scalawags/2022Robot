@@ -44,7 +44,7 @@ public class moveFoward extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        //TODO: Fix gyro based code (let's not worry about this now)
+        //TODO: (ON HOLD) Fix gyro based code (let's not worry about this now)
         //m_driveSystem.driveForward(speed, target);
         current = m_driveSystem.getAverageDistance();
         m_driveSystem.tankDrive(speed, speed);
