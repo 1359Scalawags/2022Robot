@@ -108,7 +108,7 @@ public class Constants {
         public static final int kstageSensorTripValue = 100;
         // !!WHY WAS THIS ↑ DELETED INSTEAD OF BEING COMMENTED OUT!!
 
-        public static final int kUltrasonicFrameCount = 5;
+        public static final int kUltrasonicFrameCount = 3; // TODO: Can we reduce this further?
 
         //Ball Arm Motors
         public static final int kArmExtendMotor = 100; // TODO: Change theses later
