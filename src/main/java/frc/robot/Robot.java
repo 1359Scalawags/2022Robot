@@ -107,6 +107,10 @@ public class Robot extends TimedRobot {
         Command indexClimber = m_robotContainer.getClimbIndexer();
         indexClimber.schedule();
 
+        // TODO: (DISCUSS) Comment this out if not needed
+        Command indexArm = m_robotContainer.getArmIndexer();        
+        indexArm.schedule();
+
     }
 
     /**

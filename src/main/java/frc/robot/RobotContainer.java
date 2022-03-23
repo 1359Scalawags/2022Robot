@@ -241,4 +241,8 @@ public class RobotContainer {
         return new IndexClimberSequence(m_climbSystem);
     }
 
+    public Command getArmIndexer() {
+        return new RaiseArm(m_ballHandlingSystem);
+    }
+
 }
