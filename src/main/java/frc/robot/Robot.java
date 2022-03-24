@@ -11,7 +11,7 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.helper.SparkMaxVelocityTuner;
+//import frc.robot.helper.SparkMaxVelocityTuner;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -131,9 +131,9 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void testPeriodic() {
-        // if(m_tuner != null) {
-        //     m_tuner.periodic();
-        // }
+        if(m_tuner != null) {
+            m_tuner.periodic();
+        }
     }
 
 }
