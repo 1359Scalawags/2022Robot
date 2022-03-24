@@ -23,7 +23,7 @@ public class DisplaySystem extends SubsystemBase {
     private ShuffleboardTab mainTab = Shuffleboard.getTab("Match Tab");
     private NetworkTableEntry timeEntry;
     private NetworkTableEntry climbLockEntry;
-    private NetworkTableEntry batteryVolege;
+    private NetworkTableEntry batteryVoltage;
     private ComplexWidget cameraView;
     private ClimbSystem climbSystem;
 
@@ -46,19 +46,24 @@ public class DisplaySystem extends SubsystemBase {
                     .withPosition(0, 0)
                     .getEntry();
 
-        batteryVolege = mainTab
-                    .add("Battery Voltege", 0)
+        batteryVoltage = mainTab
+                    .add("Battery Voltage", 0)
                     .withWidget(BuiltInWidgets.kNumberBar)
-                    .withProperties(Map.of("min", 0, "max", 135))
+                    .withProperties(Map.of("min", 0, "max", 16))
                     .withSize(3,1)
                     .withPosition(0, 1)
                     .getEntry();
 
-        cameraView = mainTab
-                    .add("Ball Camera", vision.getCamera1())
-                    .withWidget(BuiltInWidgets.kCameraStream)
-                    .withSize(5,4)
-                    .withPosition(3, 0);
+        //if(vision.getCamera1() != null) {
+            cameraView = mainTab
+                            .add("Ball Camera", vision.getCamera1())
+                            .withWidget(BuiltInWidgets.kCameraStream)
+                            .withSize(4,4)
+                            .withPosition(3, 0);                   
+        //}
+     
+
+
     }
 
 
@@ -72,8 +77,8 @@ public class DisplaySystem extends SubsystemBase {
             if(climbLockEntry != null) {
                 climbLockEntry.setBoolean(!climbSystem.getMasterLocked());
             }
-            if(batteryVolege != null) {
-                batteryVolege.setDouble(m_pdh.getVoltage()); 
+            if(batteryVoltage != null) {
+                batteryVoltage.setDouble(m_pdh.getVoltage()); 
             }
             counter = 0;
         }
