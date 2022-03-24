@@ -27,13 +27,13 @@ public class LoadBall extends CommandBase {
     public void initialize() {
         isBallAlreadyLoaded = m_ballHandlingSystem.getBallLoadedSensor();
         isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
+        //TODO: If space for a ball is available, lower the arm and start spinning
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
         m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kLoadMotorsSpeed);
-        //TODO: Start the spin motor
         if (!isBallAlreadyStaged) {
             m_ballHandlingSystem.setStagingMotor(Constants.BallHandling.kStagingMotorSpeed);
         }
