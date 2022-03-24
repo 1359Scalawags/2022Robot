@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 /**
  *
  */
+@Deprecated
 public class StartLoadCommands extends ParallelCommandGroup {
 
     private BallHandlingSystem m_ballHandlingSystem;
@@ -17,7 +18,7 @@ public class StartLoadCommands extends ParallelCommandGroup {
         m_ballHandlingSystem = subsystem;
         
         addCommands(
-            new LowerArm(subsystem),
+            new LowerArm(subsystem), //TODO: Fold this into LoadBall
             new StartSpinMotor(subsystem), //TODO: Fold this into LoadBall
             new LoadBall(subsystem)
            // new LoadBall(subsystem)

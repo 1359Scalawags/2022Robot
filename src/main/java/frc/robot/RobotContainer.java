@@ -1,12 +1,12 @@
 
 package frc.robot;
 
-import frc.robot.commands.*;
+//import frc.robot.commands.*;
 import frc.robot.commands.Ball.*;
 import frc.robot.commands.Climb.*;
 import frc.robot.commands.Drive.*;
-import frc.robot.commands.autonomous.AutoDrive;
-import frc.robot.commands.autonomous.AutoShoot;
+//import frc.robot.commands.autonomous.AutoDrive;
+//import frc.robot.commands.autonomous.AutoShoot;
 import frc.robot.commands.autonomous.Auto.Automodes;
 import frc.robot.commands.vision.SetCameraSource;
 import frc.robot.helper.DPadButton;
