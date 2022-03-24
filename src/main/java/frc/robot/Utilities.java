@@ -1,6 +1,8 @@
 
 package frc.robot;
 
+import java.security.CodeSigner;
+
 public class Utilities {
 
     public static double Clamp(double value, double min, double max) { // clamp values of PID
@@ -28,6 +30,20 @@ public class Utilities {
 			temp -= 360;
 		}
 		return temp;
+	}
+
+	public static double GetSmoothStartStopSpeed(double fullSpeed, double slowFactor, double currentPosition, double maxPosition, double minPosition) {
+		if(maxPosition < minPosition) {
+			return fullSpeed;
+		}
+		double range = maxPosition - minPosition;
+		if(currentPosition < minPosition + range * Constants.SMOOTHBREAKPOINTLOCATIONPERCENT) {
+			return fullSpeed * Constants.SMOOTHBREAKPOINTSPEEDFACTOR;
+		} else if(currentPosition > maxPosition - range * Constants.SMOOTHBREAKPOINTLOCATIONPERCENT ) {
+			return fullSpeed * Constants.SMOOTHBREAKPOINTSPEEDFACTOR;
+		} else {
+			return fullSpeed;
+		}
 	}
     
 }
