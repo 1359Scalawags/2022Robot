@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.shuffleboard.SendableCameraWrapper;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -49,14 +50,18 @@ public class VisionSystem extends SubsystemBase {
 
         try {
             // USB Camera initialization
-            camera1 = CameraServer.startAutomaticCapture();
+            if(Robot.isSimulation()) {
+                camera1 = CameraServer.startAutomaticCapture(4);
+            } else {
+                camera1 = CameraServer.startAutomaticCapture(0);
+            }
+
             camera1.setResolution(Constants.DisplaySystem.CAM_WIDTH, Constants.DisplaySystem.CAM_HEIGHT);
             camera1.setFPS(Constants.DisplaySystem.CAM_FPS);
             camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+            //System.out.println(camera1.getConfigJson());
         } catch (Exception e) {
-            System.out.println("Vision system could not capture camera!");
-            System.out.println(e.getMessage());
-            camera1 = null;
+            System.out.println("Vision system could not capture camera!" + e.getMessage());
         }
 
         // try {
@@ -129,9 +134,9 @@ public class VisionSystem extends SubsystemBase {
         return area;
     }
 
-    public SendableCameraWrapper getCamera1() {
-        if(camera1 != null && camera1.isValid()) {
-            return SendableCameraWrapper.wrap(camera1);            
+    public UsbCamera getCamera1() {
+        if(camera1.isValid()) {
+            return camera1;            
         } else {
             return null;
         }
