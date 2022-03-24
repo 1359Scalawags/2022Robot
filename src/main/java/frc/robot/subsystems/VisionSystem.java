@@ -4,9 +4,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.shuffleboard.SendableCameraWrapper;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.DriverStation;
+//import edu.wpi.first.wpilibj.shuffleboard.SendableCameraWrapper;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSink;
@@ -73,7 +73,9 @@ public class VisionSystem extends SubsystemBase {
         //     camera2 = null;
         // }
 
+        //NOTE: this should probably use the "addServer()" function for multiple cameras
         server = CameraServer.getServer();
+
         server.setSource(camera1);
         // if (camera1 != null) {
         //     server.setSource(camera1);
