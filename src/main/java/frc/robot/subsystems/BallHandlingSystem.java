@@ -162,6 +162,10 @@ public class BallHandlingSystem extends SubsystemBase {
             armExtendMotor.set(0);
         }
 
+        if (armRetractLimit.get() == Constants.PRESSED) {
+            armEncoder.setPosition(0);
+        }
+
     }
 
     @Override
