@@ -157,7 +157,7 @@ public class BallHandlingSystem extends SubsystemBase {
         }else if(requestedExtendSpeed < 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
             armExtendMotor.set(requestedExtendSpeed);
         }else {
-            // TODO: reset encoder if limit switch is pressed
+           
             requestedExtendSpeed = 0;
             armExtendMotor.set(0);
         }
