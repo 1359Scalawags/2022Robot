@@ -131,9 +131,9 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void testPeriodic() {
-        if(m_tuner != null) {
-            m_tuner.periodic();
-        }
+        // if(m_tuner != null) {
+        //     m_tuner.periodic();
+        // }
     }
 
 }
