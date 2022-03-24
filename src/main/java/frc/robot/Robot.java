@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
     private RobotContainer m_robotContainer;
 
-    private SparkMaxVelocityTuner m_tuner;
+    //private SparkMaxVelocityTuner m_tuner;
 
     //Joystick joy1 = new Joystick(0); // Worry about this later
 
@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
-        m_tuner = m_robotContainer.m_ballHandlingSystem.initializeTests();
+        //m_tuner = m_robotContainer.m_ballHandlingSystem.initializeTests();
 
 
     }
@@ -131,9 +131,9 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void testPeriodic() {
-        if(m_tuner != null) {
-            m_tuner.periodic();
-        }
+        // if(m_tuner != null) {
+        //     m_tuner.periodic();
+        // }
     }
 
 }
