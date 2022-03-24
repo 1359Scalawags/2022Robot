@@ -3,6 +3,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.shuffleboard.SendableCameraWrapper;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
@@ -29,9 +31,9 @@ public class VisionSystem extends SubsystemBase {
     }
 
     // variables for USB Cams
-    UsbCamera camera1;
-    UsbCamera camera2;
-    VideoSink server;
+    private UsbCamera camera1;
+    //private UsbCamera camera2;
+    private VideoSink server;
 
     // variables for Limelight
     double x, y, area;
@@ -47,29 +49,32 @@ public class VisionSystem extends SubsystemBase {
 
         try {
             // USB Camera initialization
-            camera1 = CameraServer.startAutomaticCapture(0);
+            camera1 = CameraServer.startAutomaticCapture();
             camera1.setResolution(Constants.DisplaySystem.CAM_WIDTH, Constants.DisplaySystem.CAM_HEIGHT);
             camera1.setFPS(Constants.DisplaySystem.CAM_FPS);
             camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
         } catch (Exception e) {
+            System.out.println("Vision system could not capture camera!");
+            System.out.println(e.getMessage());
             camera1 = null;
         }
 
-        try {
-            camera2 = CameraServer.startAutomaticCapture(1);
-            camera2.setResolution(Constants.DisplaySystem.CAM_WIDTH, Constants.DisplaySystem.CAM_HEIGHT);
-            camera2.setFPS(Constants.DisplaySystem.CAM_FPS);
-            camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
-        } catch (Exception e) {
-            camera2 = null;
-        }
+        // try {
+        //     camera2 = CameraServer.startAutomaticCapture(1);
+        //     camera2.setResolution(Constants.DisplaySystem.CAM_WIDTH, Constants.DisplaySystem.CAM_HEIGHT);
+        //     camera2.setFPS(Constants.DisplaySystem.CAM_FPS);
+        //     camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+        // } catch (Exception e) {
+        //     camera2 = null;
+        // }
 
         server = CameraServer.getServer();
-        if (camera1 != null) {
-            server.setSource(camera1);
-        } else if (camera2 != null) {
-            server.setSource(camera2);
-        }
+        server.setSource(camera1);
+        // if (camera1 != null) {
+        //     server.setSource(camera1);
+        // } else if (camera2 != null) {
+        //     server.setSource(camera2);
+        // }
 
     }
 
@@ -78,26 +83,26 @@ public class VisionSystem extends SubsystemBase {
     }
 
     public void setUSBCamera(USBCameras camera) {
-        if (camera == USBCameras.BottomCamera) {
-            server.setSource(camera2);
-        } else if (camera == USBCameras.TopCamera) {
-            server.setSource(camera1);
-        } else {
-            server.setSource(null);
-        }
+    //     if (camera == USBCameras.BottomCamera) {
+    //         server.setSource(camera2);
+    //     } else if (camera == USBCameras.TopCamera) {
+    //         server.setSource(camera1);
+    //     } else {
+    //         server.setSource(null);
+    //     }
     }
 
     @Override
     public void periodic() {
-        // read values periodically
-        double x = tx.getDouble(0.0);
-        double y = ty.getDouble(0.0);
-        double area = ta.getDouble(0.0);
+        // // read values periodically
+        // double x = tx.getDouble(0.0);
+        // double y = ty.getDouble(0.0);
+        // double area = ta.getDouble(0.0);
 
-        // post to smart dashboard periodically
-        SmartDashboard.putNumber("LimelightX", x);
-        SmartDashboard.putNumber("LimelightY", y);
-        SmartDashboard.putNumber("LimelightArea", area);
+        // // post to smart dashboard periodically
+        // SmartDashboard.putNumber("LimelightX", x);
+        // SmartDashboard.putNumber("LimelightY", y);
+        // SmartDashboard.putNumber("LimelightArea", area);
     }
 
     private static NetworkTableEntry getValue(String key) {
@@ -122,5 +127,14 @@ public class VisionSystem extends SubsystemBase {
 
     public Double getTargetArea() {
         return area;
+    }
+
+    public SendableCameraWrapper getCamera1() {
+        if(camera1 != null && camera1.isValid()) {
+            return SendableCameraWrapper.wrap(camera1);            
+        } else {
+            return null;
+        }
+
     }
 }
