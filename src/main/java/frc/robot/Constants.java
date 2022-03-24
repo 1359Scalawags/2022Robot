@@ -115,17 +115,20 @@ public class Constants {
         public static final int kArmSpinMotor = 41;
         
         //Ball Arm Limits
-        public static final double kArmMaxExtendAngle = 0.3;
+        public static final double kArmMaxExtendAngle = 47;
         public static final int kArmRetractLimitID = 6; //TODO: (CHECK ROBOT) Which port is limit switch in?
         public static final double kArmExtendTolerance = .03;
 
         //Arm Speeds
-        public static final double kArmSpinMotorSpeed = 0.5f; //Change Thses Later if needed
-        public static final double kArmExtendMotorSpeed = 0.5f;
+        public static final double kArmSpinMotorSpeed = 0.15f; //Change Thses Later if needed
+        public static final double kArmExtendMotorSpeed = 0.15f;
     }
 
     public static final class DisplaySystem {
         public static final int PDHCANID = 1;
+        public static final int CAM_WIDTH = 320;
+        public static final int CAM_HEIGHT = 240;
+        public static final int CAM_FPS = 15;
     }
     
 

@@ -6,7 +6,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.BallHandlingSystem;
 
 /**
- *
+ *  // TODO: Fix the speed of Raise Arm
  */
 public class RaiseArm extends CommandBase {
 
@@ -22,7 +22,7 @@ public class RaiseArm extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_ballHandlingSystem.setArmExtendMotor(-Constants.BallHandling.kArmExtendMotorSpeed);
+        m_ballHandlingSystem.setArmExtendMotor(Constants.BallHandling.kArmExtendMotorSpeed);
     }
     
     // Called every time the scheduler runs while the command is scheduled.

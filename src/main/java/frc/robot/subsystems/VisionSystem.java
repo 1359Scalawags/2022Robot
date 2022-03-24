@@ -2,6 +2,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
@@ -47,8 +48,8 @@ public class VisionSystem extends SubsystemBase {
         try {
             // USB Camera initialization
             camera1 = CameraServer.startAutomaticCapture(0);
-            camera1.setResolution(640, 480);
-            camera1.setFPS(15);
+            camera1.setResolution(Constants.DisplaySystem.CAM_WIDTH, Constants.DisplaySystem.CAM_HEIGHT);
+            camera1.setFPS(Constants.DisplaySystem.CAM_FPS);
             camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
         } catch (Exception e) {
             camera1 = null;
@@ -56,8 +57,8 @@ public class VisionSystem extends SubsystemBase {
 
         try {
             camera2 = CameraServer.startAutomaticCapture(1);
-            camera2.setResolution(640, 480);
-            camera2.setFPS(15);
+            camera2.setResolution(Constants.DisplaySystem.CAM_WIDTH, Constants.DisplaySystem.CAM_HEIGHT);
+            camera2.setFPS(Constants.DisplaySystem.CAM_FPS);
             camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
         } catch (Exception e) {
             camera2 = null;

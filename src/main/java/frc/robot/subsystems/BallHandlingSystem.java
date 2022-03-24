@@ -58,7 +58,7 @@ public class BallHandlingSystem extends SubsystemBase {
         armExtendMotor.setIdleMode(IdleMode.kBrake);
 
         armSpinMotor = new SendableCANSparkMax(Constants.BallHandling.kArmSpinMotor, MotorType.kBrushless, this);
-        addChild("Arm Extend Motor", armSpinMotor);
+        addChild("Arm Spin Motor", armSpinMotor);
 
         armSpinMotor.restoreFactoryDefaults();
         armSpinMotor.setInverted(false); //TODO: (TEST) Is motor inverted?
@@ -139,22 +139,23 @@ public class BallHandlingSystem extends SubsystemBase {
 
         // Calculate the average stage sensor value each frame
         double stageValue = stageSensor.getRangeMM();
-        if(stageValue > 0 && Double.isFinite(stageValue)) {
+        if(stageValue > 0 && stageValue < 350) {
             stageSensorAverage = stageSensorFilter.calculate(stageValue);
         }
 
         // Calculate the average load sensor value each frame
         double loadValue = loadSensor.getRangeMM();
-        if(loadValue > 0 && Double.isFinite(loadValue)) {
+        if(loadValue > 0 && loadValue < 350) {
             loadSensorAverage = loadSensorFilter.calculate(loadValue);
         }
 
 
 
         // manage the extender motor speed
-        if(requestedExtendSpeed > 0 && armEncoder.getPosition() < Constants.BallHandling.kArmMaxExtendAngle){
+        // IMPORTANT: armEncoder returns negative values
+        if(requestedExtendSpeed < 0 && -armEncoder.getPosition() < Constants.BallHandling.kArmMaxExtendAngle){
             armExtendMotor.set(requestedExtendSpeed);
-        }else if(requestedExtendSpeed < 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
+        }else if(requestedExtendSpeed > 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
             armExtendMotor.set(requestedExtendSpeed);
         }else {
            
@@ -242,7 +243,8 @@ public class BallHandlingSystem extends SubsystemBase {
 
     public boolean getArmIsExtended() {
         //return (armEncoder.getPosition() >= Constants.BallHandling.kArmMaxExtendAngle);
-        return Utilities.IsCloseTo(armEncoder.getPosition(), Constants.BallHandling.kArmMaxExtendAngle, Constants.BallHandling.kArmExtendTolerance);
+        // IMPORTANT: armEncoder returns negative values
+        return Utilities.IsCloseTo(-armEncoder.getPosition(), Constants.BallHandling.kArmMaxExtendAngle, Constants.BallHandling.kArmExtendTolerance);
     }
 
 
