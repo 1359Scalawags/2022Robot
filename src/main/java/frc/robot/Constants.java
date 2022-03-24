@@ -117,7 +117,7 @@ public class Constants {
         //Ball Arm Limits
         public static final double kArmMaxExtendAngle = 47;
         public static final int kArmRetractLimitID = 6; //TODO: (CHECK ROBOT) Which port is limit switch in?
-        public static final double kArmExtendTolerance = .03;
+        public static final double kArmExtendTolerance = .03; //TODO: This tolerance is way to small
 
         //Arm Speeds
         public static final double kArmSpinMotorSpeed = 0.15f; //Change Thses Later if needed

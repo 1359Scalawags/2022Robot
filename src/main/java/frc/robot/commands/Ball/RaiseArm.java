@@ -28,7 +28,7 @@ public class RaiseArm extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() { 
-
+        //TODO: Slow down the arm when it is close to the top
     }
 
     // Called once the command ends or is interrupted.

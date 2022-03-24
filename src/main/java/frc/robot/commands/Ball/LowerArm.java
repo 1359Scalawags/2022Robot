@@ -29,6 +29,7 @@ public class LowerArm extends CommandBase {
     @Override
     public void execute() {
         m_ballHandlingSystem.setArmExtendMotor(-Constants.BallHandling.kArmExtendMotorSpeed);
+        //TODO: Slow down the arm when it is close to the bottom
     }
 
     // Called once the command ends or is interrupted.

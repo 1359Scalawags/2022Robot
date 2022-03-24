@@ -33,7 +33,7 @@ public class LoadBall extends CommandBase {
     @Override
     public void execute() {
         m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kLoadMotorsSpeed);
-
+        //TODO: Start the spin motor
         if (!isBallAlreadyStaged) {
             m_ballHandlingSystem.setStagingMotor(Constants.BallHandling.kStagingMotorSpeed);
         }
@@ -45,6 +45,7 @@ public class LoadBall extends CommandBase {
     public void end(boolean interrupted) {
         m_ballHandlingSystem.setLoadMotor(0);
         m_ballHandlingSystem.setStagingMotor(0);
+        //TODO: Stop the spin motor
     }
 
     // Returns true when the command should end.
