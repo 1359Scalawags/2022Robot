@@ -32,7 +32,7 @@ public class Utilities {
 		return temp;
 	}
 
-	public static double GetSmoothStartStopSpeed(double fullSpeed, double slowFactor, double currentPosition, double maxPosition, double minPosition) {
+	public static double GetSmoothStartStopSpeed(double fullSpeed, double currentPosition, double maxPosition, double minPosition) {
 		if(maxPosition < minPosition) {
 			return fullSpeed;
 		}

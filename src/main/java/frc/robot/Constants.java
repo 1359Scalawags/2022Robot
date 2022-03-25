@@ -110,16 +110,16 @@ public class Constants {
         public static final int kstageSensorTripValue = 100;
         // !!WHY WAS THIS ↑ DELETED INSTEAD OF BEING COMMENTED OUT!!
 
-        public static final int kUltrasonicFrameCount = 3; // TODO: (TEST) Can we reduce this further?
+        public static final int kUltrasonicFrameCount = 3;
 
         //Ball Arm Motors
-        public static final int kArmExtendMotor = 40; // TODO: (CHECK ROBOT) Do these need to be swapped?
+        public static final int kArmExtendMotor = 40; 
         public static final int kArmSpinMotor = 41;
         
         //Ball Arm Limits
         public static final double kArmMaxExtendAngle = 47;
-        public static final int kArmRetractLimitID = 6; //TODO: (CHECK ROBOT) Which port is limit switch in?
-        public static final double kArmExtendTolerance = .03; //TODO: This tolerance is way to small
+        public static final int kArmRetractLimitID = 6; 
+        public static final double kArmExtendTolerance = 2;
 
         //Arm Speeds
         public static final double kArmSpinMotorSpeed = 0.15f; //Change Thses Later if needed

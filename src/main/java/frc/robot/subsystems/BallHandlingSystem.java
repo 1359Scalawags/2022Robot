@@ -190,6 +190,9 @@ public class BallHandlingSystem extends SubsystemBase {
     public double getShooterMotorRPM() {
         return shootEncoder.getVelocity();
     }
+    public double getArmMotorPosition() {
+        return -armEncoder.getPosition();
+    }
 
     public void stopAllBallMotors() {
         loadMotor.stopMotor();
