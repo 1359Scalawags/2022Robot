@@ -198,6 +198,7 @@ public class BallHandlingSystem extends SubsystemBase {
         loadMotor.stopMotor();
         stagingMotor.stopMotor();
         shootMotor.stopMotor();
+        armSpinMotor.stopMotor();
     }
 
     // !!The trip values were 80 for the load sensor and 100 for the stage sensor!!
