@@ -50,7 +50,7 @@ public class LoadBall extends CommandBase {
     public void end(boolean interrupted) {
         m_ballHandlingSystem.setLoadMotor(0);
         m_ballHandlingSystem.setStagingMotor(0);
-        //TODO: Stop the spin motor
+        m_ballHandlingSystem.setSpinMotor(0);
     }
 
     // Returns true when the command should end.

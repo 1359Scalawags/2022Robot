@@ -54,14 +54,14 @@ public class BallHandlingSystem extends SubsystemBase {
         addChild("Arm Extend Motor", armExtendMotor);
 
         armExtendMotor.restoreFactoryDefaults();
-        armExtendMotor.setInverted(false); //TODO: (TEST) Is motor inverted?
+        armExtendMotor.setInverted(false); 
         armExtendMotor.setIdleMode(IdleMode.kBrake);
 
         armSpinMotor = new SendableCANSparkMax(Constants.BallHandling.kArmSpinMotor, MotorType.kBrushless, this);
         addChild("Arm Spin Motor", armSpinMotor);
 
         armSpinMotor.restoreFactoryDefaults();
-        armSpinMotor.setInverted(false); //TODO: (TEST) Is motor inverted?
+        armSpinMotor.setInverted(false);
         armSpinMotor.setIdleMode(IdleMode.kCoast);
 
         armEncoder = armExtendMotor.getEncoder();

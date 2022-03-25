@@ -9,7 +9,7 @@ public class Constants {
     public static final double SMOOTHBREAKPOINTSPEEDFACTOR = 0.25;
 
     public static final class Auto {
-        //TODO: (TEST) Calibrate the distance the robot travels more accurately
+        //TODO: (ON HOLD) Calibrate the distance the robot travels more accurately
         public static final double MotorSpeed = .4;
         public static final double MotorDistance = 8;
         public static final double AngleTurnBy = 0;

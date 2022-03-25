@@ -6,9 +6,7 @@ import frc.robot.Constants;
 import frc.robot.Utilities;
 import frc.robot.subsystems.BallHandlingSystem;
 
-/**
- * // TODO: Fix the speed of Lower Arm
- */
+
 public class LowerArm extends CommandBase {
 
     private BallHandlingSystem m_ballHandlingSystem;
