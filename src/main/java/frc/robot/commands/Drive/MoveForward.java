@@ -17,7 +17,7 @@ public class MoveForward extends CommandBase {
     private double speed;
     private double start;
     private double current;
-    private double target;
+    //private double target;
     private double distance;
 
     
@@ -34,7 +34,7 @@ public class MoveForward extends CommandBase {
     public void initialize() {
 
         start = m_driveSystem.getAverageDistance();
-        target = m_driveSystem.getNormalizedAngle();
+        //target = m_driveSystem.getNormalizedAngle();
         //System.out.println("REQUESTED DISTANCE: " + distance);
 
     }

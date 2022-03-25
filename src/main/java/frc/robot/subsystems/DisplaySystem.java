@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 
 
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
+//import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -24,7 +24,7 @@ public class DisplaySystem extends SubsystemBase {
     private NetworkTableEntry timeEntry;
     private NetworkTableEntry climbLockEntry;
     private NetworkTableEntry batteryVoltage;
-    private ComplexWidget cameraView;
+    //private ComplexWidget cameraView;
     private ClimbSystem climbSystem;
 
     public DisplaySystem(ClimbSystem climber, VisionSystem vision) {
@@ -55,11 +55,11 @@ public class DisplaySystem extends SubsystemBase {
                     .getEntry();
 
         //if(vision.getCamera1() != null) {
-            cameraView = mainTab
-                            .add("Ball Camera", vision.getCamera1())
-                            .withWidget(BuiltInWidgets.kCameraStream)
-                            .withSize(4,4)
-                            .withPosition(3, 0);                   
+        this.mainTab
+                        .add("Ball Camera", vision.getCamera1())
+                        .withWidget(BuiltInWidgets.kCameraStream)
+                        .withSize(4,4)
+                        .withPosition(3, 0);                   
         //}
      
 

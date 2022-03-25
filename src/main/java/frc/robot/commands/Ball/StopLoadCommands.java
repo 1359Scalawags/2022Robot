@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
  */
 public class StopLoadCommands extends ParallelCommandGroup {
 
-        private BallHandlingSystem m_ballHandlingSystem;
-        // private boolean isBallAlreadyLoaded;
-        // private boolean isBallAlreadyStaged;
+    // private BallHandlingSystem m_ballHandlingSystem;
+    // private boolean isBallAlreadyLoaded;
+    // private boolean isBallAlreadyStaged;
 
     public StopLoadCommands(BallHandlingSystem subsystem) {
-        m_ballHandlingSystem = subsystem;
+        //m_ballHandlingSystem = subsystem;
         
         addCommands(
             new RaiseArm(subsystem),

@@ -10,16 +10,16 @@ import frc.robot.commands.Drive.SetDriveDirection;
 import frc.robot.commands.Drive.MoveForward;
 import frc.robot.subsystems.BallHandlingSystem;
 import frc.robot.subsystems.DriveSystem;
-import frc.robot.subsystems.VisionSystem;
+// import frc.robot.subsystems.VisionSystem;
 import frc.robot.subsystems.DriveSystem.Directions;
 
 /**
  *
  */
 public class Auto extends SequentialCommandGroup {
-    private DriveSystem drive;
-    private BallHandlingSystem ballHandling;
-    private VisionSystem vision;
+    //private DriveSystem drive;
+    //private BallHandlingSystem ballHandling;
+    //private VisionSystem vision;
 
     public enum Automodes{
         StandStill,
@@ -30,13 +30,13 @@ public class Auto extends SequentialCommandGroup {
     }
 
     private Automodes choosenMode;
-    private int angleToTurn;
+    //private int angleToTurn;
 
     public Auto(DriveSystem drive, BallHandlingSystem ballHandling, Automodes mode, int angle) {
         // copy the information we received for future use
-        this.drive = drive;
-        this.ballHandling = ballHandling;
-        this.angleToTurn = angle;
+        //this.drive = drive;
+        //this.ballHandling = ballHandling;
+        //this.angleToTurn = angle;
         this.choosenMode = mode;
 
         MoveForward move = new MoveForward(drive, Constants.Auto.MotorDistance, Constants.Auto.MotorSpeed);
