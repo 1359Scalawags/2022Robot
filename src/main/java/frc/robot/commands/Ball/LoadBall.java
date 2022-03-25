@@ -40,17 +40,26 @@ public class LoadBall extends CommandBase {
     public void execute() {
         m_ballHandlingSystem.setLoadMotor(Constants.BallHandling.kLoadMotorsSpeed);
         if (!isBallAlreadyStaged) {
-            m_ballHandlingSystem.setStagingMotor(Constants.BallHandling.kStagingMotorSpeed);
+            if(m_ballHandlingSystem.getBallStagedSensor() == true) {
+                m_ballHandlingSystem.setStagingMotor(0); 
+            } else {
+                m_ballHandlingSystem.setStagingMotor(Constants.BallHandling.kStagingMotorSpeed);                
+            }
         }
-
+        // if(m_ballHandlingSystem.getBallLoadedSensor() == true && m_ballHandlingSystem.getBallStagedSensor() == true) {
+        //     m_ballHandlingSystem.setLoadMotor(0);
+        //     m_ballHandlingSystem.setSpinMotor(0);
+        //     System.out.println("Both balls are loaded...stopping motors.");
+        // }
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        System.out.println("LoadBall has ended.");
         m_ballHandlingSystem.setLoadMotor(0);
+        m_ballHandlingSystem.setSpinMotor(0);    
         m_ballHandlingSystem.setStagingMotor(0);
-        m_ballHandlingSystem.setSpinMotor(0);
     }
 
     // Returns true when the command should end.
@@ -58,18 +67,12 @@ public class LoadBall extends CommandBase {
     public boolean isFinished() {
         if (isBallAlreadyLoaded && isBallAlreadyStaged) {
             return true;
-        } else if (isBallAlreadyStaged) {
-            if (m_ballHandlingSystem.getBallLoadedSensor() == true) {
-                return true;
-            } else {
-                return false;
-            }
+        } else if (m_ballHandlingSystem.getBallLoadedSensor() == true && m_ballHandlingSystem.getBallStagedSensor() == true) {
+            return true;
+        } else if (isBallAlreadyStaged && m_ballHandlingSystem.getBallLoadedSensor() == true) {
+            return true;
         } else {
-            if (m_ballHandlingSystem.getBallStagedSensor()) {
-                return true;
-            } else {
-                return false;
-            }
+            return false;
         }
     }
 

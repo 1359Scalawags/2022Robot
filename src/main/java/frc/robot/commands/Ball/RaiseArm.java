@@ -14,8 +14,7 @@ public class RaiseArm extends CommandBase {
     public RaiseArm(BallHandlingSystem subsystem) {
 
         m_ballHandlingSystem = subsystem;
-        // TODO: Does this need to be commented out?
-        addRequirements(m_ballHandlingSystem);
+        //addRequirements(m_ballHandlingSystem);
 
     }
 
@@ -28,8 +27,10 @@ public class RaiseArm extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() { 
-        double ArmMoveSpeed = Utilities.GetSmoothStartStopSpeed(Constants.BallHandling.kArmExtendMotorSpeed,
+        double ArmMoveSpeed = Utilities.GetSmoothStartStopSpeed(Constants.BallHandling.kArmRetractMotorSpeed,
                 m_ballHandlingSystem.getArmMotorPosition(), Constants.BallHandling.kArmMaxExtendAngle, 0);
+        //TODO: Remove this if it doesn't work
+        ArmMoveSpeed = Constants.BallHandling.kArmRetractMotorSpeed;
         m_ballHandlingSystem.setArmExtendMotor(ArmMoveSpeed);
     }
 
