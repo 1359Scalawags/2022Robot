@@ -9,6 +9,7 @@ import frc.robot.subsystems.BallHandlingSystem;
 /**
  *
  */
+@Deprecated
 public class StartSpinMotor extends CommandBase {
 
     private BallHandlingSystem m_ballHandlingSystem;

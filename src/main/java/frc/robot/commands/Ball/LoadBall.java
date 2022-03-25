@@ -25,9 +25,14 @@ public class LoadBall extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+       
         isBallAlreadyLoaded = m_ballHandlingSystem.getBallLoadedSensor();
         isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
-        //TODO: If space for a ball is available, lower the arm and start spinning
+
+        if(isBallAlreadyLoaded == false){
+            m_ballHandlingSystem.setSpinMotor(Constants.BallHandling.kArmSpinMotorSpeed);
+        }
+    
     }
 
     // Called every time the scheduler runs while the command is scheduled.
