@@ -1,8 +1,6 @@
 
 package frc.robot;
 
-import java.security.CodeSigner;
-
 public class Utilities {
 
     public static double Clamp(double value, double min, double max) { // clamp values of PID

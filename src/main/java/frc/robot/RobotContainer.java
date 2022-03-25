@@ -1,12 +1,9 @@
 
 package frc.robot;
 
-//import frc.robot.commands.*;
 import frc.robot.commands.Ball.*;
 import frc.robot.commands.Climb.*;
 import frc.robot.commands.Drive.*;
-//import frc.robot.commands.autonomous.AutoDrive;
-//import frc.robot.commands.autonomous.AutoShoot;
 import frc.robot.commands.autonomous.Auto.Automodes;
 import frc.robot.commands.vision.SetCameraSource;
 import frc.robot.helper.DPadButton;
@@ -20,17 +17,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-
-/**
- * This class is where the bulk of the robot should be declared. Since
- * Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in
- * the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of
- * the robot
- * (including subsystems, commands, and button mappings) should be declared
- * here.
- */
 public class RobotContainer {
 
     private static RobotContainer m_robotContainer = new RobotContainer();
@@ -108,14 +94,6 @@ public class RobotContainer {
         return m_robotContainer;
     }
 
-    /**
-     * Use this method to define your button->command mappings. Buttons can be
-     * created by
-     * instantiating a {@link GenericHID} or one of its subclasses ({@link
-     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing
-     * it to a
-     * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-     */
     private void configureButtonBindings() {
         // Create some buttons
         // final JoystickButton leftStick = new JoystickButton(driverController, XboxController.Button.kLeftStick.value);
@@ -138,8 +116,6 @@ public class RobotContainer {
         unlockClimberBtn.whenPressed(new ReleaseTensionAndUnlock(m_climbSystem), true);
         //SmartDashboard.putData("unlockClimberBtn", new ReleaseTensionAndUnlock(m_climbSystem));
 
-
-
         // final JoystickButton raiseClimberBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
         // raiseClimberBtn.whenPressed(new ManuelClimber(m_climbSystem), true);
         // SmartDashboard.putData("raiseClimberBtn", new ManuelClimber(m_climbSystem));
@@ -148,24 +124,12 @@ public class RobotContainer {
         // lowerClimberBtn.whenPressed(new LowerClimber(m_climbSystem), true);
         // SmartDashboard.putData("lowerClimberBtn", new LowerClimber(m_climbSystem));
 
-        // final JoystickButton raiseTraverseClimberBtn = new JoystickButton(assistController,
-        //         XboxController.Button.kA.value);
-        // raiseTraverseClimberBtn.whenPressed(new RaiseTraverse(m_climbSystem), true);
-        // SmartDashboard.putData("RaiseTraverseClimberBtn", new RaiseTraverse(m_climbSystem));
-
-        // final JoystickButton lowerTraverseClimberBtn = new JoystickButton(assistController,
-        //         XboxController.Button.kA.value);
-        // lowerTraverseClimberBtn.whenPressed(new LowerTraverse(m_climbSystem), true);
-        // SmartDashboard.putData("LowerTraverseClimberBtn", new LowerTraverse(m_climbSystem));
-
         // final JoystickButton shootBallBtn = new JoystickButton(assistController, XboxController.Button.kA.value);
         final JoystickButton loadBallBtn = new JoystickButton(assistController, XboxController.Button.kX.value);
         final JoystickButton sequenceShotBtn = new JoystickButton(assistController, XboxController.Button.kA.value);    
         final JoystickButton reverseBallBtn = new JoystickButton(assistController, XboxController.Button.kY.value);
         final JoystickButton stopLoadBallMotorsBtn = new JoystickButton(assistController, XboxController.Button.kB.value);
         
-       
-
         DPadButton loadBallDpadBtn;
         DPadButton sequenceShotDPad;
         DPadButton reverseBallDpad;
@@ -212,7 +176,6 @@ public class RobotContainer {
         top2CameraBtn.whenPressed(new SetCameraSource(m_visionSystem, USBCameras.TopCamera));
         bot2CameraBtn.whenPressed(new SetCameraSource(m_visionSystem, USBCameras.BottomCamera));
 
-
     }
 
     public XboxController getdriverController() {
@@ -223,11 +186,6 @@ public class RobotContainer {
         return assistController;
     }
 
-    /**
-     * Use this to pass the autonomous command to the main {@link Robot} class.
-     *
-     * @return the command to run in autonomous
-     */
     public Command getAutonomousCommand() {
         // The selected command will be run in autonomous
         return new Auto(m_driveSystem, m_ballHandlingSystem, m_autoChooser.getSelected(), m_autoAngleChooser.getSelected()); 
