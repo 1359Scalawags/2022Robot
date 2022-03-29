@@ -29,7 +29,7 @@ public class RaiseArm extends CommandBase {
     public void execute() { 
         double ArmMoveSpeed = Utilities.GetSmoothStartStopSpeed(Constants.BallHandling.kArmRetractMotorSpeed,
                 m_ballHandlingSystem.getArmMotorPosition(), Constants.BallHandling.kArmMaxExtendAngle, 0);
-        //TODO: Remove this if it doesn't work
+        //TODO: (IMPORTANT) Does this really need to be hear now?
         ArmMoveSpeed = Constants.BallHandling.kArmRetractMotorSpeed;
         m_ballHandlingSystem.setArmExtendMotor(ArmMoveSpeed);
     }
