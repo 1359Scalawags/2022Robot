@@ -66,6 +66,7 @@ public class RobotContainer {
         // Configure default commands
         m_driveSystem.setDefaultCommand(new ManualDrive(m_driveSystem));
         m_climbSystem.setDefaultCommand(new ManualClimber(m_climbSystem));
+        //m_ballHandlingSystem.setDefaultCommand(new ArmLock(m_ballHandlingSystem); //TODO: (IMPORTANT) Create a command to hold the arm up when a button is pressed by the user
         // Configure autonomous sendable chooser
 
         m_autoAngleChooser.addOption("0", 0);
