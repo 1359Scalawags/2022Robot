@@ -44,7 +44,7 @@ public class RaiseArm extends CommandBase {
     @Override
     public boolean isFinished() {
         if(m_ballHandlingSystem.getArmLimitPressed()) {
-            m_ballHandlingSystem.setArmExtendMotor(0);
+            m_ballHandlingSystem.setArmExtendMotor(0.11);
             return true;
         } else {
             return false;

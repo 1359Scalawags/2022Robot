@@ -17,8 +17,8 @@ public class StopLoadCommands extends ParallelCommandGroup {
         //m_ballHandlingSystem = subsystem;
         
         addCommands(
-            new StopBallMotors(subsystem),            
-            new RaiseArm(subsystem)
+            new StopBallMotors(subsystem)            
+            //new RaiseArm(subsystem)
             // new StopSpinMotor(subsystem),
             // new LoadBall(subsystem)
         );

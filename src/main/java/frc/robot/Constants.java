@@ -22,8 +22,8 @@ public class Constants {
         public static final int kRightFrontPort = 11;
         public static final int kRightRearPort = 12;
         //Drive motor speeds
-        public static final float kTeleopBoostSpeed = 0.6f;
-        public static final float kTeleopBaseDriveSpeed = 0.4f;        
+        public static final float kTeleopBoostSpeed = 0.55f;
+        public static final float kTeleopBaseDriveSpeed = 0.45f;        
         public static final float kDriveSpeed = 0.85f;
 
         //Motor varibles
@@ -85,11 +85,11 @@ public class Constants {
 
         public static final boolean BALLPRESENT = false;
 
-        public static final double kShooterP = 0;
+        public static final double kShooterP = .00049;
         public static final double kShooterI = 0;
         public static final double kShooterD = 0; 
         public static final double kShooterIz = 0; 
-        public static final double kShooterFf = 0.000441; // Tuned for 2268 RPM
+        public static final double kShooterFf = 0.0; // Tuned for 2268 RPM
         public static final int kShooterMaxOutput = 1; 
         public static final int kShooterMinOutput = -1;
 

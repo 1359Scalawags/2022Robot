@@ -83,7 +83,7 @@ public class RobotContainer {
         m_autoChooser.addOption("AutoDrive", Automodes.MoveForward);
         m_autoChooser.addOption("AutoShootAndDrive", Automodes.AimAndShoot);
         m_autoChooser.addOption("AutoStandStill", Automodes.StandStill);
-        m_autoChooser.setDefaultOption("AutoDrive", Automodes.MoveForward);
+        m_autoChooser.setDefaultOption("AutoShootAndDrive", Automodes.AimAndShoot);
 
         SmartDashboard.putData("Auto Mode", m_autoChooser);
         SmartDashboard.putData("Auto Angle", m_autoAngleChooser);
