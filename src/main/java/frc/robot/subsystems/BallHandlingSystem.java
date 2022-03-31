@@ -176,7 +176,12 @@ public class BallHandlingSystem extends SubsystemBase {
             armEncoder.setPosition(0);
         }
 
+        if (isParked) {
+            setArmExtendMotor(Constants.BallHandling.kArmParkSpeed);
+        }
+
     }
+
     public void park(){
         isParked = true;
     }
