@@ -177,7 +177,9 @@ public class BallHandlingSystem extends SubsystemBase {
         }
 
         if (isParked) {
-            setArmExtendMotor(Constants.BallHandling.kArmParkSpeed);
+            double distanceFromPark = Math.sqrt(getArmMotorPosition());
+            double armParkSpeed = Utilities.Clamp(Constants.BallHandling.kArmParkSpeed * distanceFromPark, 0, Constants.BallHandling.kArmRetractMotorSpeed);
+            setArmExtendMotor(armParkSpeed);
         }
 
     }
