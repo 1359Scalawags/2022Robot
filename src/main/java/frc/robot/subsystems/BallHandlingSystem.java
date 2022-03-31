@@ -20,6 +20,11 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 
 public class BallHandlingSystem extends SubsystemBase {
 
+
+
+    private boolean isParked;
+
+
     private SendableCANSparkMax loadMotor;
     private SendableCANSparkMax stagingMotor;
     private SendableCANSparkMax armSpinMotor;
@@ -48,6 +53,9 @@ public class BallHandlingSystem extends SubsystemBase {
 
 
     public BallHandlingSystem() {
+
+
+       
 
         requestedExtendSpeed = 0;
         armExtendMotor = new SendableCANSparkMax(Constants.BallHandling.kArmExtendMotor, MotorType.kBrushless, this);
@@ -121,6 +129,7 @@ public class BallHandlingSystem extends SubsystemBase {
     private int pingCounter = 0;
     @Override
     public void periodic() {
+
         // alternate sensor pings to avoid interference
         if(pingCounter == 1) {
             //System.out.println("Ping Stage");
@@ -168,7 +177,14 @@ public class BallHandlingSystem extends SubsystemBase {
         }
 
     }
+    public void park(){
+        isParked = true;
+    }
 
+
+    public void unpark(){
+        isParked = false;
+    }
     @Override
     public void simulationPeriodic() {
 
