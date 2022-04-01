@@ -127,9 +127,7 @@ public class BallHandlingSystem extends SubsystemBase {
     }
 
     private int pingCounter = 0;
-    @Override
-    public void periodic() {
-
+    public void periodicUltrasonics() {
         // alternate sensor pings to avoid interference
         if(pingCounter == 1) {
             //System.out.println("Ping Stage");
@@ -144,8 +142,7 @@ public class BallHandlingSystem extends SubsystemBase {
             //System.out.println("stage: " + stageSensor.getRangeMM());
             //System.out.println("load:  " + loadSensor.getRangeMM());
         }
-        pingCounter++;
-
+        pingCounter++;   
         // Calculate the average stage sensor value each frame
         double stageValue = stageSensor.getRangeMM();
         if(stageValue > 0 && stageValue < 350) {
@@ -157,8 +154,14 @@ public class BallHandlingSystem extends SubsystemBase {
         if(loadValue > 0 && loadValue < 350) {
             loadSensorAverage = loadSensorFilter.calculate(loadValue);
         }
+    }
 
 
+    @Override
+    public void periodic() {
+
+        // perform periodic tasks for ultrasonic sensors
+        periodicUltrasonics();
 
         // manage the extender motor speed
         // IMPORTANT: armEncoder returns negative values
@@ -167,7 +170,6 @@ public class BallHandlingSystem extends SubsystemBase {
         }else if(requestedExtendSpeed > 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
             armExtendMotor.set(requestedExtendSpeed);
         }else {
-           
             requestedExtendSpeed = 0;
             armExtendMotor.set(0);
         }
@@ -177,8 +179,8 @@ public class BallHandlingSystem extends SubsystemBase {
         }
 
         if (isParked) {
-            double distanceFromPark = Math.sqrt(getArmMotorPosition());
-            double armParkSpeed = Utilities.Clamp(Constants.BallHandling.kArmParkSpeed * distanceFromPark, 0, Constants.BallHandling.kArmRetractMotorSpeed);
+            double distanceFromPark = Math.sqrt(Math.max(0, getArmMotorPosition()));
+            double armParkSpeed = Utilities.Clamp(Constants.BallHandling.kArmParkSpeed * distanceFromPark, 0, Constants.BallHandling.kMaxArmParkSpeed);
             setArmExtendMotor(armParkSpeed);
             //setArmExtendMotor(Constants.BallHandling.kArmParkSpeed);
         }
@@ -188,7 +190,6 @@ public class BallHandlingSystem extends SubsystemBase {
     public void park(){
         isParked = true;
     }
-
 
     public void unpark(){
         isParked = false;
