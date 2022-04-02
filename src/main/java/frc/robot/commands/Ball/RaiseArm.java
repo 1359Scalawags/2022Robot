@@ -30,7 +30,7 @@ public class RaiseArm extends CommandBase {
         double ArmMoveSpeed = Utilities.GetSmoothStartStopSpeed(Constants.BallHandling.kArmRetractMotorSpeed,
                 m_ballHandlingSystem.getArmMotorPosition(), Constants.BallHandling.kArmMaxExtendAngle, 0);
         //TODO: (IMPORTANT) Does this really need to be hear now?
-        ArmMoveSpeed = Constants.BallHandling.kArmRetractMotorSpeed;
+        //ArmMoveSpeed = Constants.BallHandling.kArmRetractMotorSpeed;
         m_ballHandlingSystem.setArmExtendMotor(ArmMoveSpeed);
     }
 
@@ -44,7 +44,7 @@ public class RaiseArm extends CommandBase {
     @Override
     public boolean isFinished() {
         if(m_ballHandlingSystem.getArmLimitPressed()) {
-            m_ballHandlingSystem.setArmExtendMotor(0.11);
+            m_ballHandlingSystem.setArmExtendMotor(0.0);
             return true;
         } else {
             return false;

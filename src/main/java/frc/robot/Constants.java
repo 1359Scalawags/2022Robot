@@ -5,8 +5,8 @@ public class Constants {
     public static final boolean PRESSED = false;
     public static final boolean NOTPRESSED = !PRESSED;
     public static final double TOLERANCE = .1;
-    public static final double SMOOTHBREAKPOINTLOCATIONPERCENT = 0.2;
-    public static final double SMOOTHBREAKPOINTSPEEDFACTOR = 0.5;
+    public static final double SMOOTHBREAKPOINTLOCATIONPERCENT = 0.1;
+    public static final double SMOOTHBREAKPOINTSPEEDFACTOR = 0.25;
 
     public static final class Auto {
         //TODO: (ON HOLD) Calibrate the distance the robot travels more accurately

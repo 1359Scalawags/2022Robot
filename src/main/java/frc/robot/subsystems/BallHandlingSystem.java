@@ -20,10 +20,7 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 
 public class BallHandlingSystem extends SubsystemBase {
 
-
-
     private boolean isParked;
-
 
     private SendableCANSparkMax loadMotor;
     private SendableCANSparkMax stagingMotor;
@@ -154,6 +151,7 @@ public class BallHandlingSystem extends SubsystemBase {
         if(loadValue > 0 && loadValue < 350) {
             loadSensorAverage = loadSensorFilter.calculate(loadValue);
         }
+        isParked = false;
     }
 
 
@@ -163,26 +161,29 @@ public class BallHandlingSystem extends SubsystemBase {
         // perform periodic tasks for ultrasonic sensors
         periodicUltrasonics();
 
-        // manage the extender motor speed
-        // IMPORTANT: armEncoder returns negative values
-        if(requestedExtendSpeed < 0 && -armEncoder.getPosition() < Constants.BallHandling.kArmMaxExtendAngle){
-            armExtendMotor.set(requestedExtendSpeed);
-        }else if(requestedExtendSpeed > 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
-            armExtendMotor.set(requestedExtendSpeed);
-        }else {
-            requestedExtendSpeed = 0;
-            armExtendMotor.set(0);
-        }
 
-        if (armRetractLimit.get() == Constants.PRESSED) {
-            armEncoder.setPosition(0);
-        }
+
+
 
         if (isParked) {
             double armParkSpeed = Constants.BallHandling.kArmParkSpeedMultiplier * getArmMotorPosition();
             armParkSpeed = Utilities.Clamp(armParkSpeed, -Constants.BallHandling.kMaxArmParkSpeed, Constants.BallHandling.kMaxArmParkSpeed);
-            setArmExtendMotor(armParkSpeed);
+            armExtendMotor.set(armParkSpeed);
             //setArmExtendMotor(Constants.BallHandling.kArmParkSpeed);
+        } else {
+            // manage the extender motor speed
+            // IMPORTANT: armEncoder returns negative values
+            if(requestedExtendSpeed < 0 && -armEncoder.getPosition() < Constants.BallHandling.kArmMaxExtendAngle){
+                armExtendMotor.set(requestedExtendSpeed);
+            }else if(requestedExtendSpeed > 0 && armRetractLimit.get() == Constants.NOTPRESSED) {
+                armExtendMotor.set(requestedExtendSpeed);
+            }else {
+                requestedExtendSpeed = 0;
+                armExtendMotor.set(0);
+            }
+            if (armRetractLimit.get() == Constants.PRESSED) {
+                armEncoder.setPosition(0);
+            }
         }
 
     }
