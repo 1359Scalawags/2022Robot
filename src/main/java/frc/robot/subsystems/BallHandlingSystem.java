@@ -52,7 +52,7 @@ public class BallHandlingSystem extends SubsystemBase {
     public BallHandlingSystem() {
 
 
-       
+        isParked = false;
 
         requestedExtendSpeed = 0;
         armExtendMotor = new SendableCANSparkMax(Constants.BallHandling.kArmExtendMotor, MotorType.kBrushless, this);
@@ -72,6 +72,7 @@ public class BallHandlingSystem extends SubsystemBase {
         armEncoder = armExtendMotor.getEncoder();
 
         armRetractLimit = new DigitalInput(Constants.BallHandling.kArmRetractLimitID);
+        addChild("Arm Retract Limit", armRetractLimit);
 
         // loadMotor = new MotorControllerGroup(loadMotor1);
         loadMotor = new SendableCANSparkMax(Constants.BallHandling.kLoadMotor, MotorType.kBrushless, this);
@@ -160,10 +161,6 @@ public class BallHandlingSystem extends SubsystemBase {
 
         // perform periodic tasks for ultrasonic sensors
         periodicUltrasonics();
-
-
-
-
 
         if (isParked) {
             double armParkSpeed = Constants.BallHandling.kArmParkSpeedMultiplier * getArmMotorPosition();
