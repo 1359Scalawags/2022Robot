@@ -35,12 +35,17 @@ public class ReverseBall extends CommandBase {
         // isBallAlreadyLoaded = m_ballHandlingSystem.getBallLoadedSensor();
         // isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
         reverseballTimer.start();
-        m_ballHandlingSystem.setSpinMotor(-Constants.BallHandling.kArmSpinMotorSpeed);
+
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        if(m_ballHandlingSystem.getArmIsExtended()) {
+            m_ballHandlingSystem.setSpinMotor(-Constants.BallHandling.kArmSpinMotorSpeed);
+        } else {
+            m_ballHandlingSystem.setSpinMotor(0);           
+        }
         m_ballHandlingSystem.setLoadMotor(-Constants.BallHandling.kLoadMotorsSpeed);
         m_ballHandlingSystem.setStagingMotor(-Constants.BallHandling.kStagingMotorSpeed);
         
@@ -50,6 +55,7 @@ public class ReverseBall extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         m_ballHandlingSystem.setLoadMotor(0);
+        m_ballHandlingSystem.setSpinMotor(0);
         reverseballTimer.stop();
     }
 

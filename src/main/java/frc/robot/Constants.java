@@ -119,10 +119,10 @@ public class Constants {
         //Ball Arm Limits
         public static final double kArmMaxExtendAngle = 45;
         public static final int kArmRetractLimitID = 6; 
-        public static final double kArmExtendTolerance = 1;
+        public static final double kArmExtendTolerance = 5;
 
         //Arm Speeds
-        public static final double kArmSpinMotorSpeed = 0.35f; //Change Thses Later if needed
+        public static final double kArmSpinMotorSpeed = 0.25f; //Change Thses Later if needed
         public static final double kArmExtendMotorSpeed = 0.2f;
         public static final double kArmRetractMotorSpeed = 0.25f;
         //public static final double kArmParkSpeedMultiplier = 0.03;

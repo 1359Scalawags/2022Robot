@@ -188,6 +188,11 @@ public class BallHandlingSystem extends SubsystemBase {
     public void unpark(){
         isParked = false;
     }
+
+    public boolean armIsParked() {
+        return isParked;
+    }
+    
     @Override
     public void simulationPeriodic() {
 
