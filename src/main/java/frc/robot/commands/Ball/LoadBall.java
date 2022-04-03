@@ -30,7 +30,7 @@ public class LoadBall extends CommandBase {
         isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
 
         if(isBallAlreadyLoaded == false){
-            //m_ballHandlingSystem.setSpinMotor(Constants.BallHandling.kArmSpinMotorSpeed);
+            m_ballHandlingSystem.setSpinMotor(Constants.BallHandling.kArmSpinMotorSpeed);
         }
     
     }

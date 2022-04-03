@@ -3,6 +3,9 @@ package frc.robot.commands.Ball;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.BallHandlingSystem;
+
+import java.lang.invoke.ConstantCallSite;
+
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -32,6 +35,7 @@ public class ReverseBall extends CommandBase {
         // isBallAlreadyLoaded = m_ballHandlingSystem.getBallLoadedSensor();
         // isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
         reverseballTimer.start();
+        m_ballHandlingSystem.setSpinMotor(-Constants.BallHandling.kArmSpinMotorSpeed);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

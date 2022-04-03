@@ -29,6 +29,7 @@ public class LowerArm extends CommandBase {
     public void execute() {
         double ArmMoveSpeed = Utilities.GetSmoothStartStopSpeed(-Constants.BallHandling.kArmExtendMotorSpeed,
                 m_ballHandlingSystem.getArmMotorPosition(), Constants.BallHandling.kArmMaxExtendAngle, 0);
+        ArmMoveSpeed = -Constants.BallHandling.kArmExtendMotorSpeed;
         m_ballHandlingSystem.setArmExtendMotor(ArmMoveSpeed);
     }
 

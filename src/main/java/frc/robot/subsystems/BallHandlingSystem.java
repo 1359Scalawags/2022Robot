@@ -152,7 +152,7 @@ public class BallHandlingSystem extends SubsystemBase {
         if(loadValue > 0 && loadValue < 350) {
             loadSensorAverage = loadSensorFilter.calculate(loadValue);
         }
-        isParked = false;
+        
     }
 
 

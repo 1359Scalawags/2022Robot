@@ -21,7 +21,7 @@ public class RaiseArm extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-
+        m_ballHandlingSystem.unpark();
     }
     
     // Called every time the scheduler runs while the command is scheduled.
@@ -30,7 +30,7 @@ public class RaiseArm extends CommandBase {
         double ArmMoveSpeed = Utilities.GetSmoothStartStopSpeed(Constants.BallHandling.kArmRetractMotorSpeed,
                 m_ballHandlingSystem.getArmMotorPosition(), Constants.BallHandling.kArmMaxExtendAngle, 0);
         //TODO: (IMPORTANT) Does this really need to be hear now?
-        //ArmMoveSpeed = Constants.BallHandling.kArmRetractMotorSpeed;
+        ArmMoveSpeed = Constants.BallHandling.kArmRetractMotorSpeed;
         m_ballHandlingSystem.setArmExtendMotor(ArmMoveSpeed);
     }
 

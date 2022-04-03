@@ -18,8 +18,8 @@ public class StartLoadCommands extends ParallelCommandGroup {
         // m_ballHandlingSystem = subsystem;
         
         addCommands(
-            //new LowerArm(subsystem),
-            // new StartSpinMotor(subsystem),
+            new LowerArm(subsystem),
+            //new StartSpinMotor(subsystem),
             new LoadBall(subsystem)
            // new LoadBall(subsystem)
         );
