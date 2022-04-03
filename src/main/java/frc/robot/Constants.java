@@ -125,8 +125,8 @@ public class Constants {
         public static final double kArmSpinMotorSpeed = 0.15f; //Change Thses Later if needed
         public static final double kArmExtendMotorSpeed = 0.2f;
         public static final double kArmRetractMotorSpeed = 0.25f;
-        public static final double kArmParkSpeedMultiplier = 0.03;
-        public static final double kMaxArmParkSpeed = 0.05;
+        //public static final double kArmParkSpeedMultiplier = 0.03;
+        public static final double kMaxArmParkSpeed = 0.03;
     }
 
     public static final class DisplaySystem {
