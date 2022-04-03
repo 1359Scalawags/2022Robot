@@ -6,7 +6,7 @@ public class Constants {
     public static final boolean NOTPRESSED = !PRESSED;
     public static final double TOLERANCE = .1;
     public static final double SMOOTHBREAKPOINTLOCATIONPERCENT = 0.1;
-    public static final double SMOOTHBREAKPOINTSPEEDFACTOR = 0.25;
+    public static final double SMOOTHBREAKPOINTSPEEDFACTOR = 0.5;
 
     public static final class Auto {
         //TODO: (ON HOLD) Calibrate the distance the robot travels more accurately
@@ -117,7 +117,7 @@ public class Constants {
         public static final int kArmSpinMotor = 41;
         
         //Ball Arm Limits
-        public static final double kArmMaxExtendAngle = 48.5;
+        public static final double kArmMaxExtendAngle = 45;
         public static final int kArmRetractLimitID = 6; 
         public static final double kArmExtendTolerance = 1;
 
@@ -125,8 +125,8 @@ public class Constants {
         public static final double kArmSpinMotorSpeed = 0.15f; //Change Thses Later if needed
         public static final double kArmExtendMotorSpeed = 0.2f;
         public static final double kArmRetractMotorSpeed = 0.25f;
-        public static final double kArmParkSpeedMultiplier = 0.05;
-        public static final double kMaxArmParkSpeed = 0.1;
+        public static final double kArmParkSpeedMultiplier = 0.03;
+        public static final double kMaxArmParkSpeed = 0.05;
     }
 
     public static final class DisplaySystem {
