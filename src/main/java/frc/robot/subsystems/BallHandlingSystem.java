@@ -143,14 +143,18 @@ public class BallHandlingSystem extends SubsystemBase {
         pingCounter++;   
         // Calculate the average stage sensor value each frame
         double stageValue = stageSensor.getRangeMM();
-        if(stageValue > 0 && stageValue < 350) {
+        if(stageValue > 0.1 && stageValue < 1000) {
             stageSensorAverage = stageSensorFilter.calculate(stageValue);
+        } else if (stageValue > 5000) {
+            stageSensorAverage = stageSensorFilter.calculate(50.8);
         }
 
         // Calculate the average load sensor value each frame
         double loadValue = loadSensor.getRangeMM();
-        if(loadValue > 0 && loadValue < 350) {
+        if(loadValue > 0.1 && loadValue < 1000) {
             loadSensorAverage = loadSensorFilter.calculate(loadValue);
+        } else if (stageValue > 5000) {
+            loadSensorAverage = loadSensorFilter.calculate(50.8);
         }
         
     }

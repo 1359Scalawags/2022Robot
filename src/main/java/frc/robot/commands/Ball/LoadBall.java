@@ -29,9 +29,9 @@ public class LoadBall extends CommandBase {
         isBallAlreadyLoaded = m_ballHandlingSystem.getBallLoadedSensor();
         isBallAlreadyStaged = m_ballHandlingSystem.getBallStagedSensor();
 
-        if(isBallAlreadyLoaded == false){
+       // if(isBallAlreadyLoaded == false){
             m_ballHandlingSystem.setSpinMotor(Constants.BallHandling.kArmSpinMotorSpeed);
-        }
+       // }
     
     }
 

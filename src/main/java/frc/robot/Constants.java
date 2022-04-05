@@ -98,8 +98,8 @@ public class Constants {
         
         //Sensor Stuff
         public static final int kSensorAverageSamples = 3;
-        public static final int kloadPingChannel = 3;
-        public static final int kloadEchoChannel = 4;
+        public static final int kloadPingChannel = 1;
+        public static final int kloadEchoChannel = 2;
         // public static final int kloadSensorTripValue = 150;
         public static final int kloadSensorTripValue = 80;
         // !!WHY WAS THIS ↑ DELETED INSTEAD OF BEING COMMENTED OUT!!
