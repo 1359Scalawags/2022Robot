@@ -22,10 +22,10 @@ public class Constants {
         public static final int kRightFrontPort = 11;
         public static final int kRightRearPort = 12;
         //Drive motor speeds
-        public static final float kTeleopBoostSpeed = 0.55f;
-        //public static final float kTeleopBoostSpeed = 0.25f;
+        public static final float kTeleopBoostSpeed = 0.25f;
         //boost was 0.25
-        public static final float kTeleopBaseDriveSpeed = 0.45f;
+        public static final float kTeleopBaseDriveSpeed = 0.85f;
+        // public static final float kTeleopBaseDriveSpeed = 0.45f;
         //public static final float kTeleopBaseDriveSpeed = 0.75f;
         public static final float kDriveSpeed = 0.85f;
 
